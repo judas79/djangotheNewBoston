@@ -1,0 +1,9 @@
+In lesson 3, in the root directory of the project, where manage.py is, with the command 'python manage.py startapp <app name here>
+we created a package directory named Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music,
+which was later renamed:  'music'.
+We also learned how to stop the server by pushing keyboard buttons 'cmd c' and then clear it by typing 'clear'
+and pressing the 'enter' button.
+Leave the server running in one PowerShell window and launch another one to work in.
+All the different sections of a website that can be explained within one sentence is considered an app.  For example a
+music portion, video portion, or a forum.  If it takes more than one sentence to explain, it should be further divided
+more package directories.
