@@ -1,0 +1,15 @@
+In lesson 3 we created a new app named Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music.  All the different
+sections of a website that can be explained within one sentence is considered an app.  For example a music portion, video
+portion or a forum.
+
+In lesson 4 the files that where created using 'python manage.py startapp Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music',
+are explained.
+migrations folder is used to hook up your files and content to your database
+_init_.py: blank file that lets python know that this is directory is a package
+admin.py:  is set up because moderators will always need a section in the websites database to delete files, add users, ect.
+apps.py:   is the configuration for all the settings of this app
+models.py: is the blueprint for your database; a template of how you're going to store data for this app, how things will be stored
+           The code will have different classes where the division of content will be coded as a blueprint.
+tests.py:  to run tests on code to debug if necessary.
+views.py:  are made up of functions that hand a users requests and responds in some fashion.  example download song1.wav will respond with
+           a link or some other response.
