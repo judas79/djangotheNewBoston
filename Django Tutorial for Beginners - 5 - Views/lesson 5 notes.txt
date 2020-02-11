@@ -1,0 +1,41 @@
+Django projects come with two url sections.  The first is where it lives, domain name,
+on a server and the other is the admin section.   To find where the requested page is,
+Django goes into the urls.py, and looks through the url mappings and looks for patterns
+that match the requested criteria, to match the url.  It uses regular expressions to
+do this.  In this example the request from the user was admin and using regular expressions
+django looking through the url mappings and found the match for admin
+'path('admin/', admin.site.urls),'.
+
+The second part of the path ', admin.site.urls),', tells django how to respond to the request.
+To add more sections there must be this type of path for the request to be handled.  These paths
+have characters such as:
+r outside the expressions ' ', is called raw, so that some characters that are used as methods
+are seen as regular character.  / for example.
+a carot ^  : the beginning of a statement
+$ end for the end of a part
+
+To avoid clutter each sections urls.py should be used for the urls pertaining
+to that particular section.  For convenience each app should have its own urls.py to put
+the urls in.  So create one, the way any other .py file is made.  Then paste
+'from django.conf.urls import url' in it.  Also import the views into it:
+from . import views.  The . in from . import views, means to look within this
+directory for views, in this case.  Then copy paste the content of the urls.py paths
+from the main pages' urls.py into it.
+
+We modified the path pattern to create a homepage by making it blank using start ^
+and end $:  r'^$', the what to do which is in a file named 'views.index',
+which at this point has not been created, then named it 'name="index"',
+which is not mandatory.
+
+To let the main urls.py know what is in the music apps, urls.py file,
+we also add 'include' to our, 'from django.conf.urls import url' module,
+located in the main directory: from django.conf.urls import include, url
+In the main urls.py in the urlpaterns also add 'path('music/', include'music.urls''.
+This will handle the music url request, from the user.
+
+To handle the request 'url(r'^$', views.index, name='index')' in the music urls.py,
+add 'from djamgo.http import HttpResponse' to the music views.py file to do the response.
+There are others that handle request, this one is simple.  Writing a function
+def index(request):
+    return HttpResponse('response text goes in here')
+renders the actual text response, from the music views.py file.
