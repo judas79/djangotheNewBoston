@@ -39,3 +39,164 @@ There are others that handle request, this one is simple.  Writing a function
 def index(request):
     return HttpResponse('response text goes in here')
 renders the actual text response, from the music views.py file.
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+FROM THE COMMENTS SECTION IN TURORIAL 5:  these problems also existed in 1.0.9
+
+to get django version in powershell  python -m django --version
+or
+import django;
+print(django.get_version());
+
+there are a little bit changes required for 2.1.1
+for website\urls:
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('music/', include('music.urls')),
+]
+
+and for music\urls :
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path(r'', views.index, name='index'),
+]
+
+and for views :
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("<h1> This is the Music app Homepage</h1>")
+
+
+for 404 errors caused by missing code in higher versions of django: "Current URL music didnt match any of theses".
+
+I fixed it. I am using Django 1.10.6. I had to type --noreload after python manage.py runserver
+
+
+
+
+
+
+ I got it to work with:
+- music/urls.py:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+Leave one space below the bottom square bracket.
+
+- views.py:
+
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("<h1>This is the music app homepage")
+
+Leave one line again below the return statement
+
+- website/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('music/', include('music.urls')),
+]
+
+Leave one space below the bottom square bracket.
+
+Make sure to save each individual piece of code before refreshing the page.
+
+
+
+For admin page, i.e django administration it's asking login id and password.
+how do I open my admin page
+
+You need to create superuser manually on new version of Django:
+>manage.py createsuperuser
+..and define username and password
+
+
+
+if you are getting tons of red warnings on console and your page is not loading anything (even the main page does not load anymore) then:
+- go to powershell;
+- move to current directory;
+- type the command: python manage.py migrate
+
+
+
+new update :
+from django.contrib import admin
+from django.urls import path
+from music import views
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('music/', views.index),
+]
+
+
+
+For anyone using Django 2.0 you can simply use path() function. Its new and its easier than having to use a regular expression.
+
+1. Make sure you have it imported on the files you use it
+
+     from django.urls import path
+
+2. Here is an example for the music\urls.py file that you created in this video
+
+    urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+3. notice that you do not have to use a regular expression! i.e.(r^$)  Pretty cool.
+
+
+
+**** django 2.1 and higher you have to create superuser before log in. ****
+
+Hey guys, if you add admin to the URL and it prompts you to login you need to go to terminal/powershell and use the
+"python manage.py createsuperuser" command. Hit enter and it will run you through the setup :)
+
+I tried running python manage.py createsuperuser but it shows an error. It's Operationalerror: no such table: auth user
+Could you please give any suggestion?
+
+try python manage.py makemigration
+then python manage.py migrate
+then python manage.py createsuperuser
+then set id and password
+
+
+in latest pycharm use 'from django.urls import include,path' to use include in web.url
+and same in music.urls file
+
+
+
+What's the use of request in "def index(request):"? I know it's a parameter, but why is it necessary?
+
+Because when the index function is called it is done so in the context of someone visiting a url and sending a http request.
+
+It doesn't need to be called 'request', but the first argument will be the request.
+
+It contains information such as, is the request a GET or POST request and if it's a post request it will have information about what was sent to the server in the request. POST dictionary.
+
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
