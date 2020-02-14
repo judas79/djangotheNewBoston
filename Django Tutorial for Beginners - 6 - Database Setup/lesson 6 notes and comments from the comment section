@@ -1,0 +1,34 @@
+Django comes with sqlite3 installed and in the setup.py file.  But it needs to be configured to
+connect to our code.
+
+Django comes with many apps already installed in the setting.py, many of which will need setup with the database:
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    ]
+
+This line, from the Powershell runserver command, means that the apps, source code and the database are not in sync.
+'You have 17 un-applied migration(s). Your project may not work properly until you apply the migrations for app(s):
+admin, auth, contenttypes, sessions.'
+Typing 'python manage.py migrate' in powershell or cmd propmpt will sync the code and apps with the database.  It syncs them by
+going into the settings.py and looking for installed apps.  Within each app it looks through the apps directory for what tables
+are needed to work that particular app.  Each app has its own requirements as far as tables go.  If your run 'python manage.py migrate'
+the meassage of needing to migrate will no longer be there.
+
+
+                      from the Comments Section
+*************************************************************************
+
+Based in our discussion at school, the migrations just detect changes in the models.py per "app"
+
+
+
+vwhy havent u installed music app?
+
+He hasnt written anything inside it yet...
+Because, you need to define what tables you are going to need for database and etc. Once he defines tables properly,
+he will make migration. That's why he probably didn't installed music app yet.
