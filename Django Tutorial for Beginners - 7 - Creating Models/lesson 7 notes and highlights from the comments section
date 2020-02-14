@@ -1,0 +1,76 @@
+We are going to work with models.py to create a blueprint of how to organise the data for the website.  These blueprints
+will apply to the database as well the python code.  Each class created in models.py will be also created as a column in
+the database.  While creating these classes think of all the different apps that will populate the content; in this case
+under music:  Album, genre, album art, the songs themselves....Under the class Album,
+we look for variables that would logically be under the Album title, idea to populate
+the content.  These variables will also be entered in the database as a column.  When
+defining the variable django will need a description of what kind of data will be
+hold in it, be it text, float, integer, in this case text written as 'models.CharField'.
+Then the text maximum amount of characters '(max_length=250)'.
+
+When we create our album_logo variable we will be using s link, so the maximum
+size of the text, will have to accommodate the possible amount of characters in
+the link, in the field area:   (max_length=1000)'.  All these variable names will
+be used when changing the data that falls under their category.
+
+Next we create another class named Song.  Since a song is part of an album, song
+will need to be linked to Album.  We will link them by creating a value named album
+and use a ForeignKey to do so:  album = models.ForeignKey(Album, on_delete=models.CASCADE)
+
+Primary Keys:
+Django creates another column containing (Primary) unique id number for each Album created within
+the class.  These numbers are added sequentially by 1 as the different Albums are created.
+This is done to keep track of things that may have the same name.  In this case two
+albums cannot have the same id number (Private / unique key) but can share the same name.
+
+Each Song, which is considered as part of something else, will be linked to an Album by a Foreign Key,
+other entities with many elements will be linked with the private unique key.  'on_delete=models.CASCADE)'.
+Because Songs are a part of Albums and some Albums will sometimes need to be deleted, this causes the
+Songs to be deleted if the Album is deleted, as to not a orphaned songs on the server.  If you want to
+keep the orphaned songs omit this command.
+
+'file_types = models.CharField(max_length=10)' are mps, wav ect. and will be less than 10 chars in length.
+'song_title = models.CharField(max_length=150)' 100 is long enough for song title name
+
+
+                taken from the comments area
+******************************************************************
+
+
+For anyone having trouble you may use this
+
+from _future_ import unicode_literals
+
+from django.db import models
+
+# Create your models here.
+# blue print of how we are going to be using our database
+# every class you create here will be converted into columns in database
+
+class Album(models.Model): #every class inherits from models.models
+ artist = models.CharField(max_length=250)
+ album_title = models.CharField(max_length=500)
+ genre = models.CharField(max_length=100)
+ album_logo = models.CharField(max_length=1000)
+
+class Song(models.Model):
+ # A song needs to be a part of an album
+ album =  models.ForeignKey(Album, on_delete=models.CASCADE)
+ file_type = models.CharField(max_length=10)
+ song_title = models.CharField(max_length=250)
+
+
+
+
+ You don't need to prefix your class attributes names with prefix 'album' i think, because the class name
+'Album' already give the context.
+
+you shouldn't prepend class member fields with the class name. You'll end up with redundancies like album.album_title instead of album.title.
+Plus it's inconsistent because title is album_title but artist is just artist.
+
+class has a capital 'A' -> Album
+So i think he should be fine.
+
+(I know this is old, but) ErichLancaster isnt saying that it won't work because of identical names, just advising to keep variable names consistent.
+either all variables should have prefix "album_" or none. Not some. And also "album.album_title" sounds worse than "album.title".
+
