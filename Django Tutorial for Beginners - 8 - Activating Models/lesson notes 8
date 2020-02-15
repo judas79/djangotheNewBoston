@@ -1,0 +1,100 @@
+Add music app to our settings.py 'INSTALLED APPS' so when the server boots up, it will look
+in there and add the music app and make sure it is installed correctly. To add
+it, use the package name dot, apps, from apps.py then the class name from within
+apps.py which is 'DjangoTutorialForBeginners3CreatingOurFirstAppMusicConfig', in this case.
+Don't for get the parenthesis and coma afterwards.
+'INSTALLED_APPS = [
+    'music.apps.MusicConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+'
+We are about to boot the sever but will get the need syncronizing error, because the will looks to see if the
+models.py apps are configured correctly and match the database.  We have not yet reflected our blueprint to the
+database yet so there will be an issue.  To  fix this issue we us python manage.py makemigrations <the package name>
+'music' in this project.
+python manage.py makemigrations music
+
+To see what this migration of the music app accomplished type:
+python manage.py sqlmigrate music 0001
+
+This is the ouput from PowerShell:
+
+PS C:\Users\Gina\PycharmProjects\djangotheNewBoston> python manage.py makemigrations music
+Migrations for 'music':
+  music\migrations\0001_initial.py
+    - Create model Album
+    - Create model Song
+PS C:\Users\Gina\PycharmProjects\djangotheNewBoston> python manage.py sqlmigrate music 0001
+BEGIN;
+--
+-- Create model Album
+--
+CREATE TABLE "music_album" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "artist" varchar(250) NOT NULL, "album_title" varchar(450) NOT NULL, "genre" varchar(150) NOT NULL, "album_logo" varchar(1000) NOT NULL);
+--
+-- Create model Song
+--
+CREATE TABLE "music_song" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "file_types" varchar(10) NOT NULL, "song_title" varchar(100) NOT NULL, "album_id" integer NOT NULL REFERENCES "music_album" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE INDEX "music_song_album_id_62a413c8" ON "music_song" ("album_id");
+COMMIT;
+
+
+
+
+The command caused the program to take any changes to the files in your app
+you made and converts them to sql file.  It created a table for albums and another
+for songs and also created a bunch of columns and makes the file for the database.
+
+After this step, use 'python manage.py migrate'  to migrate the new sql file, we
+just made and syncs it with our code.
+
+Powershell output:
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, music, sessions
+Running migrations:
+
+If the code in your models.py does not match the database you will get migration errors.
+
+Sumary:
+Make changes in code to your model.py file
+Make migrations sql: python manage.py makemigrations music
+See what it made using ID Number:  python manage.py sqlmigrate music 0001
+Make the changes from the sql file to the database and code syncs.:  python manage.py migrate
+
+
+
+************* From the comments section *****************************
+
+
+Is the 'Songs' database numbered 0002 if 'Albums' is numbered 1?
+
+0001 isn't just for "songs' it's for all the databases that where in
+that model.
+
+
+
+What does "MusicConfig" means here?
+
+It's a class in "music-
+
+
+
+NameError: name 'Album' is not defined
+
+album = models.ForeignKey('Album',on_delete=models.CASCADE) find that line and put the the Album in quotes like this "Album"
+
+
+
+
+Hi, there's a tutorial I saw, where one added 'music', only as an app in the settings.py instead of 'music.apps.MusicConfig',
+So, was the person correct, and can I adopt the method since it's shorter
+
+yes.. that works too
+
+
+
+I'm using Django 1.11. In settings I only need to include the app name in Installed Apps list. So it would be 'music' not 'music.apps.MusicConfig'
