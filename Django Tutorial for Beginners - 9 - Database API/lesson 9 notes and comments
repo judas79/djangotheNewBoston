@@ -1,0 +1,52 @@
+The Django database API tool is best learned by using it in PowerShell.
+'python manage.py shell' different than 'python shell' is the Django terminal
+shell in which database commands can be written and executed.
+
+To use the columns within the Song and Albums tables we created previously, first
+you need to import them with:
+
+from music.models import Album, Song
+
+# To see all the items in the album table:
+Album.objects.all()
+Which returned 'QuerySet []'  because there aren't any items in the Albums yet.
+There are two ways to add the columns using the constructor; all at once or separately.
+So to create a python object all at once, as to have an item in albums we use:
+a = Album(artist='Taylor Swift', album_title='Red', genre='Country', album_logo='https://cdn140.picsart.com/295236137087211.png?type=webp&to=min&r=640')
+to create a new variable object within Album named 'a', in the shell memory.  To save it use:
+a.save()
+This function saves 'a' to the database.  To retrieve information stored within one of the columns:
+a.artist
+a.album_title
+Type variable name the dot then the column name.  To use the id enter to get id number:
+a.id  or a.pk  # which returns 1 for the unique id number, or primary key, they point to the same thing.
+
+The next object variable will have a primary id of 2:  We will create an empty second album and add items separately:
+b.Album()
+Now we will add the information for the columns:
+b.artist='Myth'
+b.album_title='High School'
+b.genre='Punk'
+b.album_logo='https://d2po7v53a8yrck.cloudfront.net/pic/tv_ontvtonight_18.png'
+Then to save object to the database
+b.save()
+To change a column with an object, follow the same procedure to overwrite it:
+b.album_title='Middle School'
+b.save()
+
+
+************** useful thoughts from the comments section *************
+
+
+for all those who cant call  the
+Album.objects.all()
+make sure you do the migrations right
+inside the project file in terminal type
+
+python manage.py migrate music
+
+it should fix it
+
+
+
+
