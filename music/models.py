@@ -9,7 +9,7 @@ class Album(models.Model):
     # what variables would exist in a Album, 'artist'
     # what kind of data is being stored in it, text  'CharField'
     # One field required size 'max_lenght'
-    artist = models.CharField(max_length=250)
+    artist = models.CharField(max_length=250)      # <-  column 1 ....
     album_title = models.CharField(max_length=450)
     genre = models.CharField(max_length=150)
     # max length large to accommodate a url link
