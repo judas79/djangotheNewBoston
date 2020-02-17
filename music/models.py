@@ -15,6 +15,9 @@ class Album(models.Model):
     # max length large to accommodate a url link
     album_logo = models.CharField(max_length=1000)
 
+    def __str__(self):
+        return self.album_title + ' - ' + self.artist
+
 class Song(models.Model):
 
     # to link this Song class to the Album class using ForeignKey
