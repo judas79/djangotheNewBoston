@@ -1,0 +1,50 @@
+Django come with a default admin that has many privileges.
+First we have to create the super user account.  With Powershell in the main directory type:
+python manage.py createsuperuse
+The shell will then provide you with the following to fill out, one at a time:
+Username (leave blank to use 'gina'): admin
+Email address: robotrods@gmail.com
+Password:
+Password (again):
+Superuser created successfully.
+
+Typing http://localhost:8000/admin/ in your browser will bring you to your admin.  Enter the credentials,
+you just finished making and 'enter'.  This is the administrative back end; access to your database, of your website.
+To enable a way to edit Albums table and user table.
+
+In admin.py add 'from . models import Album', to import Album from this folder.
+To tell django that Album should have and administrate interface within the amin. webpage:
+admin.site.register(Album)  # register Album as an admin site
+Refresh website to see changes.  The Albums contents are now editable.  The top section of the website where the
+toolbar would normally be 'Home › Music › Albums › State Park - Myth' is called
+bread crumbs.
+
+
+
+
+*********** highlights from the comments area **************
+
+
+Did anyone notice? the name in the site is Albums and not Album as in the python code. (models)
+
+I think it adds an s by default. But you can change the plural form by using verbose_name.
+
+It's just a django thing, the additional 's' won't have an effect on running the code though.
+
+
+
+
+
+I found a solution to the "WSGIRequest' object has no attribute 'user'" -problem. I found out that when I run the
+"python manage.py runserver" -command, python runs a version of Django other than 1.9. After I reinstalled django using
+pip (pip install django==1.9) and restarted the sever, everything worked like a charm.
+or change MIDDLEWARE in settings.py to MIDDLEWARE_CLASSES
+
+
+
+
+Mac OS X users must remember to use sudo. So in this case: sudo python manage.py createsuperuser
+
+
+
+
