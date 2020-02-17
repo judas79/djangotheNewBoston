@@ -1,0 +1,107 @@
+If adding information into the database in lesson 9 and you do a query ' Album.objects.all() ' you get:
+<'QuerySet [<Album: Album object (1)>, <Album: Album object (2)>]>' which isn't very useful, it lacks details.
+To get more details while using  Album.objects.all(), we go into models.py and add a method call 'Dunder string'
+def __str__(self):
+which will make a string representation of this object.  This is where we pick what we print out when the query
+' Album.objects.all() ' is requested.  We will request to items in the columns in this case:
+    return self.album_title + ' - ' + self.artist
+To see the changes Powershell django must be restarted by typing exit() and 'clear' to clear the Powershell screen
+Then restarted with:
+python manage.py shell
+from music.models import Album, Song
+Album.objects.all()
+The output from the django shell:
+QuerySet [<Album: Red - Taylor Swift>, <Album: Middle School - Myth>]>
+
+To filter out some objects and get other specific ones information from the database use filter and (id=<number>)
+Album.objects.filter(id=1)  The output for id=1 will be:
+<QuerySet [<Album: Red - Taylor Swift>]>
+With id=3 you will get [] since it doesn't exist yet.
+
+To do a search query within your objects, use .filter, then a specific, within parenthesis, column name with two underscores after it
+'__startswith=' then search term, within quotes:
+Album.objects.filter(artist__startswith='Taylor')
+
+Album.objects.filter(artist__startswith='Swift') # will get you []
+but using '__endswith=' gets it using the last part.
+Album.objects.filter(artist__endswith='Swift')
+<QuerySet [<Album: Red - Taylor Swift>]>
+
+The code we have been using in the Powershell Django shell is the same that
+we will be running in our code.  So the shell is a good place to try the code out.
+
+
+
+
+************* notes from the comments area **************
+
+You can also press "Ctrl+C" to exit the shell
+
+
+can anyone tell me why is he writing from music.model import blah blah and not from models.py import blah
+
+Because he is importing from the app he created in previous video which he named music. That music app contains
+the models in which the album and song were created.
+
+
+
+can any one tell me what has connected "Album.objects.all()" with the code we wrote in models.py please help :)
+
+in the first line you are importing from music.models import Album, Song and we created objects for Album class,
+then saved it , in reality the objects we made are inserted into database under the columns hope you understand it now.
+
+
+
+Is there a way to update the values once entered in the database. Suppose I want to change the name of the Album for
+the first id. Then how are we approach it.
+
+Just create a variable and access it through the pk.
+
+>>> a=Abum.objects.get(pk=1)
+and then
+>>>a.album_logo = "Image Address"
+>>>a.save()
+
+
+
+can u please explain,
+How to delete an object that is saved??
+
+put .delete() at the end for example Album.objects.filter(id=3).delete()
+
+
+
+
+for people who still see same objects: write EXIT() not just exit
+
+
+
+or all those who have the problem :  ([<Song: Song object>,  <Song: Song object>]>)
+Objects are shown as " Class_Name Object ".
+
+The solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stufff (Table Columns)  in the class.
+
+Solution ::
+You must have to remember that Python cares for Indentation in the code,
+e.g
+
+class Song(models.Model) :
+    Album = models.ForeignKey( Album, on_delete = models.CASCADE )
+    Title = models.CharField(  max_length=500 )
+    Format = models.CharField( max_length = 10)
+
+def _str_(self) :
+      return self.Title
+
+in this example Python consider   def _str_(self) :    function outside of the body of class song. So it does not work.
+So the solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stufff (Table Columns)  in the class.
+
+This is the right code:
+class Song(models.Model) :
+    Album = models.ForeignKey( Album, on_delete = models.CASCADE )
+    Title = models.CharField(  max_length=500 )
+    Format = models.CharField( max_length = 10)
+
+    def _str_(self) :
+        return self.Title
+
