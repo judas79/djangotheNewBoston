@@ -1,5 +1,8 @@
 The Django database API tool is best learned by using it in PowerShell.
-'python manage.py shell' different than 'python shell' is the Django terminal
+
+'python manage.py shell'
+
+different than 'python shell' is the Django terminal
 shell in which database commands can be written and executed.
 
 To use the columns within the Song and Albums tables we created previously, first
