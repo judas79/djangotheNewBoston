@@ -19,5 +19,6 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('music/', include('music.urls')),
+    path('music/', include('music.urls')),
+    #url(r'^music/$', include('music.urls')),
 ]
