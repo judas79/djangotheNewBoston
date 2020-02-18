@@ -1,0 +1,116 @@
+We will be creating another app; webpage.  In a quick summary/ review:  A View consist of a
+short function that returns some HTML.  We need Views, because each HTML pattern will be connected
+to a View and a HTML response.  This connection between HTML patterns and Views is what enables
+the webpages within the website to display.
+
+The next page/ app we are going to work on is the music page which will have pictures of the music
+albums on it, that will be clickable to lead to another app/ page, that will have the details for
+the selected Album.  So 2 pages one overview and one detail.
+
+We will first make a music sub-page, structure, using and ID.  In regular expressions a carot ^ represents
+the beginning and a dollar sign $ the end.  So most reg. expressions, in the urls.py file will
+have url(r'^$'),.  We use ( ) withing the reg. expresion if we want to group things together as one item.
+For instance if you need to keep a large ID number '712' together instead of '7' '1' '2'.
+To keep the number together, in this example put (?P<album_id>) within the parenthesis, so when a user
+request the id to see the item it is passed into our function correctly, as normal.  Now using reg. expresion,
+we can look for the number for the id.  After the _id> we write a open and closed bracket with
+[0 9]+ to look for a number between zero and nine and a plus after it so it will iterate through the numbers
+more than once, and match all the integers of a number. Then it will look at the end for the /, which is
+not part of the group.
+url(r'^(?P<>album_id>[0 9]+)/$'),
+
+We will no skip over and make the View function so our url has something to connect to.  In view.py,
+we will write a function to handle the webpage, item, image requested by the user.  Every function
+will therefore have 'request' to be passed in.  To handle the id the user, will request,
+we use 'album_id', as a parameter to pass it in.
+def detail(request, album_id):
+
+This will respond using  HttpResponse:
+return HttpResponse('<h2>Details for Album ID:  ', str(album_id), '</h2>')
+
+We will now complete music urls.py to connect to views.py, with views.detail, no need for parentheses
+on detail and name it the same as the function for possible later use.
+url(r'^(?P<>album_id>[0 9]+)$', views.detail, name='detail'),
+
+
+
+********************** highlights from the comments area **********************
+
+
+
+The url () function is depreciated, for people importing path .
+Do use path('<album_id>'',views.detail, name = ''detail'),
+instead.
+
+https://stackoverflow.com/questions/47661536/django-2-0-path-error-2-0-w001-has-a-route-that-contains-p-begins-wit
+
+path('/<int:album_id>/', views.detail, name = "detail"),
+
+
+
+
+django 2.0 you just need to add pretty url like .....
+def detail(request, album_id):
+    return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
+path('<int:album_id>', views.detail, name='detail'),
+
+
+
+
+
+in django 2.0 you just need to add pretty url like
+path('<int:album_id>', views.detail),
+and it will work
+
+little correction
+path('<int:album_id>/',views.detail,name="detail")
+
+
+
+I used path("<int:album_id>/", views.detail, name = 'detail'),
+make sure you use double quotes with album_id and single one in detail
+
+
+
+django 2.0.5
+path('<str:Album_id>', views.detail, name = 'detail'),
+
+
+
+
+In Django 2.0 you can use:
+from django.urls import re_path
+re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+
+
+
+
+django(2.0.7) use this code bro..   path('<str:album_id>',views.detail, name='detail'),
+
+
+
+django(3.0.3)
+Changed in website/ urls.py:
+
+#url('music/', include('music.urls')),
+to
+path('music/', include('music.urls')),
+
+Added and changed in music/ urls.py:
+
+from django.urls import re_path
+
+   #url(r"^(?P<album_id>[0-9]+)/$", views.detail, name='detail'),
+   #path('<album_id>'',views.detail, name = ''detail'),
+ to
+  re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+
+Changed views.py:
+
+
+#def detail(request, album_id):
+    #return HttpResponse('<h2>Details for Album ID:  ', str(album_id), '</h2>')
+
+to
+def detail(request, album_id):
+    return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
