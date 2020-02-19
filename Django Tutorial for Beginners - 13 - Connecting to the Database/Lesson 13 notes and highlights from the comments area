@@ -1,0 +1,80 @@
+In this lesson we will connect to the database and pull out all our albums and display them on the 'music' page.  Once the
+albums are displayed the user will be able to click them to see the details using the view we made last tutorial.  Since
+we will be working with Album information we will need:
+from . models import Album
+added to our views.py file.
+
+This will not include songs only Album information.  In Views within the index function we will make
+html = '' a variable (string), to have more clarity, instead of listing all the html links.  Before that,
+we also need a variable
+all_albums = Album.objects.all()
+to connect to the database api, and storing the results of the call to the database.
+Album.objects.all() will look through the Albums in the database and get them all.
+So to iterate all through the Albums we use.
+    for album in all_albums:
+    # to make urls out of the iteration;  album.id needs to be converted to a string.
+    url = '/music/' + str(album.id) + '/'
+
+To finish making the url into an html link for a webpage:
+'<a href="#">title</a><br>'
+The <a> is an html link anchor, a hash mark (#), which specifies an internal target location (an ID) within the current
+document. The <br> is a break, so the links will be on different lines.  So, noing the html
+syntax, we replace the html with this:
+html += '<a> href="' + url + '">' + album.album_title + '</a><br>'
+
+
+
+
+***************** highlights from the comments area *****************
+
+
+
+I have a question please:why did we use single quotation mark
+( ' ' ) around +url+ . I mean <a href= " ' + url + '  " > . and even I dont get it why we need concatenation (+ +)
+here while we have only one value (url) in href ; there is no string before or after url?  Thanks
+
+see the html code used here is written in string whereas the url is a variable. If u include url without breaking
+(using  +) then the link will be nothing but 'url (i mean the code implies that the link is url and not
+'music/album_id/ ')
+
+
+
+
+I'd like to a question. On view.py in line 9 , why is this writing as "album.id"? What's the difference between
+"album.id" and "album_id". Thanks
+
+album_id - is just a name and must same with this file (music\urls) you can name in other name as well:
+ # music/<album_id>/
+    url(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+
+album.id  is:-
+"album" is: "for album in all_albums:" (is just an item in all_album)
+".id" is Django primary key generate automatically
+
+
+
+
+for album in all_albums:
+        url = '/music/' + album.id + '/'
+
+We have created table Album in models.py, so why in the url we use "album.id" but not "Album.id"?
+I misunderstood something?
+
+the album in album.id is for loop iterator
+
+
+
+You do len(all_albums) queries to database - extremely inefficient. A better way is all_albums = list(Album.objects.all())
+
+Still comes up with the same results on the website, but in the powershell Djngo shell it omits '<QuerySet' at the beginning
+of the output from the shell.
+
+
+
+For everyone who was struggling with the Album.objects.all() error, I tried everything and ended up do the migrate process.
+It fixed it. So maybe try that.
+
+python manage.py migrate
+
+
+
