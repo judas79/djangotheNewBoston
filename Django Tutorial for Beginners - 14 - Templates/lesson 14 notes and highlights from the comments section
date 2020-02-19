@@ -1,0 +1,196 @@
+Leson 14 will be about making html templates.  These are used here to separate the html,
+from the backend stuff.  The templates can be used by a designer without having any actual data, then be
+populated later on, by someone else.
+
+We will edit our index function in views, as follows:
+def index(request):
+
+    # use Album.objects.all() to get all albums
+    all_albums = Album.objects.all()
+    template = loader.get_template('')
+    return HttpResponse()
+
+Whenever you are going to work on templates import the templates:
+from django.template import loader
+Also add a directory to the 'music' directory and name it 'templates'. Then create a subdirectory,
+in 'templates' and name it 'music'.  In the new 'music' directory create a new
+html file named index.  index.html will be for the homepage, to return the html
+as we did before, but from a new location.  We will list them as a list item <u1><li><a></li></u1>,
+instead of having line breaks <br>.  This is our template in templates/music/index.html:
+<ul>
+    <li><a href="#">Album Title Here</a></li>
+</ul>
+
+We will have to go into views and plug in the pieces, there.  For the variable 'template',
+in 'view' we will first load in index.html.  We do that by adding the path of 'index'
+into our variable:
+   template = loader.get_template('music/index.html')
+Django is already set up to look in our music directory so we do NOT have to list the
+directory, variables in out path variables/music/index.html
+
+Next we will create a dictionary named 'context' in our 'views' file.  When we pass the
+Album information using 'all_albums', into our 'template' in the index.html file, it will
+go through the dictionary.  The name 'context' means, information that your template
+needs, is widely used even though the context variable could be named anything.
+We will keep the name and value pairs, within the context variable, the same
+as they are named also (all_albums).  This way of naming keeps things easier to
+identify within the code.
+
+When you have a 'view', you need it to return something, and this case it will
+be the finalized template.  This is achieved by:
+return HttpResponse(template.render(context, request))
+Information gets passed into our template, and we place all the parts where they need to be,
+and be then converted into final html which will be returned to the user.
+Do not forget to pass 'request'.
+
+So to fill the template in index.html.
+<li><a href="#">Album Title Here</a></li>
+We need to put the music id where the hash mark is, the album title, where it says "Album Title Here"
+and make a loop so it display all of them.
+
+The Django code will need to be surrounded by its markers:
+django markers for code {% django code goes in here %}.  To make a for statement in django for html
+{% for album in all_albums %}  notice no semi-colon at the end
+{% endfor %} is used to end the for loop where you want it.
+There is an exception to this {%%} syntax; when a plain variable is used, in this case 'id' is already
+a variable of album, so the syntax uses two squigly lines( {{ }} )
+<li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+When you check this in the browser you can see the links now have bullets,
+and inspect it in the browser.
+
+To let the user know the website is working properly, even it there is no content on the page,
+we will make a notification as a heading in html <h3></h3>.  We will need an if else statement,
+with the django markers.
+
+{% if all_albums %} <!-- if there are any albums then this will br True-->
+    <ul>
+        {% for album in all_albums %}
+        <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+        {% endfor %}
+    <!-- endfor is used to end the for loop where you want it -->
+    </ul>
+
+{% else %}
+    <h3>You don't have any Albums</h3>
+{% endif %}
+
+
+
+************ highlights from the comments area ***************
+
+
+
+
+I'm getting error like ImportError:  "No module named templates.backends.django"
+
+If get above error go to settings.py file and look for the list called TEMPLATES and paste this
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+
+        },
+    },
+]
+
+
+
+
+
+for anyone who is having TemplateDoesNotExist error, try  template = loader.get_template('index.html')
+instead of music/index.html
+
+
+
+
+template does not exist at/music/ do you guys have any solution ??
+
+try naming the template folder as "templates" and not template. that worked for me.
+
+
+
+
+
+
+In my html file(index.html) " {% for album in all_album %} ------{% endfor %} "
+is not working. how to set up the setting for this? pls help
+
+Try this code in your index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+        {%for album in all_albums%}
+        <li><a href = "/music/{{album.id}}">{{album.album_title}}</a></li>
+        {%endfor%}
+    </ul>
+</body>
+</html>
+
+
+
+
+Why is there no colon after if clause or the else clause in the template?
+
+Because it isnt actual python code. Its just a way for django to see the html file and understand which part needs to be
+interpreted as html and which part needs to be seen as a python code, those who wrote django didnt feel there is a need
+for colon as such.
+
+
+
+
+for those whose template is not working change the .html file to a .txt and it'll work. Dont forget to add <html> tag
+
+
+
+
+
+if you are getting Template doesn't exist
+make sure that in setting.py file
+'DIRS': ['/music/'], #and in the views.py file
+template = loader.get_template('music/index.html')
+
+Hello, I have copied this exactly, however when I type: template = loader.get_template('music/index.html')
+I get a yellow highlight over the file path saying "Template "music/index.html" is not found". Any help
+would be greatly appreciated!
+
+I had similar issue. I had to add my templates directory to the settings.py. Go to your settings.py. Scroll down to
+'TEMPLATES'. Look in the list and you will see a key called 'DIRS'. If the value is an empty list, just add 'templates'.
+
+Go to settings.py and change TEMPLATES key 'DIRS' to 'DIRS': ['music/templates'],
+
+try "loader.get_template('index.html')" instead of "loader.get_template('music/index.html')".
+
+
+
+
+why is that somewhere we're using album.id and somewhere album_id???? Anyone
+
+"album_id" is a variable and "album.id" is a parameter of the object called "album"
+
+
+
+
+
+what was the use of dictionary here
+
+in order to access the all_albums in index.html
+we are sending the key('all_albums') not the value(all_albums) to the index.html to get accessed u can check it
+putting other key name(instead of 'all_albums' like 'qwerty') and change at the places of key('all_albums')
+in index.html
+
+
