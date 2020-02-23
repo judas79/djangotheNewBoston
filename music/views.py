@@ -1,8 +1,10 @@
 # from django.shortcuts import render
 # Create your views here.
 
-#added for lesson 13
-from django.template import loader
+#added for lesson 13, 14 uncommented 15
+# from django.template import loader
+#added for lesson 15
+from django.shortcuts import render
 from django.http import HttpResponse
 from . models import Album
 
@@ -26,12 +28,16 @@ def index(request):
 
     # use Album.objects.all() to get all albums
     all_albums = Album.objects.all()
-    # load our template contained in index.html
-    template = loader.get_template('music/index.html')
+    # lesson 13, 14 load our template contained in index.html, uncommented in lesson 15
+    #template = loader.get_template('music/index.html')
+    # this dictionary only consists of one pair in it.
     context = {
         'all_albums': all_albums,
         }
-    return HttpResponse(template.render(context, request))
+    # render takes request as its first arguement, then the filepath to that template
+    return render(request, 'music/index.html', context)
+    # for lesson 14 uncommented on lesson 15
+    # return HttpResponse(template.render(context, request))
 
 
 
