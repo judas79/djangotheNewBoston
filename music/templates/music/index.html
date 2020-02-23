@@ -4,7 +4,9 @@ django markers for code uncommented in django {% comment %} and {% endcomment %}
     <li><a href="#">Album Title Here</a></li>
 </ul>
 -->
+
 {% if all_albums %} <!-- if there are any albums then this will br True-->
+    <h4>Here are all my Albums</h4>
     <ul>
         {% for album in all_albums %}
         <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
