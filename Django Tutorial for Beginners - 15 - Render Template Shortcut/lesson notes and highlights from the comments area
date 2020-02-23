@@ -1,0 +1,71 @@
+Instead of loading then rendering to html the returning to the user,like we did in lesson 14, we are going to use a
+shortcut to combine the loading and rendering.  Also instead of a simple http response, we will be returning, from the
+function, 'render'.  'render' first uses 'request' as its first argument then the path to that pattern.
+The last argument, is, what is it that the template  needs in order to work, which is the dictionary.
+return render(request, music/index.html, context)
+
+Render has a built in http response, which is generated from the code.  It takes the info from 'HttpResponse':
+def detail(request, album_id):
+    return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
+and converts to a valid http response and sends it.
+
+
+
+
+# **************** highlights from comments area*******************
+
+
+
+(referring to the end of lesson 14)
+What  is that Album.DoesNotExist? Where is it defined? In the Model? You do not show that in the tutorial.
+Replacing that line with except Exception: fixes it.
+
+
+except Album.DoesNotExist works for me. I guess it's from models.Model that Album inherits from
+
+2 years ago
+Both "OBJECTS" and "DOESNOTEXIST" are highlighted but ignore the warning. The code still works
+
+"Album.DoesNotExist" is the name of the error which arises when "Album.objects.get(pk=album_id)" fails.
+The 'except' code works only if 'try' gets that specific error(Album.DoesNotExist).
+As you said, "except exception" will work for whatever error we get in 'try' which is not going to be a problem
+as of now, but you must keep in mind that 'except exception' gets executed for whatever error we get in 'try'.
+Just check for "Python Try Except" tutorial on google, you'll understand it better.
+
+
+
+
+I made a little typo in my models.py file and as a result I got an error . But when I fixed that, the error didn't
+disappear after refreshing the page. I had to restart my server to fix it.
+Does that mean I need to restart my server every time I make a change in the code of models.py?
+
+no you have to remigrate your tables. Look back at the earlier tutorial when he applied migrations.
+The reason is because the file is changed but django has to update the database when you make changes to it.
+So after making a change in a models file, always migrate the databases.
+
+
+
+
+How does it know to only display the album name and the band name? album = Album.objects.get(id=album_id) looks like
+it would get all the objects to me.
+
+In music/urls, you created a variable called album_id. That variable is passed to music/views and you use it
+to get only the object you want.
+
+
+
+Why doesn't line 18 run when except block runs? The command should come to it after the except block too, should't it?
+
+the except clause has a raise command, that's why
+
+
+
+
+For Django 11 you might have to modify the detail function in views.py in the Music app while getting the album via
+id/pk from ```album = Album.objects.filter(id=album_id) TO album = Album.objects.filter(id=album_id).get()```
+
+
+
+
+
+
