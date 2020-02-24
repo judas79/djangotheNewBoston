@@ -16,47 +16,44 @@ and converts to a valid http response and sends it.
 
 
 
-(referring to the end of lesson 14)
-What  is that Album.DoesNotExist? Where is it defined? In the Model? You do not show that in the tutorial.
-Replacing that line with except Exception: fixes it.
+Why he didn't use /music/index.html in the render function but instead used music/index.html .
+Why that slash is not there, he has been using it in the past few videos.
 
-
-except Album.DoesNotExist works for me. I guess it's from models.Model that Album inherits from
-
-2 years ago
-Both "OBJECTS" and "DOESNOTEXIST" are highlighted but ignore the warning. The code still works
-
-"Album.DoesNotExist" is the name of the error which arises when "Album.objects.get(pk=album_id)" fails.
-The 'except' code works only if 'try' gets that specific error(Album.DoesNotExist).
-As you said, "except exception" will work for whatever error we get in 'try' which is not going to be a problem
-as of now, but you must keep in mind that 'except exception' gets executed for whatever error we get in 'try'.
-Just check for "Python Try Except" tutorial on google, you'll understand it better.
+as bucky said the render method searches in the templates folder inside the app and you can reference the template
+either way as "./music/..." or "music/" all will point to same directory
 
 
 
 
-I made a little typo in my models.py file and as a result I got an error . But when I fixed that, the error didn't
-disappear after refreshing the page. I had to restart my server to fix it.
-Does that mean I need to restart my server every time I make a change in the code of models.py?
 
-no you have to remigrate your tables. Look back at the earlier tutorial when he applied migrations.
-The reason is because the file is changed but django has to update the database when you make changes to it.
-So after making a change in a models file, always migrate the databases.
+hey can anyone tell what is context variable doing and why a dictionary is assigned to it.???
+
+The context variable which contains all_albums is passed on to the HTML(index.html) file (there we use an 'if loop'
+{% if all_albums %} in order to check if there are any albums present.
 
 
 
 
-How does it know to only display the album name and the band name? album = Album.objects.get(id=album_id) looks like
-it would get all the objects to me.
-
-In music/urls, you created a variable called album_id. That variable is passed to music/views and you use it
-to get only the object you want.
 
 
+I still don't understand why all_album inside context is related to {{album.id}} and {{album.album_title}}
+in music/index.html
 
-Why doesn't line 18 run when except block runs? The command should come to it after the except block too, should't it?
+because he passed it into the html file. so the HTML file knows this. via dictionary, 'all_album' is the link and
+all_album is the data.. you can use. .{'ben790924' : all_album} as context and then HTML file will use the
+variable ben790924. hope this cleared your doubt.
 
-the except clause has a raise command, that's why
+
+
+
+why is context used??
+and how can i display a html page which doesn't require anything from a database??
+
+Context is used when you have to send previous page info to the next loading page. So, in the case of a failed login
+attempt, you might need to send a Boolean to let the loading page know you just failed logging in. There's plenty of
+other reasons you would use Context, but that's just one example.
+And you can use the template.render without context! Just type in the request as an argument without your context variables:
+return HttpResponse(template.render(request))
 
 
 
