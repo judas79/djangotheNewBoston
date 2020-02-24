@@ -1,0 +1,144 @@
+This lesson we are going to add songs, that will be associated with albums.  But first we will make a string
+representation of the songs, in models.py, like we did with the Albums, by adding this function to the class Song:
+    def __str__(self):
+        return self.song_title
+
+In the admin.py app we will add Song to the model local module:
+from . models import Album, Song
+and then register it:
+admin.site.register(Song)
+So it will display on the admin page and we can manage songs as they are added, from the admin panel.
+You do not have to migrate these particular changes in model,  because they are functions.  Attributes are what
+cause changes in the tables, when edited, added or deleted, and therefore, need to be migrated.  'Song's have been
+added to the admin page in the browser, as a new section.
+
+Since there are no songs in the Song section we will add some.  Open Powershell at the websites main directory and
+launch the API, django shell.
+python manage.py shell
+As we did in a previous lesson, we need to import music. models as well as Albums and now including Song
+from music.models import Album, Song #  NOT to be confused with:  from . models import Album, Song
+There are more than one way to add a song, but first we need to make a reference to an Album. In the models.py,
+we see that in class Song, there is an attribute that points to an album:
+album = models.ForeignKey(Album, on_delete=models.CASCADE)
+
+In the django shell we will create a variable that points the songs to the album:
+album1 = Album.objects.get(pk=1)
+To verify this is the correct album, we will request some attributes to verify that it is:
+album1.artist
+'Taylor Swift' # verified
+Now that we've verified, we will make a song object as earlier within django shell:
+song = Song() # This creates a blank song object
+We need to add the attributes to the song that are listed as columns in the Song class
+in the models.py file.  They consist of:
+album
+file_type
+song_title
+So the album for this song is album1, the object which we created earlier.
+song.album = album1
+song.file_type = 'mp3' # we pretend its an mp3 but it could be a wav or whatever
+song.song_title = 'I hate my boyfriend'
+After all the attributes are entered save it:
+song.save() # saved to the data base
+To change something just enter it again with the changes, and then save:
+song.song_title = 'I hate everybody'
+song.save()
+
+
+
+**************** highlight from the comments area ***************
+
+
+
+Okay, can anyone explain this? When I create a variable that assigns to the model Album, and save the value, everything
+works fine and it saves the data in admin. However, when I save a variable that is assigned to Song model with nothing
+in parameters, the save fails.
+
+Do Migrations.
+
+
+
+
+
+
+I have on little question which I am stuck with. You are using the term album and Album, (with or without a
+CAPITAL letter. When do you use which? Is album automatically created from class Album? Thanks for the vids! Best around,
+and I spend a few days googling arround.
+
+Album (with capital) is the class, album (with lowercase) is a value from the database e.g album_id
+
+Why is it song.album = album1? should it not be : song.album = album1.album?
+
+all right understood.. its because song.album is Foreignkey and not a usual variable.
+
+NOT NULL constraint failed: music_song.album_title_id
+getting this error when i do song.save()
+
+Hi guys, you either forgot to set one of the parameters so it remained NULL or you did some other step wrong,
+but try this, when creating a song, make sure you actually set each parameter to something.
+from music.Models import Album, Song
+album1 = album.objects.get(pk=1)
+song = Song()
+song.album = album1
+song.file_type = 'mp3'
+song.song_title = 'boyfriend'
+song.save()
+
+Again, your error says that one of your parameters from song( primary key, file_type or song_title) is empty and it is
+required not to be empty, that's most likely the primary key... now what it is done in the tutorial is to create an
+Album object called album1 where we store this primary key...( album1 = album.objects.get(pk=1) ) and then we create a
+new song ( song = Song() ) and we set the primary key to album1 cause thats where our primary key is stored
+( song.album = album1 )
+
+set null=True while defining your foreign key in song model
+
+Instead of using obejcts name as 'song', using a, b, or anything.
+
+class Song(models.Model):
+    ablum = models.ForeignKey(Album, on_delete=models.CASCADE, null=True)
+
+---> add in null = True in the Song class
+
+Just do migrations
+
+
+
+
+
+
+-- Songs not showing --
+
+If your songs aren't showing in the admin page after following the first part of the tutorial with no errors then
+they won't show until you start creating Song objects for the admin panel to show.
+
+
+
+
+
+
+Why are you using shell if could easily add the data throw the admin interface?
+
+He is teaching us the basics.
+
+He's just showing us how to get it done the "shell" way
+
+
+
+
+
+
+A tip for anyone who is adding an integer field and an unicode field.
+Make sure to change:
+ def _str_(self):
+
+into:
+
+ def _buffer_(self):
+
+
+
+
+
+
+
+
+
