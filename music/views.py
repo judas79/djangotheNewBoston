@@ -73,7 +73,7 @@ def detail(request, album_id):
     except ObjectDoesNotExist:  # using Album.Does.Not.Exist, from the lesson 16 does not work, use this with
                                 # module:  from django.core.exceptions import ObjectDoesNotExist
         # to display the Http404 and a message 'whatever message you want to display'
-        raise Http404('Album does not exist')
+        raise Http404('Album does not exist, check link address, file and or page, possibly deleted or removed')
     # render takes request as its first argument, instead of passing in the dictionary 'context'
     # we pass in the album entry
     return render(request, 'music/detail.html', {'album': album})
