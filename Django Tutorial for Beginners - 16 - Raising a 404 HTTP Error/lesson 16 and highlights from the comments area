@@ -1,0 +1,82 @@
+At this point in the lessons, the sub pages(with details), in the music directory, have a bug.  The two sub pages
+that have been created, show up if the link, on its parent page, is clicked on, or if the web page address is entered.
+The problem is that, any numerical address, entered after its parents page will give a false positive and try to display
+it, even though it does not exist:
+http://localhost:8000/music/'any number here'
+
+We want a 404 to display instead.  It means that the page is not found because the link was wrong, the page has been
+deleted or removed, because the resources to display it don't exist.   To enable and use 404:
+from django.http import Http404  # Place in the views.py file.
+
+For the details view in the sub pages, we will create a detail view; detail.html file, in the 'music'
+directory.  In the views.py file, we will comment out:
+    return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
+
+because, it doesn't validate weather the page exists or not by checking the id.  We want to query the database to
+verify the id matches the address the user passed in.  If so we will display the requested page if not we will display
+the 404 response.  We will use try / exception in the 'detail' function:
+def detail(request, album_id):
+    try:
+        # then get the id using the users passed in 'album_id'
+        album = Album.objects.get(pk=album.id)
+        # If the id is valid, this will work, if not an exception will be raised
+
+    except Album.Does.Not.Exist:
+    # This exception did NOT work and was changed to:
+    except Exception:
+
+        # to display the Http404 and a message 'whatever message you want to display'
+        raise Http404('Album does not exist')
+    # Then, instead of passing in the entire dictionary 'context'  we pass in the album entry
+    return render(request, 'music/index.html', {'album': album})
+
+We then clean up our code by commenting out:
+'''
+  context = {
+        'all_albums': all_albums,
+        }
+    # render takes request as its first argument, then the filepath to that template
+    return render(request, 'music/index.html', context)
+'''
+
+We further clean up the code by changing this line:
+# return render(request, 'music/index.html', context)
+To reflect what was used in the context dictionary.  We do this because its only being used once, so a dictionary
+variable is not necessary:
+return render(request, 'music/index.html', {'all_albums': all_albums})
+
+
+
+
+# **************** highlights from the comments area ******************
+
+
+
+What is that Album.DoesNotExist? Where is it defined? In the Model? You do not show that in the tutorial.
+Replacing that line with except Exception: fixes it.
+
+"Album.DoesNotExist" is the name of the error which arises when "Album.objects.get(pk=album_id)" fails.
+The 'except' code works only if 'try' gets that specific error(Album.DoesNotExist). As you said,
+"except exception" will work for whatever error we get in 'try' which is not going to be a problem as of now,
+but you must keep in mind that 'except exception' gets executed for whatever error we get in 'try'. Just check for
+"Python Try Except" tutorial on google, you'll understand it better.
+
+Add module
+from django.core.exceptions import ObjectDoesNotExist
+and change the exception to
+except ObjectDoesNotExist:
+It worked for me on django 3.x
+
+
+
+
+
+
+
+
+This might be mentioned further on but you can also import get_object_or_404 from django.shortcuts and use the following:
+def detail(request, album_id):
+   album = get_object_or_404(Album, pk=album_id)
+   return render(request, 'music/detail.html', {'album':album})
+
+get_object_or_404 basically does exactly the same as the try-except thing.
