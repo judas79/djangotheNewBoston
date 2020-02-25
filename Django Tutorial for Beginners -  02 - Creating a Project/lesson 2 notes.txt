@@ -1,2 +1,3 @@
-Create the django project using 'django-admin startproject <name of project goes here>'.  Or with Pycharm press 'File'
-'New Project' and choose 'Django' then 'Create'.
+Create the django project using
+'django-admin startproject <name of project goes here>'.
+Or with Pycharm press 'File'  'New Project' and choose 'Django' then 'Create'.
