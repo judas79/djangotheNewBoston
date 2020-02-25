@@ -1,5 +1,6 @@
 
-In lesson 4 the files that where created using 'python manage.py startapp Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music',
+In lesson 4 the files that where created using
+'python manage.py startapp Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music',
 now named 'music' are explained.
 migrations folder is used to hook up your files and content to your database
 _init_.py: blank file that lets python know that this is directory is a package
