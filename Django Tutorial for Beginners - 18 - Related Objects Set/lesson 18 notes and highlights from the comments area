@@ -1,0 +1,116 @@
+In this lesson we will use a faster method to connect Song class to an album class.  In the las lesson we connected them
+by using a Foreign key.  By doing it this way the album knew it would have a set of songs associated with it.
+Django allows access to songs through a set.  To access a set, under an object, use the lower case spelling of the class Song:
+album1.song_set.all()  # how you access Albums Song; object then lowercase of class Song _set, then all, for all of them.
+If you have exited django shell you will have to restart the API:
+python manage.py shell
+import music. models as well as Albums and Song
+from music.models import Album, Song
+In the django shell we will create a variable that points the songs to the album:
+album1 = Album.objects.get(pk=1)
+To verify this is the correct album, we will request some attributes to verify that it is:
+album1.artist
+Now we can get on with the lesson where we left off, above:
+album1.song_set.all()  # how you access Albums Song; object then lowercase of class Song _set, then all, for all of them.
+output from django shell:
+<QuerySet [<Song: I hate my boyfriend>]>
+
+Now we will use the 'create' function to add a song in one line instead of all this:
+song.album = album1
+song.file_type = 'mp3' # we pretend its an mp3 but it could be a wav or whatever
+song.song_title = 'I hate my boyfriend'
+song.save() # saved to the data base
+
+This line will create a new object, save it, and put it in the Songs set:
+Reference the object, then reference the set, and call the function 'create()'
+Then we have to pass in all the attributes except for the album, which it knows from the reference from the object
+album1.song_set.create(song_title='I love Bacon', file_type='mp3')
+(song_title='I love Bacon',file_types='mp3') is where we create the Song object
+Try the attributes in a different order:
+album1.song_set.create(file_types='wav', song_title='I hat Eggs')
+The order of the Song objects entry doesn't matter and create will make a new song.
+There was an error in syntax hat instead of hate, so I entered the following to fix the spelling:
+album1.song_set.create(file_types='wav', song_title='I hate Eggs')
+This did not fix the spelling and added another song with hate instead of hat.
+
+When we use create it makes the song set but also returns a reference to that song, that can be assigned to a variable
+song1 = album1.song_set.create(file_types='wav', song_title='I hate Eggs')
+To verify you can:
+song1.album
+OUTPUT: <Album: Red - Taylor Swift>
+Or
+song1.song_title
+OUTPUT: 'I hate Eggs'
+Or use the old way, as we did before:
+album1.song_set.all()
+OUTPUT: <QuerySet [<Song: I hate my boyfriend>, <Song: I love Bacon>, <Song: I hat Eggs>, <Song: I hate Eggs>,
+<Song: I hate Eggs>]>
+
+There is another function we can use called 'count', which is used to get the amount of songs by counting how many
+objects there are in Songs:
+album1.song_set.count()
+OUTPUT: 5
+
+
+
+******************* highlights from the comments area ********************
+
+
+
+In album1.song_set.all() , why is 's' not capitalized in 'song' ?  The class name is "Song" right? (I'm confused)
+Edit: He has added a line "song=Song()" and hence, it works for him. But I didn't do it but still 'song_set' works
+for me. How's that  possible?
+
+I went through the Django documentation and found the reason. If the model has a foreign key, a method is automatically
+created in the name of "(class name in lowercase)_set(). In our case, the class name is "Song" and it's converted to
+lowercase and the method is created which results in "song_set()"
+
+
+
+
+In album1.song_set.all() , why is 's' not capitalized in song cuz  the class name is 'Song'.
+
+I had this doubt,so I went through the Django documentation and found the reason. If the model has a foreign key,
+a method is automatically created in the name of "(class name in lowercase)_set(). In our case, the class name is
+"Song" and it's converted to lowercase and the method is created which results in "song_set()"
+
+
+
+You can also add songs from the admin panel i guess that's more convenient
+
+
+
+
+
+does the pk change for all other songs if one song is deleted from the database?
+
+no
+
+
+
+
+
+When you executed the command  song = album1.song_set.create(song_title="Ice Cream", file_type = "mp3"), why wasn't the
+previously created "song" object overwritten?
+And how does Django know which "song" object to refer when we execute the song.song_title command?
+
+You are adding a new song every time you do create
+
+song_set is a function that adds a new song every time you create. this contrasts when we create a variable for a
+particular song as if we try to assign that var to a new song then it will overwrite the previous one
+
+
+
+
+
+can you use the admin panel to add the songs?
+
+Yes, you can use admin panel :)
+
+But you cant associate it with an album, do you?
+
+
+
+Why don't we add songs directly through admin panel ??
+
+obviously..sure u can do here...but there might be some framworks where you arent provided with UI so its kinda essential idk..

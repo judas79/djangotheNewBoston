@@ -1,0 +1,78 @@
+PS C:\Users\Gina\PycharmProjects\djangotheNewBoston> python manage.py shell
+Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 16:07:46) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from music.models import Albums, Songs
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Albums'
+>>> from music.models import Album, Song
+>>> album1.artist
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'album1' is not defined
+>>> album1.artist
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'album1' is not defined
+>>> album1.song_set.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'album1' is not defined
+>>> album1 = Album.objects.get(pk=1)
+>>> album1.artist
+'Taylor Swift'
+>>> album1.song_set.all()
+<QuerySet [<Song: I hate my boyfriend>]>
+>>> album1.song_set.create(song_title='I love Bacon',file_type='mp3')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\fields\related_descriptors.py", line 676, in create
+    return super(RelatedManager, self.db_manager(db)).create(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\query.py", line 431, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\base.py", line 500, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Song() got an unexpected keyword argument 'file_type'
+>>> album1.song_set.create(song_title='I love Bacon',file_types='mp3')
+<Song: I love Bacon>
+>>> album1.song_set.create(file_type='wav', song_title='I hat Eggs')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\fields\related_descriptors.py", line 676, in create
+    return super(RelatedManager, self.db_manager(db)).create(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\query.py", line 431, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\base.py", line 500, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Song() got an unexpected keyword argument 'file_type'
+>>> album1.song_set.create(file_types='wav', song_title='I hat Eggs')
+<Song: I hat Eggs>
+>>> album1.song_set.create(file_types='wav', song_title='I hate Eggs')
+<Song: I hate Eggs>
+>>> song1 = album1.song_set.create(file_type='wav', song_title='I hate Eggs')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\fields\related_descriptors.py", line 676, in create
+    return super(RelatedManager, self.db_manager(db)).create(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\query.py", line 431, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\db\models\base.py", line 500, in __init__
+    raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+TypeError: Song() got an unexpected keyword argument 'file_type'
+>>> song1 = album1.song_set.create(file_types='wav', song_title='I hate Eggs')
+>>> song1.album
+<Album: Red - Taylor Swift>
+>>> song1.song_title
+'I hate Eggs'
+>>> album1.song_set.all()
+<QuerySet [<Song: I hate my boyfriend>, <Song: I love Bacon>, <Song: I hat Eggs>, <Song: I hate Eggs>, <Song: I hate Eggs>]>
+>>> album1.song_set.count()
+5
+>>>
