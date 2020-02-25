@@ -5,7 +5,7 @@ def __str__(self):
 which will make a string representation of this object.  This is where we pick what we print out when the query
 ' Album.objects.all() ' is requested.  We will request to items in the columns in this case:
     return self.album_title + ' - ' + self.artist
-To see the changes Powershell django must be restarted by typing exit() and 'clear' to clear the Powershell screen
+To see the changes Power Shell django must be restarted by typing exit() and 'clear' to clear the Power Shell screen
 Then restarted with:
 python manage.py shell
 from music.models import Album, Song
@@ -18,7 +18,8 @@ Album.objects.filter(id=1)  The output for id=1 will be:
 <QuerySet [<Album: Red - Taylor Swift>]>
 With id=3 you will get [] since it doesn't exist yet.
 
-To do a search query within your objects, use .filter, then a specific, within parenthesis, column name with two underscores after it
+To do a search query within your objects, use .filter, then a specific, within parenthesis, column name with two
+underscores after it:
 '__startswith=' then search term, within quotes:
 Album.objects.filter(artist__startswith='Taylor')
 
@@ -27,7 +28,7 @@ but using '__endswith=' gets it using the last part.
 Album.objects.filter(artist__endswith='Swift')
 <QuerySet [<Album: Red - Taylor Swift>]>
 
-The code we have been using in the Powershell Django shell is the same that
+The code we have been using in the Power Shell Django shell is the same that
 we will be running in our code.  So the shell is a good place to try the code out.
 
 
@@ -79,7 +80,8 @@ for people who still see same objects: write EXIT() not just exit
 or all those who have the problem :  ([<Song: Song object>,  <Song: Song object>]>)
 Objects are shown as " Class_Name Object ".
 
-The solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stufff (Table Columns)  in the class.
+The solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stuff
+(Table Columns)  in the class.
 
 Solution ::
 You must have to remember that Python cares for Indentation in the code,
@@ -94,7 +96,8 @@ def _str_(self) :
       return self.Title
 
 in this example Python consider   def _str_(self) :    function outside of the body of class song. So it does not work.
-So the solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stufff (Table Columns)  in the class.
+So the solution to this problem is that : def _str_(self) : must the have the same Indentation as the other stuff
+(Table Columns)  in the class.
 
 This is the right code:
 class Song(models.Model) :
