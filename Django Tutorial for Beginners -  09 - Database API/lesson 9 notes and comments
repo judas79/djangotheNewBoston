@@ -15,7 +15,10 @@ Album.objects.all()
 Which returned 'QuerySet []'  because there aren't any items in the Albums yet.
 There are two ways to add the columns using the constructor; all at once or separately.
 So to create a python object all at once, as to have an item in albums we use:
-a = Album(artist='Taylor Swift', album_title='Red', genre='Country', album_logo='https://cdn140.picsart.com/295236137087211.png?type=webp&to=min&r=640')
+
+a = Album(artist='Taylor Swift', album_title='Red', genre='Country',
+album_logo='https://cdn140.picsart.com/295236137087211.png?type=webp&to=min&r=640')
+
 to create a new variable object within Album named 'a', in the shell memory.  To save it use:
 a.save()
 This function saves 'a' to the database.  To retrieve information stored within one of the columns:
