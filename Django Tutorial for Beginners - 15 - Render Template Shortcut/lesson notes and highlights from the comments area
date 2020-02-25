@@ -52,7 +52,8 @@ and how can i display a html page which doesn't require anything from a database
 Context is used when you have to send previous page info to the next loading page. So, in the case of a failed login
 attempt, you might need to send a Boolean to let the loading page know you just failed logging in. There's plenty of
 other reasons you would use Context, but that's just one example.
-And you can use the template.render without context! Just type in the request as an argument without your context variables:
+And you can use the template.render without context! Just type in the request as an argument without your context
+variables:
 return HttpResponse(template.render(request))
 
 
