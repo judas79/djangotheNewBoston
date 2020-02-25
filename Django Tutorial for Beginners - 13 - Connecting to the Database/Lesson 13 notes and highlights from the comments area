@@ -1,6 +1,6 @@
-In this lesson we will connect to the database and pull out all our albums and display them on the 'music' page.  Once the
-albums are displayed the user will be able to click them to see the details using the view we made last tutorial.  Since
-we will be working with Album information we will need:
+In this lesson we will connect to the database and pull out all our albums and display them on the 'music' page.  Once
+the albums are displayed the user will be able to click them to see the details using the view we made last tutorial.
+Since we will be working with Album information we will need:
 from . models import Album
 added to our views.py file.
 
@@ -64,15 +64,16 @@ the album in album.id is for loop iterator
 
 
 
-You do len(all_albums) queries to database - extremely inefficient. A better way is all_albums = list(Album.objects.all())
+You do len(all_albums) queries to database - extremely inefficient. A better way is all_albums = list
+(Album.objects.all())
 
-Still comes up with the same results on the website, but in the powershell Djngo shell it omits '<QuerySet' at the beginning
-of the output from the shell.
+Still comes up with the same results on the website, but in the powershell Djngo shell it omits '<QuerySet' at the
+beginning of the output from the shell.
 
 
 
-For everyone who was struggling with the Album.objects.all() error, I tried everything and ended up do the migrate process.
-It fixed it. So maybe try that.
+For everyone who was struggling with the Album.objects.all() error, I tried everything and ended up do the migrate
+process.  It fixed it. So maybe try that.
 
 python manage.py migrate
 
