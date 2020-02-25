@@ -1,5 +1,5 @@
 Django come with a default admin that has many privileges.
-First we have to create the super user account.  With Powershell in the main directory type:
+First we have to create the super user account.  With Power Shell in the main directory type:
 python manage.py createsuperuse
 The shell will then provide you with the following to fill out, one at a time:
 Username (leave blank to use 'gina'): admin
@@ -12,8 +12,9 @@ Typing http://localhost:8000/admin/ in your browser will bring you to your admin
 you just finished making and 'enter'.  This is the administrative back end; access to your database, of your website.
 To enable a way to edit Albums table and user table.
 
-In admin.py add 'from . models import Album', to import Album from this folder.
-To tell django that Album should have and administrate interface within the amin. webpage:
+In admin.py add:
+'from . models import Album', to import Album from this folder.
+To tell django that Album should have and administrate interface within the admin. web page:
 admin.site.register(Album)  # register Album as an admin site
 Refresh website to see changes.  The Albums contents are now editable.  The top section of the website where the
 toolbar would normally be 'Home › Music › Albums › State Park - Myth' is called
