@@ -1,4 +1,4 @@
-Leson 14 will be about making html templates.  These are used here to separate the html,
+Lesson 14 will be about making html templates.  These are used here to separate the html,
 from the backend stuff.  The templates can be used by a designer without having any actual data, then be
 populated later on, by someone else.
 
