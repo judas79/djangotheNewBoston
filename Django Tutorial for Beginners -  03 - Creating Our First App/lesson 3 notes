@@ -1,4 +1,5 @@
-In lesson 3, in the root directory of the project, where manage.py is, with the command 'python manage.py startapp <app name here>
+In lesson 3, in the root directory of the project, where manage.py is, with the command
+'python manage.py startapp <app name here>
 we created a package directory named Django_Tutorial_for_Beginners_3_Creating_Our_First_App_music,
 which was later renamed:  'music'.
 We also learned how to stop the server by pushing keyboard buttons 'cmd c' and then clear it by typing 'clear'
