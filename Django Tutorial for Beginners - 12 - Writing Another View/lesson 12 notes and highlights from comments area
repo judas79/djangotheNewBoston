@@ -1,13 +1,13 @@
 We will be creating another app; webpage.  In a quick summary/ review:  A View consist of a
 short function that returns some HTML.  We need Views, because each HTML pattern will be connected
 to a View and a HTML response.  This connection between HTML patterns and Views is what enables
-the webpages within the website to display.
+the web pages within the website to display.
 
 The next page/ app we are going to work on is the music page which will have pictures of the music
 albums on it, that will be clickable to lead to another app/ page, that will have the details for
 the selected Album.  So 2 pages one overview and one detail.
 
-We will first make a music sub-page, structure, using and ID.  In regular expressions a carot ^ represents
+We will first make a music sub-page, structure, using and ID.  In regular expressions a carrot ^ represents
 the beginning and a dollar sign $ the end.  So most reg. expressions, in the urls.py file will
 have url(r'^$'),.  We use ( ) withing the reg. expresion if we want to group things together as one item.
 For instance if you need to keep a large ID number '712' together instead of '7' '1' '2'.
