@@ -1,2 +1,26 @@
 <!DOCTYPE html>
-{{ album }}
+
+<!-- skeleton for the design
+<img scr''> # a source to an image of the album logo
+<h1>Album title</h1> # album title
+<h3>Artist</h3> # artist name
+ the songs will be in a list
+<ul>
+    <li></li>
+</ul>
+-->
+
+<img src={{album.album_logo}}> <!-- first we add the class 'Album' in lower case, then copy paste the objects name, -->
+                               <!-- the models.py logo attribute, in the django identifier, squiggly brackets.      -->
+<h1>{{album.album_title}}</h1> <!-- album title, constructed in the same fashion as above                           -->
+<h2>{{ album.artist }}</h2>    <!-- artist name constructed in the same fashion as above                            -->
+<ul>
+    {% for song in album.song_set.all %}                    <!-- beginning of Django template language for loop     -->
+        <li>{{song.song_title}} - {{song.file_types}}</li>  <!--  same structure as above but using the song class  -->
+    {% endfor %}                                            <!-- end Django template language for loop              -->
+</ul>
+
+<!--
+# disabled in lesson 19
+# {{ album }}
+-->
