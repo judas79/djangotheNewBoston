@@ -1,0 +1,167 @@
+In this lesson we will  e designing the details in the detail.html web page.  We will add
+<img scr''> # a source to an image of the album logo
+<h1>Album title</h1> # album title
+<h3>Artist</h3> # artist name
+# the songs will be in a list
+<ul>
+    <li>songtitle - songfiletype</li>
+</ul>
+We will fill this in using copy paste from class Album the models.py page:
+Remember {%%} for Django logic loop and {{}} for an output from a variable.
+
+<img src={{album.album_logo}}> <!-- first we add the class 'Album' in lower case, then copy paste the objects name, -->
+                               <!-- the models.py logo attribute, in the django identifier, squiggly brackets.      -->
+<h1>{{album.album_title}}</h1> <!-- album title, constructed in the same fashion as above                           -->
+<h2>{{ album.artist }}</h2>    <!-- artist name constructed in the same fashion as above                            -->
+<ul>
+    {% for song in album.song_set.all %}                    <!-- beginning Django template language for logic loop  -->
+        <li>{{song.song_title}} - {{song.file_types}}</li>  <!--  same structure as above but using the song class  -->
+    {% endfor %}                                            <!-- end Django template language for loop              -->
+</ul>
+
+
+
+
+************************ highlights from the comments area *************************
+
+
+
+Just one stupid question: Why you call the class {{ album.blabla and {{ song.blabla , and not {{ Album. and {{ Song. ?
+Why you don't need to use CAPS?
+
+Because it doesn't apply to class Album.
+We created a variable - album in which we've put Album.objects.get(pk=album_id) which means --> it's going to store an
+album with given Primary Key or ID (it depends what number the user will enter in the url).
+That's why we wrote url(r'^(?P<album_id>[0-9]+)/$', views.detail, name="detail") so it could be possible to store an
+album in a variable and use it in the view...
+
+
+
+
+If you have problem displaying the image make sure that the variable you use in the views detail page is the same you
+are using in the detail.html page. This is what I mean.
+def detail(request, album_id):
+    try:
+        album = Album.objects.get(pk=album_id)
+The variable album = Album.objects.get(pk=album_id) must be the same name that u should use in the detail.html for
+<img src="{{album.album_logo}}">.
+
+
+
+
+can anyone tell how to change logo of any song ??please tell commands
+
+You don't need to type commands again. You can just go to the admin panel (127.x.x.x/admin) , then click on 'Albums',
+select an album and change its logo there
+
+
+
+How come we did not have to import Song into the views? Or pass it to the templates like we do with album?
+
+He did the query in the template, instead of the view. Normally it's better practice  to keep the logic in the view
+separate from the template. There's also a way to put queries in the urls.py on the specific url, however I rarely see
+people do this.
+
+
+
+
+Those who can't display the image, add a semi-colon after "{{album.album_logo}}".
+<img src="{{ album.album_logo}}" ;>
+
+
+
+
+should I use album1.song_set.all() or album1.song_set.all ?
+
+the all() not working for me
+
+in html use album1.song_set.all but in python it doesn't matter
+
+
+
+
+if u are using image from internet copy the image adress , not copy link address . i was doing the same and my image
+of logo was not showing.
+
+
+
+
+add album_logo image source to the database
+album1.album_logo = "image source goes here"
+
+
+
+
+
+In python shell: we use
+    album.song_set.all()
+But in detail.html:
+    album.song.set.all
+Why we use paranthesis in shell but not in template?
+
+Because we don't use parenthesis in HTML
+
+Because it's python syntax for "for" loop, it requires you to write them without parentheses when function just
+returns an array
+
+
+
+
+So attribute of every class is accessible in html file?
+
+in html, u are accessing the key's name of the dictionary u defined at the view code where the value is the class
+'Album'.
+
+
+
+
+lol @ 5 hours just to make that logo, brilliant!
+
+i believe there 2 ways u can do this, first is by simply going to your admin page and click on the album you want to
+edit the logo to and simply enter a valid url which links to an image to it, second way is by opening command prompt
+if you are on windows or terminal if you are on mac and entering the following:
+1. cd desktop\website
+2. python manage.py shell
+3. from music.models import Album, Song
+4. album1 = Album.objects.get(pk=1)
+5. album1.album_logo = 'www.someurl.com'
+6. album1.save()
+
+
+
+
+
+
+He seems to have skipped the 'static' file step.
+
+Follow the documentation: https://docs.djangoproject.com/en/1.10/howto/static-files/#serving-static-files-during-development
+
+To integrate the 'static' images from your dir insert the following at the top of the detail.html file:
+
+{% load static %}
+
+<img src="{% static album.album_logo %}" alt="IMAGE">
+
+
+
+
+
+Why is that even though the class name Album  starts with capital letter, when he wrote in the html file ,
+he wrote album.album_title instead of Album.album_title??
+
+album with the lower case a is a specific instance. Album with uppercase A is the type.
+
+You use album with a lowercase (as opposed to some other word) because that is what we defined it to be in
+music.views.detail
+
+in music/views.py  where he defined detail function.  there is
+album = Album.objects.get(id=album_id)
+
+Actually, paying a little attention youd notice the python scripts actually did something with the help of a render
+function. This render() function passes the database objects through to the html by the help of a dictionary. The key
+to the dictionary entry is 'album'. Also, in a broader sense, you could say album refers to an instance of class Album.
+
+
+
+
+
