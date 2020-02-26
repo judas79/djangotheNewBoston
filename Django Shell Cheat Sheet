@@ -112,4 +112,6 @@ song1.song_title
 # Or use the old way, as we did before; L18
 album1.song_set.all()
 
-album1.song_set.count() # how many objects there are in Songs:
+album1.song_set.count() # how many objects there are in Songs; L18
+
+album1.album_logo = "image source goes here" # add album_logo image source to the database; L19 (comments)
