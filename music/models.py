@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 
 
-# inhereted fom models.Model
+# inherited fom models.Model
 class Album(models.Model):
 
     # what variables would exist in a Album, 'artist'
     # what kind of data is being stored in it, text  'CharField'
-    # One field required size 'max_lenght'
+    # One field required size 'max_length'
     artist = models.CharField(max_length=250)      # <-  column 1 ....
     album_title = models.CharField(max_length=450)
     genre = models.CharField(max_length=150)
