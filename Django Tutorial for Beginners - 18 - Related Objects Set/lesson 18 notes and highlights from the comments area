@@ -1,6 +1,7 @@
 In this lesson we will use a faster method to connect Song class to an album class.  In the las lesson we connected them
 by using a Foreign key.  By doing it this way the album knew it would have a set of songs associated with it.
-Django allows access to songs through a set.  To access a set, under an object, use the lower case spelling of the class Song:
+Django allows access to songs through a set.  To access a set, under an object, use the lower case spelling of the
+class Song:
 album1.song_set.all()  # how you access Albums Song; object then lowercase of class Song _set, then all, for all of them.
 If you have exited django shell you will have to restart the API:
 python manage.py shell
@@ -113,4 +114,5 @@ But you cant associate it with an album, do you?
 
 Why don't we add songs directly through admin panel ??
 
-obviously..sure u can do here...but there might be some framworks where you arent provided with UI so its kinda essential idk..
+obviously..sure u can do here...but there might be some framworks where you arent provided with UI so its kinda
+essential idk..
