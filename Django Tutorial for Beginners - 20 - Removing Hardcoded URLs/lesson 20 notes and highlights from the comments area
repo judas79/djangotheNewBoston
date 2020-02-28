@@ -1,0 +1,60 @@
+In this lesson we will remove hard coded urls.  Within the coding of our index.html file,
+there is a link comprised of hardcoded and dynamically coded, url.  The dynamically codded
+portion is good but not the hardcoded portion. In this line:
+{% for album in all_albums %}
+        <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+{{ album.id }} is dynamically coded (changing), and /music/ is hard coded (static).  The problem
+arises when the site has many pages and there is hard coding in the templates and the urls need
+to be changed.  You will have to find every hard coded link, and if there are many pages this will
+be very time consuming, because they will have to be changed by hand.
+
+To make a hard coded url dynamic we will use the 'name' we assigned to the url in the music\urls.py file:
+url(r'^$', views.index, name='index'),
+The variable name= 'index' references this url pattern:  r'^$'
+
+In this line name= 'detail' references r'^(?P<album_id>[0-9]+)/$'
+re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+So to simplify we surmise that:
+detail references /music/<the id number>
+and that:
+index references /music/
+
+To write the dynamic version of these urls, is use these variables in place of the hard coded portions.
+So in the future, to update the urls we will need to rewrite the reg ex potions in the music/ urls.py file.
+But for now we need to change our link in the index.html:
+<li><a href="">{{ album.album_title }}</a></li>
+We will use the Django code to add the dynamic link:
+"{% url %}"  This will let django know we are using a special url, then the name of the url and the pk number:
+"{% url 'detail' album_id %}"
+Like this after completed:
+<li><a href="{% url 'detail' album.id %}">{{ album.album_title }}</a></li>
+Notice its album.id not album_id
+
+
+
+************** highlights from the comments area *****************
+
+
+
+Could you plz.. explain what is the rule to use {{  }} and {% %} in html page
+
+You use {{ }} to subsitute a value. So if you wanted to put album.title into a line of HTML you would use
+"{{ album.title }}" and it will put the album title in the quotes, similar to "%s" % album.title
+You use {% %} when you want to run python code in a HTML file. That's what he is using to run for loops and such, e.g.
+{% for thing in things %}
+    <li>Hello</li>
+{% endfor %}
+
+
+
+
+
+{% %} Template tag
+{ } Curly braces
+
+
+
+
+
+
+
