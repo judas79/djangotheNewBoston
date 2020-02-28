@@ -8,10 +8,20 @@ django markers for code uncommented in django {% comment %} and {% endcomment %}
 {% if all_albums %} <!-- if there are any albums then this will br True-->
     <h4>Here are all my Albums</h4>
     <ul>
+
+        {% comment %} This was commented out in lesson 20 to update to a dynamic link
         {% for album in all_albums %}
-        <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+            <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
         {% endfor %}
-    <!-- endfor is used to end the for loop where you want it -->
+        {% endcomment %}
+    <!-- endfor is used to end the for loop where you want it
+
+    Added lesson 20 dynamic link in the for statement -->
+        {% for album in all_albums %}
+            <li><a href="{% url 'detail' album.id %}">{{ album.album_title }}</a></li>
+        {% endfor %}
+
+    <!-- endfor is used to end for statement -->
     </ul>
 
 {% else %}
