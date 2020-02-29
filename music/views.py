@@ -4,17 +4,20 @@
 # added for lesson 13, 14 uncommented 15
 # from django.template import loader
 
-# added for lesson 15
-from django.shortcuts import render
+# added for lesson 15: # Added lesson 21 ', get_object_or_404' to replace
+# the try: statement, in the detail function, using django built in function
+from django.shortcuts import render, get_object_or_404
 
 # added for lesson 16 to use 404 service
-from django.http import Http404
+# commented out in lesson 21, not used and replaced with 'get_object_or_404' above
+# from django.http import Http404
 
 # added in response to lesson 16 exception; using Album.Does.Not.Exist, NOT working
 # use this with exception;  except ObjectDoesNotExist:
-from django.core.exceptions import ObjectDoesNotExist
+# not used prior to lesson 21, commented out in lesson 21
+# from django.core.exceptions import ObjectDoesNotExist
 
-# commented out lesson 16; not used
+# commented out lesson 16; not used anymore
 # from django.http import HttpResponse
 
 from . models import Album
@@ -65,6 +68,8 @@ def index(request):
 # def detail(request, album_id):
      # return HttpResponse('<h2>Details for Album ID:  ', str(album_id), '</h2>')
 
+'''
+# commented out in lesson 21 and replaced with django 404 built in function
 def detail(request, album_id):
     try:
         # get the id using the users passed in 'album_id'
@@ -73,11 +78,20 @@ def detail(request, album_id):
     except ObjectDoesNotExist:  # using Album.Does.Not.Exist, from the lesson 16 does not work, use this with
                                 # module:  from django.core.exceptions import ObjectDoesNotExist
         # to display the Http404 and a message 'whatever message you want to display'
-        raise Http404('Album does not exist, check link address, file and or page, possibly deleted or removed')
+        raise Http404('Album does not exist, check link address, file and or page;  possibly deleted or removed')
     # render takes request as its first argument, instead of passing in the dictionary 'context'
     # we pass in the album entry
     return render(request, 'music/detail.html', {'album': album})
-
+'''
     # commented out on lesson 16
     # return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
+
+def detail(request, album_id):
+    album = get_object_or_404(Album, pk=album_id)
+    return render(request, 'music/detail.html', {'album': album})
+
+
+
+
+
 

@@ -3,6 +3,9 @@ from . import views
 from django.urls import path
 from django.urls import re_path
 
+# added lesson 21 to specify which app the detail keywords' url belongs to
+app_name = 'music'
+
 urlpatterns = [
     # create homepage ^'$', what to do 'views.index', not required give it a name
     url(r'^$', views.index, name='index'),
