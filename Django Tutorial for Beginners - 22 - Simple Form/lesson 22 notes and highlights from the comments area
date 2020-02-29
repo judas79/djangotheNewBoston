@@ -1,0 +1,71 @@
+In lesson 22 we will learn how to work with simple forms usin django. This lesson will show
+how to add simple forms to the website.  For each song, on its detail page, we will add a radio
+button, next to every button, with a submit favorite song field on the bottom.  When submit is
+clicked it will add a star next to the selected song.
+
+First we need to add another attribute to the Song class, in the models.py file:
+is_favorite = models.BooleanField(default=False)
+When someone selects one of these radio buttons, it will set is_favorite to 'True'
+To implement this we need to makemigrations to music in Terminal, or Power Shell, NOT in the django shell.
+This will update the sql3 file, and make the change file, that the blueprint has changed:
+python manage.py makemigrations
+OUTPUT:
+Migrations for 'music':
+  music\migrations\0002_song_is_favorite.py
+    - Add field is_favorite to song
+If you try your http://localhost:8000/music/1/ or .../2/ page now, you will get this error:
+OperationalError at /music/1/
+no such column: music_song.is_favorite
+
+To finish implementing these changes, we have to run the change file we just created in our database.
+OUTPUT:
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, music, sessions
+Running migrations:
+  Applying music.0002_song_is_favorite... OK
+http://localhost:8000/music/1/ # now works without the 404 error, as it did, before we made the changes to models.py.
+
+Next we will create a favorites url map in ,music/urls.py.  Some of these urls point to a website page, after a user
+request, but others will perform some logic, for example the logout request.  This kind of url is connected to the
+logic aspect, then redirects the user to some other page.  So this favorite will do some logic, turn the boolean from
+False to True, for the selected song, then redirect the user to the same page he was on.  In the music/urls.py we
+add the source code path to achieve this:
+# /music/<album_id>/favorite/
+re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
+
+
+
+
+
+**************************** comments area ***************************
+
+
+
+
+I have "AttributeError: 'module' object has no attribute 'favorite'". What am I doing wrong?
+
+Just add a favorite attribute in the view.py module and replace it with actual code later.
+
+probably more code or too much code than needed, but it worked for me.  added to views.py:
+def favorite(request):
+    return render(request, 'music/detail.html')
+
+
+
+
+
+Hey Bucky, try to specify namespace in include include('music.urls', namespace='music'), so you get autocompletion :)
+
+
+
+
+
+I have "AttributeError: 'module' object has no attribute 'favorite'". What am I doing wrong?
+ how did you add attribute?
+
+add is_favorite/favorite in models.py first, then migrate
+
+add favorite function in the models.py
+def favorite():
+          return None
+
