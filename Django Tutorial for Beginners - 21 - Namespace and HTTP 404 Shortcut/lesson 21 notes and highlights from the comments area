@@ -1,0 +1,86 @@
+In this lesson;  up until now we only have one app, which is 'music' most sites have more.
+What happens when another app has the same detail view, for instance a profile page detail view?
+Which detail url will be used for which app?  This is solved by name spacing the urls;  which specifies
+which url, 'detail' in this case, corresponds to what app.
+
+This is done by writing this above the 'urlpaterns' in the music/ url.py:
+app_name = 'music'
+Then we add 'music' to the index.html file, as part of the url, in the 'for' statement:
+            <li><a href="{% url 'detail' album.id %}">{{ album.album_title }}</a></li>
+Like this:
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+Now instead of looking for a generic 'detail' album.id path it looks in the 'music' app for a specific one.
+This enables having the 'detail' keyword in many apps.
+
+Django has implemented a way of condensing, the 404 statement in the view.py folder, down to one line.
+This will replace:
+    try:
+        # get the id using the users passed in 'album_id'
+        album = Album.objects.get(pk=album_id)
+        # If the id is valid, this will work, if not an exception will be raised
+    except ObjectDoesNotExist:  # using Album.Does.Not.Exist, from the lesson 16 does not work, use this with
+                                # module:  from django.core.exceptions import ObjectDoesNotExist
+        # to display the Http404 and a message 'whatever message you want to display'
+        raise Http404('Album does not exist, check link address, file and or page;  possibly deleted or removed')
+
+    Within this module, we add ', get_object_or_404' to the line, like this:
+    from django.shortcuts import render, get_object_or_404
+
+    Then change this line:
+    album = Album.objects.get(pk=album_id)
+    to:
+    album = get_object_or_404(pk=album_id)
+
+This is what the module and function should be, for this lesson:
+
+from django.shortcuts import render, get_object_or_404
+
+def detail(request, album_id):
+    album = get_object_or_404(Album, pk=album_id)
+    return render(request, 'music/detail.html', {'album': album})
+
+
+
+
+*************** highlights from the comments area ***************
+
+
+
+
+For those of you using v2.1 in your music/urls.py include app_name= 'music' and also in your project's urls.py add
+namespace in the include function: include('music.urls',namespace='music')
+
+
+
+
+
+I have not seen the app_name approach here as used in the music.urls, the way I have seen elsewhere is adding a
+namespace to the main urls.py when you include the link to music.urls
+i.e url(r'^music/', include('music.urls', namespace='music'),
+
+
+
+
+`app_name = 'music'` in music/urls.py does not work! only adding namespace in the project's urls.py works:
+include('music.urls', namespace='music')
+
+
+
+
+Edit the main urls.py file and add namespace attribute  like this :
+url(r'^music/', include('music.urls', namespace="music")),
+otherwise application won't work
+
+
+
+
+Does "get_object_or_404()" have a 404 message parameter?
+
+No it does not. I just looked it up bc I had the same question. Hopefully this helps someone else someday. The only
+way to set the message is to do the try: except: block.
+
+
+
+
+Very important use a COLON in between music:detail.
+Easy typo to get stuck on..
