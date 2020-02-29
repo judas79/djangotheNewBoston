@@ -16,9 +16,9 @@ django markers for code uncommented in django {% comment %} and {% endcomment %}
         {% endcomment %}
     <!-- endfor is used to end the for loop where you want it
 
-    Added lesson 20 dynamic link in the for statement -->
+    Added lesson 20 and 21 dynamic link in the for statement -->
         {% for album in all_albums %}
-            <li><a href="{% url 'detail' album.id %}">{{ album.album_title }}</a></li>
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
         {% endfor %}
 
     <!-- endfor is used to end for statement -->
