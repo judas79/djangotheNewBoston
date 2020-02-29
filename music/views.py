@@ -91,7 +91,10 @@ def detail(request, album_id):
     return render(request, 'music/detail.html', {'album': album})
 
 
-
+# Lesson 22 Temporary favorite attribute in the view.py module, suggested as a temporary band-aid,
+# so the detail pages would function, from the comments area
+def favorite(request):
+    return render(request, 'music/detail.html')
 
 
 

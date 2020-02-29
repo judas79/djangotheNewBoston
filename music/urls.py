@@ -28,7 +28,11 @@ urlpatterns = [
     #path('<int:album_id>', views.detail, name='detail'),
     #path('<int:album_id>', views.detail, name='detail'),
 
+    # /music/<album_id>/
     re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+
+    # added lesson 22 /music/<album_id>/favorite/, for favorite selection buttons on music/<album_id> details page
+    re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
 
 ]
 
