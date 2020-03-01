@@ -1,0 +1,126 @@
+In this lesson we will make the form in the detail.html file.  First we will uncomment the url list item of songs for
+statement, and replace it with the selection form input.
+
+But first we will create a section that handles errors by users or other errors, using a django if statement.
+{% if error_message %}  # If there is an error_message 'True', then there will be a response.
+We can store a message that displays the nature of the error, to the user; to rectify it.  Since we are creating this in
+the detail.html file we are using html and want to make the error message in bold text:
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+Now we will make the form, using html and django:
+# the action attribute is the url we point to when there is an error
+# the method is a post which most forums have and use;
+# csrf_token cross site request forgery, for security, which django takes care of behind the scenes
+<form>action="{% url 'music:favorite' album.id %}" method='post'>
+    {% csrf_token%}
+Next we need to iterate through the album.song_set.all(), to get all the names of the songs:
+    {% for song in album.song_set.all %}
+What we need now is the input button, they click, and the label; song name titles we iterated.
+The forloop.counter (built in) will be the same as the ids
+The name will be the variables name, and the id, the song the user selected id value
+        <input type="radio" id="song{{ forloop.counter }}" name= 'song' value='{{song.id}}'>
+Next we make the label for the user, notice for= the same as id= above, and then display the song title
+        <label>for="song{{ forloop.counter }}">
+            {{ song.song_title }}
+Next we add the star at the end of the song name, if the user selects that particular song
+            {% if song.is_favorite %}
+                <img src='http://i.imgur.com/b9b13Rd.png' />
+            {% endif %}
+        </label><br>  # so each song appears on a new line
+    {% endfor %}
+
+Next we need to create a submit button, the value= is the displayed text on the button
+    <input type='submit' value='favorite'>
+</form>
+
+
+
+**************** highlights from the comments area *********************
+
+
+
+
+Not sure if Bucky still checks these comments, but maybe someone else can explain why use :
+
+{% if error_message %}
+     <p><strong>{{error_message}}</strong></p>
+{%  endif %}
+
+instead of just :
+
+ <p><strong>{{error_message}}</strong></p>
+
+
+Don because we need to check if we have an error ,,, then we print that we have en error ,,,
+
+
+but you don't need to check because if error is empty then nothing shows. So, just always print. I don't think the
+check is needed or adds any value. But i am open to being shown how my logic is wrong.
+
+
+To reduce payload.
+
+
+
+
+
+
+anyone have any idea how the {% %} stuff works on the html pages? is it using python or some other language or logic
+within html to create those for loops and reference variables form db?
+
+
+So html itself has no logic as such, when Django reads an html file with {% %} - also called template tag, it recognizes
+that within this should be some python code. It interprets the logic for python code, which mostly is a reference to an
+object or conditional statement, thereby knowing for example what to display and how many times, by inserting equivalent
+html code in the template and sending it to the front end.
+
+
+
+
+
+{% csrf_token %} means what?
+its not listenable as well...as u can Bucky....
+
+
+CSRF stands for Cross Site Request Forgery, django uses CSRF 'tokens' that are sent with forms to validate them. I
+don't know exactly what that means, just that the takeaway is that CSRF attacks are bad and you have to include the
+{% csrf_token %} tag with forms when using django.
+
+
+
+
+You are mixing xhtml and html5 elements; you shouldn't. You type < br > (html5), but you would also
+< img / > and < input / >, which is xhtml.
+
+
+
+
+What are 'get' and 'post'?
+
+get means requesting from a resource and post means sending data to a resource
+
+
+
+
+{%  this does not complete automatically (in PyCharm), which i hope to be  {% %}, what package should i install
+for this ???
+
+
+mark the folder as a template folder, sometimes that helps
+
+
+
+
+
+
+What does forloop.counter actually return
+
+
+It is a counter that adds 1. So if there are five songs, for each loop the id of each song will get set first as song1,
+then song2, song3 and so on...
+
+
+It returns the current index of the loop count. So rather than creating a counter variable and incrementing it every
+time, you could just use forloop.counter to get the current index. It should be noted that forloop.counter starts
+counting at 1. Use forloop.counter0 if you would like your program to start counting from 0
