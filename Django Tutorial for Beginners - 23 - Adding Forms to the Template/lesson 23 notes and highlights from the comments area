@@ -19,9 +19,9 @@ Next we need to iterate through the album.song_set.all(), to get all the names o
 What we need now is the input button, they click, and the label; song name titles we iterated.
 The forloop.counter (built in) will be the same as the ids
 The name will be the variables name, and the id, the song the user selected id value
-        <input type="radio" id="song{{ forloop.counter }}" name= 'song' value='{{song.id}}'>
+        <input type="radio" id="song{{ forloop.counter }}" name= 'song' value='{{song.id}}'/>
 Next we make the label for the user, notice for= the same as id= above, and then display the song title
-        <label>for="song{{ forloop.counter }}">
+        <label for="song{{ forloop.counter }}">
             {{ song.song_title }}
 Next we add the star at the end of the song name, if the user selects that particular song
             {% if song.is_favorite %}
