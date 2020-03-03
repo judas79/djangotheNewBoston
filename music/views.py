@@ -19,8 +19,9 @@ from django.shortcuts import render, get_object_or_404
 
 # commented out lesson 16; not used anymore
 # from django.http import HttpResponse
+# lesson 24 Song added
 
-from . models import Album
+from . models import Album, Song
 
 # From lesson 13; commented out, not used
 '''
@@ -86,6 +87,7 @@ def detail(request, album_id):
     # commented out on lesson 16
     # return HttpResponse("<h2>Detail for Album ID: %s. " % album_id)
 
+
 def detail(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
     return render(request, 'music/detail.html', {'album': album})
@@ -93,8 +95,27 @@ def detail(request, album_id):
 
 # Lesson 22 Temporary favorite attribute in the view.py module, suggested as a temporary band-aid,
 # so the detail pages would function, from the comments area
-def favorite(request):
-    return render(request, 'music/detail.html')
+# commented out in lesson 24
+#def favorite(request):
+    #return render(request, 'music/detail.html')
 
-
-
+# lesson 24
+def favorite(request, album_id):
+    album = get_object_or_404(Album, pk=album_id)
+    try:
+        selected_song = album.song_set.get(pk=request.POST['song'])
+    except (KeyError, Song.DoesNotExist):
+        return render(request, 'music/detail.html',
+                      {'album': album, 'error_message': 'You have not entered a valid song'})
+# From the comments area, to enable selecting or deselecting the radio button, favorite
+    else:
+        selected_song.is_favorite = not  selected_song.is_favorite
+        selected_song.save()
+        return render(request, 'music/detail.html', {'album': album})
+'''
+# lesson 24 official lesson, does not let the user select and deselect favorite choices
+    else:
+        selected_song.is_favorite = True
+        selected_song.save()
+        return render(request, 'music/detail.html', {'album': album})
+        '''
