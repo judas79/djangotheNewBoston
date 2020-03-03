@@ -116,3 +116,23 @@ album1.song_set.all()
 album1.song_set.count() # how many objects there are in Songs; L18
 
 album1.album_logo = "image source goes here" # add album_logo image source to the database; L19 (comments)
+
+
+
+*************************** django code within html ********************
+
+
+
+
+{% comment %}    {% endcomment %}  # uncomment django code within html
+
+{{  }}   # use this to express the contents of a variable
+
+{%  %}   # use this for logic or inserting instructional statements
+
+{% for <variable1> in <iterable value> %}  # begin for statement, no colon at the end;
+{% endfor %}                              # end the for statement
+{{ <variable1>.<attribute name> }} - {{ <variable1>.<attribute name2> }}  # for displaying the for statements output
+
+{% if <attribute> %} <!-- if there are any of these in this <attribute> then this will br True-->
+{% endif %}  # end if statement
