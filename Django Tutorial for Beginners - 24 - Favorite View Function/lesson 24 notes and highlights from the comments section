@@ -1,0 +1,160 @@
+We will continue from the previous lesson, working with the 'form', in the detail.html file.  When the user clicks
+the submit button, we made in the previous lesson, all the data information gathered from the "form" code will be sent
+to this url('action=' within the 'form' statement):
+"{% url 'music:favorite' album.id %}"
+This url exists in the music/urls.py file.  The program will look at:
+re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
+and see that the function it points to (views.favorite) is in the views.py file.  In the views.py file, we will have to
+write the function so it can handle the data passed to it from the 'form'.
+
+Since we are working with the Songs data, as well, within the favorite 'form', we have to include it in the
+import module, in views.py:
+from . models import Album, Song
+Then we will build the function to handle the data from the favorite form.  We copy paste the second line, from the
+previous function in views.py, to handle the album_id and 404 errors, if they occur:
+def favorite(request, album_id):
+    album = get_object_or_404(Album, pk=album_id)
+For whatever song gets passed in, we will query the database to see it has a valid song_id by seeing if song_set is
+equals to True and if it doesn't the song doesn't exists, send an error response, instead of making it a favorite.
+Try:
+    selected_song = album.song_set.get(pk=request.POST['song'])
+In the <form> portion in the detail.htm, the <input> gets the value of the song.id which 'get'
+gets the chosen song and stores it in variable selected_song, using:
+(pk=request.POST['song'])
+If the song_id does not exist, we will get an error which is handled with:
+except (KeyError, Song.DoesNotExist):
+We would like to return an error message back to the detail.html, to let the user see the error:
+return render(request, 'music/detail.html', {'album': album, 'error_message':'You have not entered a valid song'})
+If there aren't any errors we will update the data; favorite to true, and save the data to the database, then return the
+user back to the same page:
+else:
+    selected_song.is_favorite=True
+    selected_song.save()
+    return render(request, 'music/detail.html', {'album': album})
+
+
+
+
+********************** highlights from the comments area ********************
+
+
+
+what is album.song_set.all
+
+It gives all the songs associated with the particular album
+
+As I understand, the database provides you with this.
+Because in the class Song you have a foreign key pointing to Album. So the database already provides this song_set
+which is all the songs that reference a certain album.
+See Video number 18 for more explanation.
+
+
+
+
+why did you use for inside label?? what's it use??
+
+It allows the song titles, when they are clicked by the user, to select the songs radio button,  as well as the
+radio button itself.
+
+
+
+
+
+I have a question, why not just pass the song_id instead of the album_id to the favorites function?
+
+To redirect to the same page which is album detail page
+
+
+
+
+
+Since the database has been changed after save(), won't we need to makemigrate and migrate?
+
+makemigrations and migrate are needed only when the model is changed.
+
+
+
+
+
+why 'song' was written in request.POST[....] ???
+
+because when we click the favourite button, we are actually sending the song_id to the favourite function for action,
+and that is done by the POST method rather than the GET method.
+
+
+
+
+To those having difficulty in showing the star, try this:
+Cast the string request.POST['song''] to an integer.
+selected_song = album.song_set.get(pk=int(request.POST['song']))
+
+
+
+
+hello i got error from this line can you help me with it
+14      {% for song in album.song_set.all %}
+and error message is
+no such column: music_song.is_favorite
+
+repair error:
+python manage.py makemigrations music
+python manage.py migrate
+
+
+
+
+
+I changed the code for the function favorite so that users can set/unset their favorite:
+
+    else:
+        if selected_song.is_favorite:
+            selected_song.is_favorite = False
+        else:
+            selected_song.is_favorite = True
+        selected_song.save()
+        return render(request, 'music/details.html', {'album': album})
+
+
+
+This could be done by these lines also i think
+selected_song.is_favorite = not  selected_song.is_favorite
+selected_song.save()
+
+
+This works, put this in the else section of def favourite in views.py
+
+
+
+
+selected_song.is_favorite = !selected_song.is_favorite
+
+
+
+    else:
+            if selected_song.is_favorite:
+            selected_song.is_favorite = False
+            selected_song.save()
+        else:
+            selected_song.is_favorite = True
+            selected_song.save()
+
+
+
+        if selected_song.is_favorite:
+            selected_song.is_favorite=False
+            selected_song.save()
+            return render(request, 'music/detail.html', { 'album': album })
+        else:
+            selected_song.is_favorite=True
+            selected_song.save()
+            return render(request, 'music/detail.html', { 'album': album })
+
+
+
+
+
+<-- thanks, here is the whole, else block:
+    else:
+        selected_song.is_favorite = not  selected_song.is_favorite
+        selected_song.save()
+        return render(request, 'music/detail.html', {'album': album})
