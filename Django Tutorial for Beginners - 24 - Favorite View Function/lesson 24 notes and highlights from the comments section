@@ -32,6 +32,15 @@ else:
     selected_song.save()
     return render(request, 'music/detail.html', {'album': album})
 
+This else: statement allow the user to select or deselect a radio button selection, in this portion of the code:
+= not  selected_song.is_favorite
+instead of:
+= True
+
+    else:
+        selected_song.is_favorite = not  selected_song.is_favorite
+        selected_song.save()
+        return render(request, 'music/detail.html', {'album': album})
 
 
 
