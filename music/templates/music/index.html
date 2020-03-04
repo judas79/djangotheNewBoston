@@ -1,9 +1,30 @@
 <!-- commented out example of an empty template and
 django markers for code uncommented in django {% comment %} and {% endcomment %}
+<u1> commented out in previous lesson to lesson 23
 <ul>
     <li><a href="#">Album Title Here</a></li>
 </ul>
+lesson 25 the following django 2.0 and up loads the path to the static files, then the files are added one at a time
 -->
+{% load static %}
+{% comment %}{% load staticfiles %} this format prior to django v 2.0 {% endcomment %}
+<!-- you can load the framework; bootstrap from a CDN, then use bootstrap-->
+<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}'>
+<!-- or download it, and link to it locally.-->
+<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}")>
+<!--add the file that points to the 'static' directory then the sub folder /music and then add the files, manually-->
+<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}' />
+
+<!-- lesson 25 add navigation bar to all these pages, added before the body of the html-->
+<nav class='navbar navbar-default'>
+    <!-- <div> tag defines a division or a section in an HTML document-->
+    <div class='container-fluid'>
+        <!-- add a logo or called the bootstrap header-->
+        <!div class='navbar-header'>
+            <a class='navbar-brand'href="{% url 'music:index' %}">Roddy Homepage</a>
+        </div>
+    </div>
+</nav>
 
 {% if all_albums %} <!-- if there are any albums then this will br True-->
     <h4>Here are all my Albums</h4>
