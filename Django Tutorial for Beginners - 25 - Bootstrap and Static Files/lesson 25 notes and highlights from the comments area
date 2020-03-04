@@ -1,0 +1,139 @@
+In this lesson we will work on the design of the website, to make it look better and up to date, visually.  To do this
+we will have to include css into our template.  Any time you need to have logos and background pictures, or your own
+css, in the website itself, you will need what are called 'static files'.  Static files are different than python files.
+We will create the in the music apps directory.
+
+First we will create a directory named 'static', in the music apps directory.
+In the static directory we will make another directory named 'music'.
+Sort of like the music/templates/music directory has a sub directory, called music, that holds all the templates in,
+static files we be in the music/static/music directory.  We will make separate directories in the static/music directory
+for 'images' and other directories will be added later.  In the images directory we add a picture named background.png.
+
+Next we will add a new 'stylesheet' to the music/static/music directory, named style.css.  Within this file we will add
+code to display the background.png file, in the images directory.
+body{
+    background: white url('images/background.png');
+}
+Next we will include this css file by adding code to the index.html file:
+The following loads the path to the static files, then the files are added one at a time:
+{% load staticfiles %} # for django v1.9 and below.
+{% load static %} # for django v2.0 and up.
+Like html we add the file that points to the 'static' directory then the sub folder /music and then add the files,
+manually.
+<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}' />
+The reason files are loaded separately from the path, is to keep from loading unnecessary static files, that may only be
+used, in a different part of the website and not in the one you are working in.
+
+To add the framework 'bootstrap', capability, to your index.html template from a content distribution network CDN:
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+
+Or, you can load CDN locally by downloading it here (THIS PART OF THE TUTORIAL WAS TAKEN FROM THE COMMENTS AREA):
+(https://github.com/twbs/bootstrap/releases/download/v3.3.6/bootstrap-3.3.6-dist.zip),
+extract bootstrap.min.css to your static/music/ folder and use that in your index.html link tag (so that'd be
+<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}")
+It also works if you still use the CDN, PyCharm picks up classes as long as the bootstrap.min.css is somewhere local in
+your project.)
+
+To add a navigation bar to all of these pages, that takes up the entire width of the page, we add this to index.html:
+<nav class='navbar navbar-default'>
+    <!-- <div> tag defines a division or a section in an HTML document-->
+    <div class='container-fluid'>
+        <!-- add a logo or known as the bootstrap header, that when logo is clicked brings you to the homepage-->
+        <!div class='navbar-header'
+            <!-- return to homepage 'music:index' when clicking logo 'Roddy Homepage'
+            <a class='navbar-brand'href="{% url 'music:index' %}">Roddy Homepage</a>
+        </div>
+    </div>
+</nav>
+Even though now the homepage is where we are at in this lesson, it will be useful in the future, when we create more
+pages.
+
+
+
+***************** highlights from the comments area ******************
+
+
+
+
+
+I don't understand why the href can't equal just a regular link like static/music. Why does it have to have a django
+template tag?
+I will try to suggest an answer. Maybe I'm thinking about the templates wrong. Maybe I'm thinking about them as html
+when that's not really what they are. Instead of being html that is rendered by the browser, they are essentially python
+code that is operated on by django to produce something for the browser to render.
+If that's true, I still don't really get why you can't just say href= path like you would in a normal html document,
+but it seems like the right dection of thought.
+
+
+Because in some cases we are working with changing data or changing links that are not stable and depend of the user
+request that's why we make a fubction that returns the appropriate link for the user request so that's why we use some
+logic in href in place of just hardcoding it but if you have a static link like the image src or a link to a static web
+page then you can put it normally for more explanation check the function that we use to see details of an album and
+songs.
+
+
+
+
+Using the newest community edition, it doesn't come up with the stylesheet option shown @3:54. How should I fix this?
+
+figured it out myself by clicking file and searching for stylesheet, which came up with the option to choose the CSS
+file type.
+
+I had the same problem and I solved it. U need to right click on music folder , select file,  name it style.css.
+This will create css file for you.
+
+
+
+Hello ? Have seen that community edition of pycharm does not support css..any hack about it?
+
+use sublime-text instead, you'll have to install sublime linter and anaconda from its repository
+
+
+
+For some reason if you run the server on pycharm none of the css files are loaded in, but if you run the server in the
+command prompt it works
+
+
+
+
+
+Hi. What plugin do you use for the bootstrap autocomplete in PyCharm? I tried using the Bootstrap plugin for live
+templates, but there is no autocomplete.
+
+Instead of using the CDN just download Bootstrap
+(https://github.com/twbs/bootstrap/releases/download/v3.3.6/bootstrap-3.3.6-dist.zip), extract bootstrap.min.css to your
+static/music/ folder and use that in your link tag (so that'd be href="{% static 'music/bootstrap.min.css' %}").
+(Well, it also works if you still use the CDN, PyCharm picks up classes as long as the bootstrap.min.css is somewhere
+local in your project.)
+
++Bas van den Wollenberg works if I download the files manually and put them in the static folder. The CDN version
+however does not.
+
+Exactly. Don't know why it doesn't work as it definitely worked for others. Anyway, couldn't find any solution so I just
+did it this way. Might be a bug in the current PyCharm version. ﻿
+
+https://plugins.jetbrains.com/plugin/7572?pr=
+
+
+
+
+If anyone of u have template syntax error in {%load staticfiles%} in django3.0
+Then use
+{%load static%}
+
+
+
+
+Interesting method: I believe from the Django website and maybe some other source it states that you should add the following line to the settings.py file:
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+Then you can reference the source as follows:
+index.html
+<link rel="stylesheet" type="text/css" href="/static/music/style.css">
+style.css
+background: white url("/static/music/images/background.png");
+It's just a question which is better? I will stick to your method unless told otherwise!
+
+
+
+
+
