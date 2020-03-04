@@ -1,0 +1,4 @@
+/* add white at first,then background.png from /images as a website background*/
+body{
+    background: white url('images/background.png');
+}
