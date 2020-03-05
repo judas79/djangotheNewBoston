@@ -124,7 +124,8 @@ Then use
 
 
 
-Interesting method: I believe from the Django website and maybe some other source it states that you should add the following line to the settings.py file:
+Interesting method: I believe from the Django website and maybe some other source it states that you should add the
+following line to the settings.py file:
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 Then you can reference the source as follows:
 index.html
