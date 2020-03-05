@@ -1,0 +1,89 @@
+In this lesson we will be adding everything on the toolbar, even things not yet created.  We will use empty links,
+for making the design, of these non functional tools, and link them to the proper sections, later.
+
+First we will add external files to our index.py, used for the design aspects, that will be applied to
+our toolbar.
+This library file source is a font from Google:
+<link href="//fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+
+This library file source is for jquery; v 1.12.0 was used in this lesson, and this is the updated version:
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+This library file source is for javascript for bootstrap; v 3.3.6 was used in this lesson and this is the updated version:
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+Javascript for bootstrap, is being included for its functionality.  It will enable the toolbar to resize accordingly to
+the web pages, when they are re-sized.  It will create a small icon dropdown, containing the toolbar objects.
+
+We will change the navbar in index.html to be dark instead of light.  In index.html we change:
+<nav class='navbar navbar-default'> # light
+to
+<nav class='navbar navbar-inverse'> # black
+
+We will also use the javascript bootstrap, to add the object, that appears when the screen size of the web page is
+re-sized, too small to display, all the tools, in the toolbar. This will  add the button dropdown button containing
+the tools:
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+The bootstrap library source, has many 'class' methods included, that will handle most desired functionality, built in.
+data-toggle="collapse" is what this class does.  All the objects in the toolbar are now wrapped in the container named
+"#topNavBar".  This makes the objects, toggle, visible or invisible with the dropdown button, to see them.
+
+The 'hamburger' looking, settings icon, with the three small horizontal lines, that is used for 'settings', has to be
+created manually, when using bootstrap:
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+Next we will create the other items in the toolbar within a <div>.
+First we make the section of the navigational container collapsible, so the items within it will appear and disappear
+when the window is re-sized:
+<div class="collapse navbar-collapse">
+
+Then to make buttons we us a numbered unordered list with class navbarnav:
+                <ul class="nav navbar-nav">
+
+The list items will have a link associated with them, but for now not function.  We will add our first list item;
+'Album':
+                     <a href="{% url 'music:index' %}">
+
+Within the Album item, we will have a small glyth icon; &nbsp; adds space between this item and the next one and add the
+text Albums:  Glyphicons are glyph icons, in this circumstance supplied by bootstrap for use in its class=.  ARIA is
+shorthand for Accessible Rich Internet Applications. ARIA is a set of attributes you can add HTML elements.
+                           <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums
+
+Next we will copy and paste the list; <li>, and <a> blocks within it, and change the name to 'Songs' and glyth icon to
+glyphicon-music, to complete the 'Music' item:
+ <li class="">
+    <!-- associated link item to 'Songs' -->
+    <a href="#">
+        <!-- music glyph icon within 'Songs' -->
+        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; Songs
+    </a>
+ </li>
+
+ If we change the
+ <li class=''
+ to
+<li class='active'
+you will notice the item become highlighted.  This will be used in the future and the Albums or Songs item depending on
+which page you have selected.
+
+
+
+
+************** highlights from the comments area ****************
+
+
+
+if someone is trying to use the navbar-inverse then it willnot work as it is for version 3 ;
+for version 4 please check the official documentation  -
+https://getbootstrap.com/docs/4.3/components/navbar/#color-schemes
+
+
+
+
+If anyone is using bootstrap 4, be aware that they dropped support for glyphicons. Use fontawesome instead.
+
+
+
+
