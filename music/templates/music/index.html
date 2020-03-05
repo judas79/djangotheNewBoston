@@ -3,25 +3,78 @@ django markers for code uncommented in django {% comment %} and {% endcomment %}
 <u1> commented out in previous lesson to lesson 23
 <ul>
     <li><a href="#">Album Title Here</a></li>
-</ul>
-lesson 25 the following django 2.0 and up loads the path to the static files, then the files are added one at a time
--->
-{% load static %}
-{% comment %}{% load staticfiles %} this format prior to django v 2.0 {% endcomment %}
-<!-- you can load the framework; bootstrap from a CDN, then use bootstrap-->
-<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}'>
-<!-- or download it, and link to it locally.-->
-<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}")>
-<!--add the file that points to the 'static' directory then the sub folder /music and then add the files, manually-->
-<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}' />
+</ul>-->
 
-<!-- lesson 25 add navigation bar to all these pages, added before the body of the html-->
-<nav class='navbar navbar-default'>
+<!--lesson 25 (L25) the following django 2.0 and up loads the path to the static files,
+then the files are added one at a time-->
+{% load static %}
+{% comment %}{% load staticfiles %} L25 this format prior to django v 2.0 {% endcomment %}
+
+<!-- L25 you can load the framework; bootstrap from a CDN, then use bootstrap-->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+<!-- L25 or download it, and link to it locally.-->
+{% comment %}<!--<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}")>-->{% endcomment %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+<!--lesson 26 L26 This external file source, is a font from Google:-->
+<!--<link href="//fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">-->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!--L25add the file that points to the 'static' directory then the sub folder /music and then add the files, manually-->
+<link rel='stylesheet' type='text/css' href='{% static 'music/style.css' %}'/>
+
+<!--L26This library file source is for jquery: v 1.12.0 used in lesson-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!--L26 This library file source is for javascript for bootstrap: v 3.3.6 used in lesson-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- lesson 25 add navigation bar to all these pages, added before the body of the html
+L26 navbar-default is light colored, navbar-inverse is black-->
+<nav class='navbar navbar-inverse'>
     <!-- <div> tag defines a division or a section in an HTML document-->
     <div class='container-fluid'>
-        <!-- add a logo or called the bootstrap header-->
-        <!div class='navbar-header'>
-            <a class='navbar-brand'href="{% url 'music:index' %}">Roddy Homepage</a>
+
+        <!-- Header L26-->
+        <!-- L26 add a logo, with buttons added; a Header, or called in bootstrap, the bootstrap header-->
+        <div class='navbar-header'>
+            <!--L26 makes the objects in the toolbar, toggle, visible or invisible with the dropdown button,
+            as to see them-->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <!--settings icon, the three small horizontal lines, appears when window is re-sized to small to display
+                all the toolbar contents, for dropdown options'-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class='navbar-brand' href="{% url 'music:index' %}">Roddy Homepage</a>
+        </div>
+
+        <!-- Items
+        L26 Make all our toolbar navigational items collapsible-->
+        <div class="collapse navbar-collapse">
+            <!-- make a numbered unordered list using class navbar-nav -->
+            <ul class="nav navbar-nav">
+                <!-- list item 'Album -->
+                <li class="">
+                    <!-- associated link item to 'Album' -->
+                    <a href="{% url 'music:index' %}">
+                        <!-- cd glyph icon within 'Albums' -->
+                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums
+                    </a>
+                </li>
+                <li class="active">
+                    <!-- associated link item to 'Songs' -->
+                    <a href="#">
+                        <!-- music glyph icon within 'Songs' -->
+                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; Songs
+                    </a>
+                </li>
+            </ul>
+
         </div>
     </div>
 </nav>
