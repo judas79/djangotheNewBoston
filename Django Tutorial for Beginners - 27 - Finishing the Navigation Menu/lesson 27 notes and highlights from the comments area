@@ -1,0 +1,142 @@
+We will finish making our navigation toolbar. To hide all the items and buttons within the navigation bar, we will add
+the id to the top of the items area 'class' in our index.html code.  This will be handled by 'bootstrap'.  The id will
+be equal to whatever the topNavBar is:
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+Next we will build the search box form, even though not function as of yet; use navbar for all forms, you create:
+    <form class="navbar-form navbar-left" role='search' method='get' action='#'>
+Then we us form-group for styling:
+        <div class="form-group">
+The input area, is where the user types the query, the variable q stores the query search terms the user entered.  The
+value will be set in a later lesson.
+            <input type="text"class="form-control" name="q" value="">
+Then we create the submit button for the search box with default colors then close out all the html tags use in
+this area of the code:
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+
+Next we will make buttons for the 'navbar-right side of the navigation area, copying many portions from the left side;
+we just finished completing:
+        <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <!-- associated link item to  -->
+                            <a href="#">
+The first left hand button; uses plus-glyph for the icon within 'Add Album'
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; AddAlbum
+                             </a>
+                        </li>
+Copied from above we added the last button, on the far right of the window.  This button is for logging out and uses
+glyphicon-off for the logout icon:
+                        <li class="">
+                    <!-- associated link item to  -->
+                    <a href="#">
+                        <!-- off glyph icon (log off), within 'Logout' -->
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li
+
+To change the corners of the navigation tools box, from rounded, which is the bootstrap default setting, to a square
+corner, tweak to the style, we will add to style.css:
+.navbar{
+    border-radius: 0;
+}
+
+To over ride Bootstraps' default settings, you must list it at the top of all the CDNs, so you can use the other CDNs
+after bootstrap is loaded, to tweak items.  Other added CDNs may also have to be entered in a way that the defaults of
+one should be before the one you are replacing it with.  We will now use the 'font' CDN, we have in our style.css page,
+to switch to a fancy cursive font.  'Satisfy' is in the font link we downloaded and cursive is a backup method:
+.navbar-brand{
+    font-family: 'Satisfy', cursive
+}
+
+Clear your cache data and images in your browser to see the updated fonts and corners, you made.
+
+
+
+
+***************** highlights from the comments area ************************
+
+
+
+my 'Satisfy' google font is not working at all...
+
+I tested on IE browser and it works there, but not on Google Chrome. Interesting...
+
+Exactly, my font too is not working on chrome but works fine on explorer.
+
+How can I make this work on chrome as well ?
+
+how to make it work on chrome, btw working on edge
+
+Works in Firefox as well, but not chrome
+[edited] In the google chrome drop down click 'more tools', 'clear browsing data', check the box 'cached images
+and data', then click 'clear data' and reload your music page, and you should see your font changes, as well as the
+non-rounded corners.
+
+
+
+
+
+my navbar toggle button is not showing anything on clicking it can anybody help?
+
+Make sure the order of jquery and bootstrap file is same while importing or check for any typo. Jquery should come
+first then bootstrap.
+
+
+
+
+
+If anyone still has the problem with the right button - I had the same problem and it was actually there but invisible.
+So instead of these three lines
+ <span class="icon-bar"></span>
+I made
+<span class="glyphicon glyphicon-menu-down"></span>
+It looks different but it works :)
+
+
+
+
+
+If you have an extra space on top of the page you might have done 2 mistakes: do not copy heading text
+( about importing css) from comments. Just retype it by yourself. If it doesn't work, you might have CSS file saves ad
+UTF-8 with BOM. Save it with classic UTD-8 (Notepad++ or Sublime will help you).
+
+
+
+
+cannot collapse item in navbar
+
+what I did was just add the id on this line:
+<!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+
+
+
+once i click on the button my items not appear.
+my button line looks exactly like yours and also my lcass: collapse navbar-collapse have id=topNavBar
+what i did wrong?
+
+I had the same problem. Solution is:
+1. You need to change script links postion with jquery and js.
+2. The first must be jquery script link and the next bootstrap js link.
+Right that:
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+
+For those who are facing trouble with css file update:
+1) Delete the browser cache file
+2) Add STATIC_ROOT = os.path.join(BASE_DIR, 'static') at the bottom of your settings.py code(below STATIC_URL)
+Happy coding!
+
+
+
+
+
+If anyone was running into trouble that the new css was not working. I figured out that google was caching my old css
+file so when I updated it, it would not show. so to check open the private window and go to your url.
