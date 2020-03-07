@@ -12,13 +12,13 @@ then the files are added one at a time-->
 
 <!-- L25 you can load the framework; bootstrap from a CDN, then use bootstrap-->
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-<!-- L25 or download it, and link to it locally.-->
+<!-- L25 or download it, and link to it locally. L27 put bootstrap before other CDN links to overide B.straps defaults-->
 {% comment %}<!--<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}")>-->{% endcomment %}
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
 
 <!--lesson 26 L26 This external file source, is a font from Google:-->
-<!--<link href="//fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">-->
+<link href="//fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!--L25add the file that points to the 'static' directory then the sub folder /music and then add the files, manually-->
@@ -54,8 +54,9 @@ L26 navbar-default is light colored, navbar-inverse is black-->
         </div>
 
         <!-- Items
-        L26 Make all our toolbar navigational items collapsible-->
-        <div class="collapse navbar-collapse">
+        L26 Make all our toolbar navigational items collapsible,
+        L27 added id="topNavBar" to make all items in navigation bar collapsible-->
+        <div class="collapse navbar-collapse" id="topNavBar">
             <!-- make a numbered unordered list using class navbar-nav -->
             <ul class="nav navbar-nav">
                 <!-- list item 'Album -->
@@ -75,6 +76,34 @@ L26 navbar-default is light colored, navbar-inverse is black-->
                 </li>
             </ul>
 
+            <!--L27 This area is for the search button -->
+            <form class="navbar-form navbar-left" role='search' method='get' action='#'>
+                <!-- L27 search button areas stylle-->
+                <div class="form-group">
+                    <!-- L27 where the user enters text and stores the query-->
+                    <input type="text"class="form-control" name="q" value="">
+                </div>
+                <!-- L27 the submit button for the search box with default colors -->
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <!-- L27 copied from above, changed to navbar-right -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <!-- associated link item to  -->
+                    <a href="#">
+                        <!-- plus glyph icon within 'Add Album' -->
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
+                    </a>
+                </li>
+                <li class="">
+                    <!-- associated link item to  -->
+                    <a href="#">
+                        <!-- off glyph icon (log off), within 'Logout' -->
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+
+            </ul>
         </div>
     </div>
 </nav>
