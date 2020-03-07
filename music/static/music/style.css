@@ -2,3 +2,13 @@
 body{
     background: white url('images/background.png');
 }
+
+/* override Bootstraps defaults and make navigation bars edges square*/
+.navbar{
+    border-radius: 0;
+}
+
+/* 'Satisfy' is in the font link we downloaded in index.html, and cursive is a backup method for text: */
+.navbar-brand{
+    font-family: 'Satisfy', cursive;
+}
