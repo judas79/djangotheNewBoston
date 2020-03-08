@@ -1,3 +1,10 @@
+<!--L28 To include the base.html, with the navigation bar, template here -->
+{% extends 'music/base.html' %}
+
+<!--L28 change the title using block to overwrite the title instead of the default base.html title name-->
+<title>{% block title %}Album Details{% endblock %}</title>
+<!--L28 Link the following code, so it begins after the base.html navigation code and links, ends. -->
+{% block body %}
 <!DOCTYPE html>
 
 <!-- skeleton for the design
@@ -37,6 +44,9 @@
     <!--create a submit button, the value= is the displayed text on the button-->
     <input type='submit' value='submit favorite'/>
 </form>
+
+<!--L28 end of block -->
+{% endblock %}
 
 <!-- Uncommented Lesson 23
 {% comment %}
