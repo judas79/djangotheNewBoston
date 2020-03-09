@@ -1,0 +1,40 @@
+<!--L28 To include the base.html, with the navigation bar, template here -->
+{% extends 'music/base.html' %}
+
+<!-- commented out example of an empty template and
+django markers for code uncommented in django {% comment %} and {% endcomment %}
+<u1> commented out in previous lesson to lesson 23
+<ul>
+    <li><a href="#">Album Title Here</a></li>
+</ul>-->
+
+<!--L28 Everything from L25 to L27, was copy/pasted from here (index.html), to create the generic blueprint to be used
+    on all of the pages of this site, for the navigation bar, to base.html.-->
+
+<!-- Link the following code, so it begins after the base.html navigation code and links, ends. -->
+{% block body %}
+    {% if all_albums %} <!-- if there are any albums then this will br True-->
+        <h4>Here are all my Albums</h4>
+        <ul>
+
+            {% comment %} This was commented out in lesson 20 to update to a dynamic link
+            {% for album in all_albums %}
+                <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+            {% endfor %}
+            {% endcomment %}
+        <!-- endfor is used to end the for loop where you want it
+
+        Added lesson 20 and 21 dynamic link in the for statement -->
+            {% for album in all_albums %}
+                <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+            {% endfor %}
+
+        <!-- endfor is used to end for statement -->
+        </ul>
+
+    {% else %}
+        <h3>You don't have any Albums</h3>
+    {% endif %}
+
+<!--L28 ends the block -->
+{% endblock %}
