@@ -1,0 +1,170 @@
+Almost all websites, are made up of two kinds of patterns within their pages.  The first type of page consist of a list
+of objects or topics, the user can choose from, and then a page about the details of that one object.  Like those page,
+so is the tutorial website we are working on.  The homepage is a list of albums,  and then there are pages, with the
+details about the object, the user chose from that list.  The Django authors saw this concept of this repetitive
+action in websites and decided to speed up the process.
+
+So first we will make backup copies of our index.html, detail.html, and views.py and save them for future reference in
+the github repository, https://github.com/judas79/djangotheNewBoston then strip them down to the bare bone, and
+completely delete all content in the view.py file.
+
+First we will remake views.py using generic views, instead of functions.  We import:
+
+from django.views import generic
+from . models import Album
+
+We will make two generic views, the first, a list generic views, and the second, a details generic views.  These will
+have the same functionality as before but less code. Instead of functions we will use classes.  The type of view is
+'inherited' from (generic.ListView)
+
+class IndexView(generic.ListView):
+
+Next we need to identify is the template we are using, which is in index.html, for the albums.  So whenever the app gets
+a request of albums, plug them into this template:
+
+{% block body %}
+    <ul>
+        <!-- Added lesson 20 and 21 dynamic link in the for statement -->
+        {% for album in all_albums %}
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+        {% endfor %}
+        <!-- endfor is used to end for statement -->
+    </ul>
+    <!--L28 ends the block -->
+{% endblock %}
+
+This is the template that goes in the views.py class:
+
+class IndexView(generic.ListView):
+    template_name = 'music/index.html'
+
+Next we will make the query set function, to query the data base for the albums we want, for the homepage.  In this
+case all of them:
+
+        def get_queryset(self):
+            return Album.objects.all()
+
+Next we will make the generic views for the detail.html page, in the views.py file.
+
+class DetailView(generic.DetailView):
+
+We do not need a list for this, but do need object the user needs details about.  Sow we need the 'model' (Album) and
+then the template name:
+
+    model = Album
+    template_name = 'music/detail.html'
+
+To make this work we will have to change the urls.py.  First back up the urls.py to github and delete the line, referring
+to the 'favorites', we had from lesson 22.
+In a prior lesson, the url patterns where said to have to be hooked up to a view function.  Since we are using classes,
+without a method, or function, the pattern will have to be referenced to a class, and converted to a view.
+
+create homepage ^'$', reference to class IndexView,then call function as_view, then the name
+    url(r'^$', views.IndexView.as_view(), name='index'),
+
+We will do the same thing with the detail in urls.py, but we use a primary key instead of an album id:
+
+# /music/<primary key>/ reference to class DetailView, then call function as_view, then name
+    re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view, name='detail'),
+
+Last, when the view.py list is queried with:
+return Album.objects.all()
+it returns it, but so far, does not have a variable to store the query in, so we can use it in our template.
+Whenever you use a ListView, (generic.ListView}, it will query this:
+    def get_queryset(self):
+        return Album.objects.all()
+and return it into an object named object_list.  So in the index.htm file, we will replace all_albums in the statement:
+
+{% for album in all_albums %}
+
+with variable object_list
+
+{% for album in object_list %}
+
+to iterate through.
+
+We can change the returned objects name from object_list to something more insightful, by adding the following, in the
+views.py IndexView class:
+
+context_object_name = "all_albums"
+
+or whatever name you want.
+Remember you will now have to change the name in your index.html file to reflect the name change:
+{% for album in all_albums %}
+
+
+
+
+************** highlights from the comments area ****************
+
+
+
+Anyone getting this error:
+'as_view() takes 1 positional argument but 2 were given'
+was caused from omitting the parentheses in the  urls.py details as_view....
+It should look like this, if you use re_path.
+re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+
+
+
+
+model = Album is the same thing as query_set = Album.objects.all and it's the shortcut way of def get_queryset()
+
+
+
+
+QuerySet' object has no attribute '_default_manager'
+help me
+
+Generic detail view DetailsView must be called with either an object pk or a slug.
+
+
+
+
+
+how come the detail view know that the object name is 'album' in detail.html ?? is it the lower case of the "model"
+name mentioned in DetailView class ???
+
+Django automatically chooses an appropriate context variable name based on the model name ('Album' in this case, which
+is converted to the lowercase 'album' when being passed to the template). See here for more details, about 3/4 of the
+way down: https://docs.djangoproject.com/en/1.10/intro/tutorial04/
+
+
+
+
+
+For the IndexView the code is simple enough to just use the default implementation. So instead of overriding
+get_queryset all you have to do is override the model attribute to use the model you want.
+
+INSTEAD OF:
+
+class IndexView(generic.ListView):
+    template_name = 'template.html'
+
+    def get_queryset(self):
+        return Album.objects.all()
+
+YOU CAN JUST DO:
+
+class IndexView(generic.ListView):
+    model = Album
+    template_name = 'template.html'
+
+
+
+
+
+u'music' is not registered namespace
+can anyone help me with this
+
+add this app_name='music' in your urls.py
+
+
+
+
+
+For anyone who wants to know how to get the foreign key related instances, you have to use model_name_set.all function
+in your template. For example, a blog post has many comments, so when you try to get the comments through the post, you
+need to use "{% for comment in post.comment_set.all %}" in your template. If you do not understand what I am saying, go
+to the site: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views
+This is the most useful and detailed tutorial I have seen so far! Good job!
