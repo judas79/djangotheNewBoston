@@ -1,0 +1,273 @@
+In this lesson we learn about model forms.  Model forms help speed up development, when using forms on a website.
+They do this by generating the html code for the forms, take care of basic form validation of the code while writing it
+and making sure code is correct and nothing needed for the form is omitted.  Also model forms will save the work to the
+database for you.
+
+To do this we ope models.py and import:
+
+from django.core.urlresolvers import reverse
+
+We will make a form that includes the name, logo and artist, and handle where the user is redirected to after clicking
+on an object.  When the user clicks the submit button, on the form page, the database will be updated and the user
+redirected, to the album details page.
+
+Above the __str__ function in models.py we will add another function, that returns the details page of the album, chosen
+by the user.  The return detail view takes and uses the primary key of the selected album and is passed in using
+kwargs and the primary key with self.pk:
+
+    def get_absolute_url(self):
+        return reverse("music:detail", kwargs=('pk':self.pk))
+
+Every time we create a new Album, it will add it to the data base and give the Album a primary key, then
+and take it to the detail view, depending on the primary key of that Album.
+
+The next step is in our views.py file.  We will create a new class for the form view.  First we will import, the
+following, CreateView, to make a form to create an object, UpdateView, is for editing an object and DeletView, that
+works behind the scenes when you delete an object:
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+We will first work with CreateView, and create a class to add a new Album, we can inherit from CreateView to our
+class:
+
+class AlbumCreate(CreateView):
+
+create the object; an Album:
+
+    model = Album
+
+What fields do you need(what attributes do you want the user to have access to).  We will allow the user to use all
+fields.  We will make fields as a list:
+    field = ['artist', 'album_title', 'genre', 'album_logo']
+
+Now to finish setting this up we need to go in urls.py and make a new url pattern.
+We will not need to specify a primary key because it will be added when the album is added.
+
+
+
+
+************************ highlights from the comments area ************************
+
+
+
+
+
+I didnt get why we need REVERSE function and what it does
+
+I'm not good at django, but I will try to answer this, since nobody else has. Basically, I think the reverse function
+takes the name of a url (as seen in the urls config file) and returns the actual url. I think it's called "reverse"
+because normally you'd type in the url, it would then look it up and call the appropriate view. That's sort of the
+reverse of what he wants to do here.
+
+
+
+to do the grid view like bucky did in this video do this -
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="..." alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+I used the following -
+ def get_absolute_url(self):
+        return reverse('music:album_detail', args=[str(self.id)])
+
+
+
+
+
+Ok. Before you start the tutorials make sure you already changed the templates index.html, details.html, and the base.html. I'm using Bootstrap 4
+
+<--index.html-->
+{% extends 'music/base.html' %} {% block body %}
+<div class="container">
+    <div class="row">
+        {% for album in all_albums %}
+        <div class="col-xs-12 col-md-6">
+            <!-- Card -->
+            <article class="card">
+                <img height="300 px" class="card-img-top img-responsive" src="{{ album.album_cover }}" alt="" />
+                <div class="card-body">
+                    <h4 class="card-title">{{ album.title }}</h4>
+                    <h6 class="text-muted">{{ album.artist }}</h6>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="{% url 'music:detail' album.id %}" class="btn btn-dark btn-sm">View Details</a>
+                        <a href="#" class="btn btn-success btn-sm"><i class="fas fa-star"></i></a>
+                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                </div>
+            </article>
+            <!--  end card -->
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+<--base.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- Compiled and minified CSS
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+
+    <!-- Loads the path to your static files -->
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Viberr {% endblock %}</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="{% url 'music:index' %}">Viberr</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'music:index' %}">
+                        <span class="fas fa-heart"></span> Albums
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="fas fa-music"></span> Songs
+                    </a>
+                </li>
+                <li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'music:index' %}">
+                        <span class="fas fa-plus"></span> Add Album</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'music:index' %}">
+                        <span class="fas  fa-power-off"></span> Log-out</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!--Import jQuery before materialize.js-->
+
+    <!-- Compiled and minified JavaScript
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script src="{% static 'music/style.js' %}"></script> -->
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+<--detail.html-->
+ {% extends 'music/base.html' %} {% block title %} Album Details {% endblock %} {% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <figure class="figure">
+                <img src="{{album.album_cover}}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+                <figcaption class="figure-caption"><p>{{ album.artist }} | {{ album.title }}</p>
+                    <p>{{ album.brief_description }}</p></figcaption>
+            </figure>
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <h2>All Songs
+                <span style="padding-left: 2em;">
+                    <a href="#" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </span>
+            </h2>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Audio File</th>
+                        <th>Favorite</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for song in album.song_set.all %}
+                    <tr>
+                        <td>{{ song.title }}</td>
+                        <td>.{{ song.file_type }}</td>
+                        <td>{% if song.is_favorite %}
+                            <img src="http://i.imgur.com/b9b13Rd.png" alt=""> {% endif %}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-warning btn-sm" href="#">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
