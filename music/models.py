@@ -1,5 +1,9 @@
 from django.db import models
 
+# L30 for model forms
+# from django.core.urlresolvers import reverse # depreciated
+from django.urls import reverse
+
 # Create your models here.
 
 
@@ -14,6 +18,10 @@ class Album(models.Model):
     genre = models.CharField(max_length=150)
     # max length large to accommodate a url link
     album_logo = models.CharField(max_length=1000)
+
+    # L29 redirect to details page
+    def get_absolute_url(self):
+        return reverse("music:detail", kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.album_title + ' - ' + self.artist
