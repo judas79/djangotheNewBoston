@@ -13,6 +13,9 @@ urlpatterns = [
     # L29 /music/<primary key>/ reference to class DetailView, then call function as_view, then name
     re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
 
+    # L30 /music/album/add reference to class AlbumCreate,then call function as_view, then name album_add
+    re_path(r'^album/add/$', views.AlbumCreate.as_view(), name='album_add'),
+
 
 
 ]
