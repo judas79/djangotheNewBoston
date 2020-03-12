@@ -1,4 +1,6 @@
 from django.views import generic
+# L30 to make a form to create an object
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Album
 
 #  L29 class with with template for the homepage
@@ -16,3 +18,11 @@ class DetailView(generic.DetailView):
     model = Album
     template_name = 'music/detail.html'
 
+# class to add a new Album, we can inherit from CreateView
+class AlbumCreate(CreateView):
+
+# create the object; an Album:
+    model = Album
+
+# We will make fields as a list:
+    field = ['artist', 'album_title', 'genre', 'album_logo']
