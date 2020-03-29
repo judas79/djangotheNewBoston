@@ -25,4 +25,7 @@ class AlbumCreate(CreateView):
     model = Album
 
 # We will make fields as a list:
-    field = ['artist', 'album_title', 'genre', 'album_logo']
+    fields = ['artist', 'album_title', 'genre', 'album_logo']
+
+    # L31 comments area, to fix album_form.html template does not exist error
+    template_name = 'music/album_form.html'
