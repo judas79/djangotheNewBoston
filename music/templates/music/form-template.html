@@ -1,0 +1,25 @@
+{% comment %}L31 django: form; iterate form list and name, from items field{% endcomment %}
+{% for field in form %}
+    <!---->
+    <div class="form-group">
+
+        <!--boostrap/django: offset 2 column areas, small text with exclamation point,
+        to catch omissions in entry fields and warn user-->
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ field.errors }}</span>
+        </div>
+        <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+
+        <!--boostrap/django: Spanning 10 small size columns the field area for user enter label field info.-->
+        <div class="col-sm-10">{{ field }}</div>
+    </div>
+{% endfor %}
+
+{% comment %}
+form-template.html (page that you create in template, add below code  to the page no bootstrap needed)
+
+{% for field in form %}
+    {{ field.errors }}{{field.label_tag}}
+{{ field }}
+{% endfor %}
+{% endcomment %}
