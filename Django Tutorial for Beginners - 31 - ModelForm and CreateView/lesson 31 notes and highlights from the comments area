@@ -1,0 +1,500 @@
+Now that we made a form using model forms, 'from django.urls import reverse', because 'from django.core.urlresolvers
+import reverse' is depreciated, to pass us to the details page, a url pattern using re-path, and a way to create an
+album using create-view, we need to make a template, using HTML, so we have something to plug it in to.
+So, in the templates folder, in the app name (music), we need to make a HTML file with a specific name consisting of
+the model name (album) followed by an underscore plus (form), in lower case.
+
+album_form.html
+
+By naming it, in this fashion, we do not have to specify it in views.py.  So if we look for it in there, its not visible
+there!
+
+Next we will copy paste the bootstrap necessities, into the album_form.html file.
+
+{% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+Then, within the <div> tags in the pane-body class, we create the form styling, within the <form> tags.   First we add
+the form-horizontal class, then set the action class to '' empty, because it will be re-directed to the same view and
+handled behind the scenes.  The method is post.  For now, the user will have to keep pasting in the url of the album
+cover they want to use, but later on we will make it possible to upload a file, for the album cover.  Also add
+novalidate="novalidate" from the comments area NOT IN THE LESSONS, this will rectify getting a django default validation
+error, instead of the 'This field is required' message we want to convey to the user.   We will add encoding type, to
+handle the files types being uploaded, when we make it available to do so.
+
+    <!--styles, left to right, no action already goes to the views page, post(not get),
+    novalidate to avoid django default validation error instead of 'This field is required', in red
+    encryption type for future ability to upload album cover artwork-->
+    <form class='form-horizontal' action="" method="post" novalidate="novalidate" enctype="multipart/form-data">
+
+
+Next we will add the cross request forgery token for common security practices.
+
+        {% csrf_token %}
+
+When Django generates these forms for us, it gives us some pieces of information.  For each model that we generate it
+from, will give us a label consisting of a: artist, album, genre, and a album logo, and for each one of those, it gives
+us a form field (inputs).  These are a large dictionary of labels, and inputs.  So we will thru the form and handle each
+one:
+So first we will make a form group, inside <form> tags, and put the labels to the left and field inputs to the right.
+We would have to do this every time we made a new form, but instead we will make a generic form template to handle this.
+So even though we have not made this generic form template we will include it here and add it later.
+
+        <!--points to included generic form template layout, with path to it-->
+        {% include 'music/form-template.html' %}
+
+Lastly, in the album_form.html we will need a button.  First, within <div> tags we will make a form group, using
+bootstrap, then list the items one at a time.  We will make this area offset by two for small devices.
+
+        <!--using boostrap make a group, and make offset for phones,
+         then list the group items -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+
+Within this create the button, which will be the type, submit and be not colored, default.
+
+                <!--submit button, default no color button-->
+                <button type='submit' class="btn btn-default">Submit</button>
+
+Next we will make the generic form template layout, in the template/music directory.  The template will be named:
+
+form-template.html
+
+When Django generate these forms, it generates each field one by one.  It could be inputs, like the ones in the models.py,
+made up of an item layout area and a field area, or a drop down menu to choose from, or even a button, to choose a file
+and click.
+We will make a django for statement and iterate through the form list, items, and name them 'field'
+
+{% for field in form %}
+{% endfor %}
+
+Now we can style through the looped field items as we please.  We will organize them in a form-group:
+
+    <div class="form-group">
+
+Then we will make a scalable window area, to put the error message into:
+
+        <div class="col-sm-offset-2 col-sm-10">
+
+In case the user left out a field, such as the album_title or genre, we will set up something to catch any omission or
+errors and notify the user, right above the input.  We will make the error message small and red and use django to
+display it using the name of the field, which is field, dot errors.  This will be unseen, until there is an error of
+some kind:
+
+            <span class="text-danger small">{% field.errors %}</span>
+
+What the user will see are the input entry boxes, with labels to the left of them, so the user know what and where to
+enter the information for the items in the list of labels; artist:, album-logo, etc.  We will start by using <label>
+tags to create the control label class, and make it two columns wide.  We will put django code to display the text of
+what essentially the label is:
+
+            <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+
+Next, within <div> tags we will add the inputs text to it, and make the column size 10 columns, using bootstrap.  Then
+use django to display the message from the field:
+
+<div class="col-sm-10">{% field %}</div>
+
+Next we will have to add a link, so the user will have a way to access, the form we just created, above.  In our base.html
+template file, we already have an add-album button, which appears on every page.  We will now use it to link to our form,
+so the user can add albums and the fields that are part of the process.  In the add-album, button area in the base.html
+file, we will add   to the empty link, to connect to our album form-template.html.
+
+
+
+
+
+************************* highlights from the comments area ****************************
+
+
+
+
+
+album_form.html template does not exist error solved
+
+go to your album-add class in views.py
+and add this code
+template_name = ' music/album_form.html '
+
+
+
+
+
+hi, everyone, I am getting a NoReverseMatch error this is the details:Reverse for ' detail' with arguments '()' and
+keyword arguments '{'pk': 6}' not found. 0 pattern(s) tried: [] and have looked at comments of people with the same
+error but I don't think mine is related to the pk
+
+replace this into models.py
+
+    def get_absolute_url(self):
+        return reverse('music:detail', kwargs={'pk': self.pk})
+
+
+
+
+
+
+you types for fields in form
+where is 'form'
+
+I think, as mentioned in views.py, our model is Album at AlbumCreate class, so in that case we get the Album object as
+form even when we are including form-template.html, we are sticking to Album model object ...... Yet I am not sure ...
+
+But as form in this case, we are getting Album model object along with name of the variables as labels and value as
+input fields ...
+
+This is confusing a lot. I guess it comes from CreateView class.
+https://docs.djangoproject.com/en/1.10/ref/class-based-views/generic-editing/#createview .
+There have to be some django magic probably, which gives you variable called form. And there is also important thing
+that the name of tamplate have '_form' at the end.
+
+
+
+
+
+
+Hi Bucky and everyone, I have trouble with the add album part. The album is not getting added into the DB. Neither am
+I able to get any errors on the form page.
+
+In your album_form.html make sure <button type="submit">
+
+
+
+
+
+
+I think I have exactly the same code as you, Bucky, however I get this once I click submit button:
+NoReverseMatch at /music/album/add/
+Reverse for 'detail' with arguments '()' and keyword arguments '{u'id': 11}' not found. 1 pattern(s) tried:
+[u'music/(?P<pk>[0-9]+)/$']
+
+Solved it! It was matter of "id" vs "pk" difference.
+In Models.py I had:
+def get_absolute_url(self):
+        return reverse('music:detail', kwargs={'id': self.id})
+and it caused error above.
+I changed it to:
+def get_absolute_url(self):
+        return reverse('music:detail', kwargs={'pk': self.pk})
+
+
+I had a similar problem. Not following tutorials exactly making my own modifications to it for my own site. Not sure
+if you realized why the problem occurred but going to share anyways for the people reading around. The 'id' in the
+kwargs dictionary has to match the id in ?P<id> named group on the urls.py. in this case (bucky's tutorial) you have
+kwargs 'pk' which has to match to the 'pk' in ?P<pk> in the URL pattern.
+
+
+
+
+
+
+Hi there, i'm facing the error  "TemplateDoesNotExist". if anyone have clue plz help over. Thanks!
+
+
+Ali Nawaz khan I faced the same error. I named it form_template, it should be form-template.
+
+
+you just add template_name in views.py
+
+
+
+
+
+for those who don't know bootstrap. You don't need bootstrap for the forms, it works without a single bootstrap code.
+looks ok too
+
+album_form.html (page that you create in template, add below code to the page no bootstrap needed)
+_________________________________________
+
+{% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+
+
+{% block body %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'music/form-template.html' %}
+                        <input type="submit"/>
+                    </form>
+{% endblock %}
+_____________________________________________________
+form-template.html (page that you create in template, add below code  to the page no bootstrap needed)
+
+{% for field in form %}
+    {{ field.errors }}{{field.label_tag}}
+{{ field }}
+{% endfor %}
+
+
+
+
+
+
+
+{% for field in form %} here, where did the 'form' variable come from ? Is it dictionary key like functional view?
+context = {'form': form} is it?
+
+
+I think it is referring to the 'form' we created in the 'album_form.html' template, where we're requesting data from
+'form-template.html'. Again, this is just a guess. I haven't watched the following videos, maybe we will meet a
+clarification.
+
+
+Whenever, Django generates forms for you, they are gonna give you each fields one by one. It comes in a list called
+'form' - quoted from the video. This can  clarify things, maybe.
+
+
+
+
+
+
+get the following error while clicking on add album:
+CreateView is missing a QuerySet. Define CreateView.model, CreateView.queryset, or override CreateView.get_queryset()
+
+
+in urls.py you must ahve written Createview instead of views.Album_create.as_view()
+
+
+
+
+
+
+NoReverseMatch at /music/ i am getting this error..kindly plz help me
+
+
+In models.py, make sure under the def get_absolute_url function you have the following:
+kwargs={'pk':self.pk}
+
+I had:
+kwargs={'pk':self}
+
+
+Try changing the link in the base.html file to:
+
+<a href="{% url 'register:album-add' %}">
+
+
+in models.py
+
+    def get_absolute_url(self):
+        return reverse('music:detail', kwargs={'pk':self.pk})
+
+don't forget "return"
+
+
+@1nspiration Digital What worked, I changed my link in base.html to:
+<a href="{% url 'music:album_add' %}">
+thanx for the idea
+
+
+
+
+
+
+hey bucky!
+where did you define the validation rules for the album_form??
+so that we are having errors displayed ,whenever we submit the add album form with an empty field ..
+
+
+Just add required to the input field which is a html5 form validation check e.g.
+<input type="text" name="textfield value="t1" required />
+
+
+
+
+
+
+
+Hi Bucky. After submitting the form on album/add, why are we redirected to music details page (music/6). I mean where
+have we written this redirection logic?
+
+
+Hi
+In models.py, we wrote:
+    def get_absolute_url(self):
+        return reverse('album:detail', kwargs={'pk': self.pk})
+
+This is the line responsible for this redirection.
+
+
+
+
+
+
+Hey Bucky and community, I have been troubles with the base.html file. When I extends it the content of the anothers
+pages is not showing. Have an idea or a source code?? Thank you very much.
+
+
+You're probably not surrounding the "extra code" with the {% block body %}{% endblock %} tags
+
+
+
+
+
+
+
+Where do you get the "form" variable? {% for field in form%}
+
+
++William Guerrero Morgan I think it is declared there, just like in a python for loop. E.g.
+for page in book:
+# turn the page
+
+
++William Guerrero Morgan http://www.tutorialspoint.com/python/python_for_loop.htm
+
+
+Its an automatically assigned variable when working in forms from what I can gather...
+https://docs.djangoproject.com/en/1.10/topics/forms/
+This link has some info on it.
+
+
+
+
+
+
+
+I am getting a csfr error can anyone help with this??
+
+
+try adding {% csrf_token %} in your form
+
+
+
+
+
+
+when i hit on submit without entering any inputs for the fields, the red text doesn't come out except it looks something
+more like a chat bubble stating that the field is required (i think it's django's default validation error message),
+anyone have any clues?
+
+
+in album_form.html  file, inside the form tag add novalidate="novalidate" .
+
+
+
+
+
+Posting in case anyone ever gets the same issue as me.
+each time the form was submitted it was being sent as a GET not POST.
+It was still under the <form> from my seach box in the nav bar. I had to close it off in the tamplate block for it to
+submit correctly.
+
+
+
+
+
+
+
+hey how the albums are displayed in that way with photo and buttons where is that code which i have to add
+
+
+Hi. Bucky is using the Thumbnails component from Bootstrap.
+http://getbootstrap.com/components/#thumbnails-custom-content
+
+
+
+
+
+
+where did we apply that redirect logic? I can add an album and its added to the db but the redirect isn't working
+
+
+def get_absolute_url(self):
+        return reverse('music:request', kwargs={'pk': self.pk})
+
+redirecting to 'music:request'
+
+
+
+
+
+
+I think I missed something, in which part did he set that when you click submit button it will take you to the details?
+
+
+In the previous video, when he defined the function get_absolute_url()
+
+
+
+
+
+
+
+In {%for field in form%} where was "form" taken from?
+
+
+Is it dictionary key belongs to functional view? context = {'form': form} is it?
+
+
+i would suggest to debug execution from class in views.py there is a lot of stuff that goes into templates besides what
+we send there.
+
+Think about it as list of your model's attributes. But it does something else, like creating a label and an input field for
+each one. Apparently it comes with CreateView class
+
+
+well, django forms is a separate thing to study. like views or models.
+
+
+​I think in this case, it just looks at your attributes and gives you back what you defined. In this situation it was
+labels and input fields because we define labels (artist,...) and inputs for each one(models.CharField) which are
+inputs fields.
+
+
+a little bit more than just list of elements. i just made a form with two inputs one of which is hidden. but i generated
+html for labels and input fields so i had two labels and only one field.
+to hide label i wrote this code:
+
+{% for field in form %}
+    <div class="control-group {% if field.errors %}has-error{% endif %}">
+        {% if field.field.widget.input_type != 'hidden' %}
+        <label class="control-label">{{ field.label }}</label>
+        {% endif %}
+        <div class="controls">{{ field }}</div>
+    </div>
+{% endfor %}
+
+
+
+
+
+
+guys for django version 2 its from django.urls import reverse instead of from django.core.urlresolvers import reverse
+
+
+
+
+
+So judging from the comments I'm far from the only person here who isn't thrilled with the assumption that we've all
+learned bootstrap before. Most people I'd imagine are coming from python backgrounds that needed a web framework that
+minimizes HTML dependency. Assuming we know bootstrap is a little ridiculous.
+
+For this tutorial I've limited the add_album form to just:
+
+{% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+
+{% endblock %}
