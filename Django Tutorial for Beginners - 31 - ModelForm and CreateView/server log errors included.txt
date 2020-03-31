@@ -1,0 +1,2080 @@
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 13:33:08] "GET /music/album/add/ HTTP/1.1" 500 195148
+[29/Mar/2020 13:34:04] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 13:34:11] "GET /music/album/add/ HTTP/1.1" 500 195141
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 13:34:15] "GET /music/album/add/ HTTP/1.1" 500 195278
+[29/Mar/2020 13:35:44] "GET /music/1/ HTTP/1.1" 200 7003
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 13:36:02] "GET /music/album/add/ HTTP/1.1" 500 195044
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 13:38:33
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist:  music/album_form.html
+[29/Mar/2020 13:38:36] "GET /music/album/add/ HTTP/1.1" 500 82621
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 13:43:25
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[29/Mar/2020 13:44:13] "GET /music/ HTTP/1.1" 200 5862
+[29/Mar/2020 13:44:21] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 13:44:24] "GET /music/album/add/ HTTP/1.1" 500 195044
+[29/Mar/2020 14:58:41] "GET /music/ HTTP/1.1" 200 5861
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 14:58:50] "GET /music/album/add/ HTTP/1.1" 500 195044
+[29/Mar/2020 15:00:34] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:09:08] "GET /music/album/add/ HTTP/1.1" 500 198797
+[29/Mar/2020 15:09:31] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:09:38] "GET /music/album/add/ HTTP/1.1" 500 198797
+[29/Mar/2020 15:15:05] "GET /music/ HTTP/1.1" 200 5862
+Not Found: /favicon.ico
+[29/Mar/2020 15:15:08] "GET /favicon.ico HTTP/1.1" 404 2090
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:15:13] "GET /music/album/add/ HTTP/1.1" 500 198797
+[29/Mar/2020 15:19:06] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: "'field.errors'"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: ''field.errors'', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:19:13] "GET /music/album/add/ HTTP/1.1" 500 195236
+[29/Mar/2020 15:20:09] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% 'field.errors' %' from '% 'field.errors' %'
+[29/Mar/2020 15:20:13] "GET /music/album/add/ HTTP/1.1" 500 199017
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:21:36] "GET /music/album/add/ HTTP/1.1" 500 195052
+[29/Mar/2020 15:22:40] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:22:49] "GET /music/album/add/ HTTP/1.1" 500 198789
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:23:56] "GET /music/album/add/ HTTP/1.1" 500 198773
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'field.errors'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'field.errors', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:26:16] "GET /music/album/add/ HTTP/1.1" 500 195060
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 15:28:16
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[29/Mar/2020 15:28:21] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\edit.py", line 168, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\views\generic\edit.py", line 98, in get_form_class
+    "the 'fields' attribute is prohibited." % self.__class__.__name__
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of AlbumCreate) without the 'fields' attribute is prohibited.
+[29/Mar/2020 15:28:29] "GET /music/album/add/ HTTP/1.1" 500 94404
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 15:29:27
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[29/Mar/2020 15:29:27] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% fields.errors %' from '% fields.errors %'
+[29/Mar/2020 15:29:32] "GET /music/album/add/ HTTP/1.1" 500 198858
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field.errors %' from '% field.errors %'
+[29/Mar/2020 15:30:30] "GET /music/album/add/ HTTP/1.1" 500 198801
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% url field.errors %' from '% url field.errors %'
+[29/Mar/2020 15:33:51] "GET /music/album/add/ HTTP/1.1" 500 198885
+[29/Mar/2020 15:35:10] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 188, in render
+    return template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\resolvers.py", line 619, in _reverse_with_prefix
+    possibilities = self.reverse_dict.getlist(lookup_view)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 146, in getlist
+    return self._getlist(key, default, force_list=True)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 131, in _getlist
+    values = super().__getitem__(key)
+TypeError: unhashable type: 'ErrorList'
+[29/Mar/2020 15:35:13] "GET /music/album/add/ HTTP/1.1" 500 191372
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% url field %' from '% url field %'
+[29/Mar/2020 15:36:11] "GET /music/album/add/ HTTP/1.1" 500 199873
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% field %' from '% field %'
+[29/Mar/2020 15:36:50] "GET /music/album/add/ HTTP/1.1" 500 199801
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% url field %' from '% url field %'
+[29/Mar/2020 15:37:31] "GET /music/album/add/ HTTP/1.1" 500 199873
+[29/Mar/2020 15:38:09] "GET /music/ HTTP/1.1" 200 5862
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 188, in render
+    return template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\resolvers.py", line 619, in _reverse_with_prefix
+    possibilities = self.reverse_dict.getlist(lookup_view)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 146, in getlist
+    return self._getlist(key, default, force_list=True)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 131, in _getlist
+    values = super().__getitem__(key)
+TypeError: unhashable type: 'ErrorList'
+[29/Mar/2020 15:38:12] "GET /music/album/add/ HTTP/1.1" 500 191372
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 188, in render
+    return template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\urls\resolvers.py", line 619, in _reverse_with_prefix
+    possibilities = self.reverse_dict.getlist(lookup_view)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 146, in getlist
+    return self._getlist(key, default, force_list=True)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\utils\datastructures.py", line 131, in _getlist
+    values = super().__getitem__(key)
+TypeError: unhashable type: 'ErrorList'
+[29/Mar/2020 15:43:12] "GET /music/album/add/ HTTP/1.1" 500 191372
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'list'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'list', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:44:51] "GET /music/album/add/ HTTP/1.1" 500 194996
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'span'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 'span', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:45:50] "GET /music/album/add/ HTTP/1.1" 500 194992
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 're_path'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 527, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 6: 're_path', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:46:34] "GET /music/album/add/ HTTP/1.1" 500 195081
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'empty'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 533, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 11: 'empty'. Did you forget to register or load this tag?
+[29/Mar/2020 15:47:44] "GET /music/album/add/ HTTP/1.1" 500 180830
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 469, in parse
+    compile_func = self.tags[command]
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 471, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 533, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 11: 'endfor'. Did you forget to register or load this tag?
+[29/Mar/2020 15:48:44] "GET /music/album/add/ HTTP/1.1" 500 180711
+Internal Server Error: /music/album/add/
+Traceback (most recent call last):
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loader_tags.py", line 176, in render
+    template = context.template.engine.get_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 477, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 475, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\defaulttags.py", line 811, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 448, in parse
+    raise self.error(token, e)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 446, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 562, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Gina\AppData\Local\Programs\Python\Python36-32\lib\site-packages\django\template\base.py", line 662, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '% empty field.errors %' from '% empty field.errors %'
+[29/Mar/2020 15:50:17] "GET /music/album/add/ HTTP/1.1" 500 198941
+[29/Mar/2020 15:55:53] "GET /music/album/add/ HTTP/1.1" 200 7570
+[29/Mar/2020 15:58:31] "GET /music/album/add/ HTTP/1.1" 200 8947
+[29/Mar/2020 16:32:25] "POST /music/album/add/ HTTP/1.1" 302 0
+[29/Mar/2020 16:32:25] "GET /music/3/ HTTP/1.1" 200 6219
+[29/Mar/2020 16:32:47] "GET /music/ HTTP/1.1" 200 5934
+[29/Mar/2020 16:32:53] "GET /music/2/ HTTP/1.1" 200 6184
+[29/Mar/2020 16:32:58] "GET /music/3/ HTTP/1.1" 200 6219
+[29/Mar/2020 16:33:14] "GET /music/album/add/ HTTP/1.1" 200 8947
+[29/Mar/2020 16:35:46] "POST /music/album/add/ HTTP/1.1" 302 0
+[29/Mar/2020 16:35:46] "GET /music/4/ HTTP/1.1" 200 6201
+[29/Mar/2020 16:35:59] "GET /music/album/add/ HTTP/1.1" 200 8947
+[29/Mar/2020 16:45:20] "GET /music/ HTTP/1.1" 200 5997
+[29/Mar/2020 16:45:26] "GET /music/album/add/ HTTP/1.1" 200 9408
+[29/Mar/2020 16:51:47] "GET /music/album/add/ HTTP/1.1" 200 9566
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 16:53:11
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+C:\Users\Gina\PycharmProjects\djangotheNewBoston\music\views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 29, 2020 - 16:54:10
+Django version 3.0.3, using settings 'djangotheNewBoston.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[29/Mar/2020 16:54:12] "GET /music/ HTTP/1.1" 200 5997
+[29/Mar/2020 16:54:15] "GET /music/album/add/ HTTP/1.1" 200 9566
+[29/Mar/2020 17:34:56] "GET /music/album/add/ HTTP/1.1" 200 9609
+[29/Mar/2020 17:34:59] "POST /music/album/add/ HTTP/1.1" 200 9845
+[29/Mar/2020 17:44:54] "GET /music/album/add/ HTTP/1.1" 200 9698
+[29/Mar/2020 17:45:04] "GET /music/ HTTP/1.1" 200 6016
+[29/Mar/2020 17:45:07] "GET /music/album/add/ HTTP/1.1" 200 9698
+[29/Mar/2020 17:45:11] "POST /music/album/add/ HTTP/1.1" 200 9934
+[29/Mar/2020 19:16:38] "GET /music/album/add/ HTTP/1.1" 200 9698
+[29/Mar/2020 19:17:01] "GET /music/ HTTP/1.1" 200 6016
+[29/Mar/2020 19:19:30] "GET /music/album/add/ HTTP/1.1" 200 9698
