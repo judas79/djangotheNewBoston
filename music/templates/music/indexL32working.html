@@ -1,0 +1,31 @@
+<!--L28 To include the base.html, with the navigation bar, template here -->
+{% extends 'music/base.html' %}
+
+
+<!-- Link the following code, so it begins after the base.html navigation code and links, ends. -->
+{% block body %}
+
+    <ul>
+        <div class = caption>
+            <h4> {{ album.album_title }}</h4>
+            <h4> {{ album.artist }}</h4>
+
+            <!-- Added lesson 20 and 21 dynamic link in the for statement -->
+            {% for album in object_list %}
+                <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+                <!--Delete-->
+                <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline-block;">
+                    {% csrf_token %}
+                    <input type="hidden" name="album_id" value="{{ album.id }}" />
+                    <button type="submit" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form>
+            {% endfor %}
+            <!-- endfor is used to end for statement -->
+        </div>
+    </ul>
+
+
+    <!--L28 ends the block -->
+{% endblock %}
