@@ -1,0 +1,562 @@
+In this lesson we will be working on the update view, which we can edit and album, or object.  It uses the same 'form'
+as adding albums uses.  We will also work on the delete view, which gives the user a quick way to delete objects.  So to
+do this, we need to import, into views.py:
+
+from django.core.urlresolvers import reverse_lazy
+
+To use a form to edit(update) the fields in the album fields, we will make a class named AlbumUpdate in our views.py
+file.  We will pass in UpdateView from the import, added in L30:
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
+The AlbumUpdate class is very similar to to the AlbumCreate class, so we will copy paste that and edit it as follows:
+
+# class to edit(update) an Album, we can inherit from UpdateView
+class AlbumUpdate(UpdateView):
+
+    # create the object; an Album:
+    model = Album
+
+    # We will make fields as a list:
+    fields = ['artist', 'album_title', 'genre', 'album_logo']
+
+Next we will make a class to delete albums and object named AlbumDelete, pass in the DeleteView from the import, above:
+Since we are deleting, we will not be using a form, we will be using a garbage icon, to delete, so there will be no
+field attributes needed.  The garbage icon will be included within the specified album, and when deleted, the user will
+need to be redirected, because that particular Album will not exist, anymore.  So to redirect the user, after the user
+deletes and album, we use reverse_lazy, that we imported earlier; (at the top of this page).
+
+class AlbumDelete(DeleteView):
+
+    # create the object; an Album:
+    model = Album
+
+    # redirect user to home page after deleting an album
+    success_url = reverse_lazy('music:index')
+
+Next we will go to the urls.py, to make a url pattern to link to to AlbumUpdate class, and another url pattern to link
+to the AlbumDelete Class.  The first path pattern will be for the AlbumUpdate.  When an album is updated, the user will
+then be redirected to another page.  The beginning of the url pattern is where the user will be redirected to, in this
+instance;  re_path(r'album/ redirects the user to music/album page.  The next part is to get the album pk identifier, so
+it knows which files we are working on and are updating.  Then in the pattern we link to the class name, in this case,
+AlbumUpdate, then we name the url pattern album-update.
+
+    # L32 redirect path- /music/album/ then the catcher (?P<pk>[0-9]+) for the<primary key>
+    # class (function) name as a view, then we name it album-update
+    re_path(r'album/(?P<pk>[0-9]+)/$', views.AlbumUpdate.as_view(), name='album-update'),
+
+The album-delete pattern, is similar.  It finds the path for the redirect and the directory of the album we are working
+in, but then immediately deletes the album that the user is within, by the users action of clicking the trash can icon
+to delete it.  The class function then returns the user to the index page.
+
+    # L32 redirect path - /music/album/,  then the catcher (?P<pk>[0-9]+) for the<primary key>,
+    # then we delete it, class (function) name as a view, then we name it album-delete
+    re_path(r'album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
+
+Next we will link index.htm delete to the path indicated in our album-delete (/music/album/delete), in our url pattern.
+We already had setup the delete, in; indexCopyUpToL28.html, in that prior index.html file.  We just need to plug in the
+url link.  First we copy the delete form, from indexCopyUpToL28.html:
+
+            <form action="" method="post" style="display: inline-block;">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </form>
+
+We then paste in in our current index.html under the album-title link, and insert the delete link,
+{% url 'music:album-delete' album.id %}
+into our form, action=:
+
+    <ul>
+        <!-- Added lesson 20 and 21 dynamic link in the for statement -->
+        {% for album in object_list %}
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+
+            <!--Delete-->
+            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline-block;">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </form>
+        {% endfor %}
+        <!-- endfor is used to end for statement -->
+    </ul>
+
+The new delete and update functions work correctly, but my album picture and artist name, as well as the nice looking
+bootstrap layout, are no longer visibly working.
+
+
+
+
+
+******************* highlights from the comments area ***********************
+
+
+
+
+
+if someone is getting DeleteView is missing a QuerySet. Define DeleteView.model, DeleteView.queryset, or override
+DeleteView.get_queryset() then please check your model.py and views.py name should be matched
+
+
+
+
+
+If you've got here by continuing past tutorial 30 and ignoring the bootstrap changes bucky made this code will give your
+index.html a delete icon that will allow you to get past this tutorial:
+
+{% extends 'music/base.html' %}
+
+{% block body %}
+
+        <ul>
+            {% for album in all_albums %}
+            <div>
+            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline";">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+
+            {% endfor %}
+        </ul>
+
+{% endblock %}
+
+
+
+
+
+
+
+If you get a template error, try to make your own template: {name_of_your_model}_confirm_delete.html
+
+... in this case: "album_confirm_delete.html"; make sure to save the file in the templates/music folder.
+
+And paste the following HTML code (provided by the official Django 2.0 docs)
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm" />
+</form>
+
+More informations can be found here:
+https://docs.djangoproject.com/en/2.0/ref/class-based-views/generic-editing/#deleteview
+
+
+
+
+
+
+For anyone looking for the index.html missing code, here is all of it (tried to compare between the one on the git and
+the one needed for the generic views update) :
+
+{% extends 'music/base.html' %}
+{% block title %}Viberr{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+             <h3>{{ user.username }}'s Albums</h3>
+
+        </div>
+{% if all_albums %}
+
+<ul>
+    {% for album in all_albums %}
+     <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+
+                            <img src="{{ album.album_logo }}" class="img-responsive">
+                         <div class="caption">
+                            <h2>{{ album.album_title }}</h2>
+                            <h4>{{ album.artist }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                            <!-- Delete Album -->
+                            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+</ul>
+{% else %}
+  <div class="col-sm-12">
+                <br>
+                <a href="{% url 'music:album-add' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Album
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+Sorry, what i can do, if i have problem :"NoReverseMatch: Reverse for 'delete_album' with arguments '('',)' and keyword
+arguments '{}' not found. 1 pattern(s) tried: [u'music/album/(?P<pk>[0-9]+)/delete/$']"
+
+
+try changing the url on index.html from 'delete_album' to 'album-delete' (like what Bucky writes in the vid)
+
+
+
+
+
+
+
+Hey, I've made an edit option so you don't have to type /music/album/xx to edit the information, what i did is the
+following:
+
+            <!-- Update Album -->
+            <form action="{% url 'music:album-update' album.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                </button>
+            </form>
+
+At index HTML right after the delete button
+The problem is that whenever i click on this button i can edit the stuff but it's not showing the previous information,
+all the fields go blank and it's just like creating a new album. Any suggestion? Thanks!
+
+
+The method should be "get" in case of updating. Like this:
+
+<form action="{% url 'music:album-update' album.id %}" method="get" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </form>
+
+
+
+
+
+
+If anyone runs into the same problem as me with having the UpdateView returning blank fields, you need to be certain
+that the form doesn't have method="post". If you are using a form that is.
+
+
+
+
+
+
+So how does adding songs work , anyone tried it?
+
+
+yea i did.it's works fine.do that same as album
+
+
+
+
+
+
+For those who have a problem with DeleteView, and get an error "No URL to redirect to. Provide a success_url."
+
+instead 'reverse_lazy' use 'from django.urls import reverse'.
+Then,
+
+class AlbumDelete(DeleteView):
+    model = Album
+
+    def get_success_url(self):
+        return reverse('music:index')
+
+
+
+
+
+Why has he used a form in delete button? Can't we simply use button and <a href> ???
+
+
+I have the same doubt. I tried it though and it showing error 500. Template at the url doesn't exist.
+
+
+I got the answer. Difference is when you click on the link (href), you send a GET request on the url, and the browser
+expects an HttpResponse. Form on the other hand will simply send a POST request to the page, not expecting any result in
+response, and the page will stay there itself.
+
+
+
+
+
+
+if you getting this error "Generic detail view AlbumDelete must be called with either an object pk or a slug in the URLconf." use this code in url.py
+ path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    #/music/album/add
+    path('album/add',views.AlbumCreate.as_view(),name='album-add'),
+#/music/album/2
+    path('<int:pk>',views.AlbumUpdate.as_view(),name='album-update'),
+#/music/album/2/delete
+    path('<int:pk>/delete',views.AlbumDelete.as_view(),name='album-delete'),
+
+
+
+
+
+
+from django.urls import reverse_lazy
+instead of
+from django.core.urlresolvers import reverse_lazy
+for people who are using Django 2.0
+
+
+
+
+
+
+What about SongCreate view? You should explain how to make forms that have FOREIGN filed...how to automatic chose the
+album when want to add new song and how we can show that album_title in panel-heading in song_template?
+
+
+Try this for passing the album field:
+
+class SongCreate(CreateView):
+ model = Song
+ fields = ["album", "title", ...]
+ def get_initial(self):
+    return { "album": Album.objects.get(id=self.kwargs.get('pk')) }
+
+
+
+
+
+
+
+Whenever I try to delete an album I get a template doesn't exist error.
+
+I had it too, you need to access to the delete-album view in a <form> tag and use the "post" method (4:46)
+
+try this :
+<form method="POST" action="{% url 'music:album-delete' album.id %}">
+   {% csrf_token %}<input type="submit" value="DELETE">
+</form>
+
+
+thx, this one helped.
+it will be good to add comment into video that the 'delete' button/link must be inside the <form> to work properly.
+
+
+Just add this code in index.html in the same for loop of printing out the album title                                     <!--Delete-->
+            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </form>
+
+
+
+
+
+
+
+I know alot of you guys who mentioned about Bucky's sudden changes to the index.html are probably not following this
+anymore but for anyone else who just saw this tutorial like me here is what you have to do:
+
+He added a couple of things to his home page i.e. his index.html which is all Bootstrap stuff. I don't know Bootstrap or
+front end web dev stuff yet so my aim is just to get the functionality of this youtube video working. The clue to get the
+delete button working is when he does <form action="{% url 'music:album-delete' album.id %}" method="post"
+style="display: inline;"> .
+
+Where is album.id coming from? It's coming from the for loop he did for the <ul> </ul> to create the lists of album
+titles waay back in the previous tutorials. Therefore you need to ensure that your form code is contained WITHIN the
+for loop . So basically copy and paste his <form> </form> code and place it before the {% endfor %} statement. You can
+even look at 4:50 and see the {% endfor %} all the way at the bottom of his index.html
+
+Your home page definitely won't look like his because of all the Bootstrap code you gotta do but you will get the
+functionality that this video is teaching i.e. the delete button showing and working. As for the update functionality I
+had no problems at all with that so I'm not sure where people are having problems. Hope this helps someone else!
+
+
+
+
+
+
+
+I couldn't follow the tutorial after Details and Delete comes out of sudden from  nowhere in Index.html at 4:33. Last
+time, you were seen editing Index.html in tutorial 29 at 9:25. Let me know If i am wrong or someone else also went
+through it. :(
+
+He used the original templates and views which he began the series with. To be honest, he has provided enough
+information to give you a jump start into starting your own project.
+
+
+I copy-paste the index code, but even thought it is runnable, it cant open the albums to load images.
+
+
+Fellas .....go to lecture 30 and see the comments section. You will find a noble saint ); has uploaded the same in
+github you can follow those those are the exact codes for the interface that you see in lect. 30.
+
+
+
+Below is the code for index.html. I agree Bucky did race through this one. He did not mention that delete url only works
+in a form. He made a form, put the tag in there. Its a blink and you miss thing. Just a FYI its a very basic bootstrap
+code. The images are fixed size  you can fix that when you learn Bootstrap
+
+_____________________________________________________________________
+{% extends 'music/base.html' %}
+{%block body%}
+
+{% if all_albums%}
+<div class="container-fluid ">
+
+  <div class="row">
+      {% for album in all_albums %}
+      <div class="col-sm-3 text-center container-fluid" style="border:2px dashed black; margin-right:2px">
+          <div class="container-fluid">
+              <a href="{% url 'music:detail' album.id %}">
+                <img src="{{album.album_logo}}"style="padding-top:10px; size:"width="400" height="400"/><br/>
+              </a>
+              <div class="container-fluid" >
+                    <a href="{% url 'music:detail' album.id %}"><button type="button" class="btn btn-success btn-sm" style="margin-top:5px;" >View Details</button></a>
+                    <a href="{% url 'music:album-update' album.id %}"><button type="button" class="btn btn-outline-secondary btn-sm" style="margin-top:5px;" >
+                    <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </button></a>
+                    <form method="post" action="{% url 'music:album-delete' album.id %}" style="display:inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary btn-sm" style="margin-top:5px;" >
+                        <span class="fa fa-trash" aria-hidden="true"></span>
+                        </button>
+                    </form>
+              </div>
+          </div>
+          <h3>{{album.album_title}}</h3>
+          <p>{{album.artist}}</p>
+      </div>
+      {% endfor %}
+  </div><br/><br/><br/><br/>
+</div>
+
+{% else %}
+<h2>You do not have any albums to display</h2>
+{% endif %}
+{% endblock %}
+
+
+
+For anyone looking for the index.html missing code, here is all of it (tried to compare between the one on the git and
+the one needed for the generic views update) :
+
+{% extends 'music/base.html' %}
+{% block title %}Viberr{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+
+{% block body %}
+<div class="albums-container container-fluid">
+
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+             <h3>{{ user.username }}'s Albums</h3>
+
+        </div>
+{% if all_albums %}
+
+<ul>
+    {% for album in all_albums %}
+     <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+
+                            <img src="{{ album.album_logo }}" class="img-responsive">
+                         <div class="caption">
+                            <h2>{{ album.album_title }}</h2>
+                            <h4>{{ album.artist }}</h4>
+
+                            <!-- View Details -->
+                            <a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                            <!-- Delete Album -->
+                            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{ album.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+</ul>
+{% else %}
+  <div class="col-sm-12">
+                <br>
+                <a href="{% url 'music:album-add' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Album
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+Just add this code in index.html in the same for loop of printing out the album title
+            <!--Delete-->
+            <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ album.id }}"/>
+                <button type="submit" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </form>
+
+
+
+
+
+
+I copied/ pasted, like Bucky instructed, the Class AlbumCreate, and was getting a server error,  when it got to the
+AlbumDelete class.
+TypeError: 'function' object is not subscriptable
+
+
+I used the brackets [ ], from the fields = ['artist', 'album_title', 'genre', 'album_logo'], when I constructed the
+success_url = reverse_lazy["music:index"]
+ it should be in parenthesis, like this:
+
+
+success_url = reverse_lazy("music:index")
