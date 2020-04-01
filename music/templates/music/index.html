@@ -1,16 +1,41 @@
-<!--L28 To include the base.html, with the navigation bar, template here -->
 {% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+{% block albums_active %}active{% endblock %}
+{%block body%}
 
-<!-- Link the following code, so it begins after the base.html navigation code and links, ends. -->
-{% block body %}
+{% if object_list %}
 
-    <ul>
-        <!-- Added lesson 20 and 21 dynamic link in the for statement -->
-        {% for album in object_list %}
-            <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
-        {% endfor %}
-        <!-- endfor is used to end for statement -->
-    </ul>
+<div class="container-fluid ">
 
-    <!--L28 ends the block -->
+  <div class="row">
+      {% for album in object_list %}
+      <div class="col-sm-3 col-md-3 text-center container-fluid" style="border:20px solid #dee0e0; ">
+          <div class="container-fluid">
+              <a href="{% url 'music:detail' album.id %}">
+                <img src="{{album.album_logo}}"style="padding-top:10px; size:"width="400" height="400"/><br/>
+              </a>
+              <div class="container-fluid" >
+                    <a href="{% url 'music:detail' album.id %}"><button type="button" class="btn btn-success btn-default" style="margin-top:5px;" >View Details</button></a>
+                    <a href="{% url 'music:album-update' album.id %}"><button type="button" class="btn btn-outline-secondary btn-btn btn-lg" style="margin-top:5px;" >
+                    <span class="fa fa-pencil" aria-hidden="true"></span>
+                    </button></a>
+                    <form method="post" action="{% url 'music:album-delete' album.id %}" style="display:inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary btn-lg" style="margin-top:5px;" >
+                        <span class="fa fa-trash" aria-hidden="true"></span>
+                        </button>
+                    </form>
+              </div>
+          </div>
+          <h3>{{album.album_title}}</h3>
+          <p>{{album.artist}}</p>
+      </div>
+      {% endfor %}
+  </div><br/><br/><br/><br/>
+</div>
+
+{% else %}
+<h2>You do not have any albums to display</h2>
+{% endif %}
+
 {% endblock %}
