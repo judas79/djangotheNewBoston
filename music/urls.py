@@ -7,18 +7,28 @@ app_name = 'music'
 
 urlpatterns = [
     # L29 create homepage ^'$', reference to class IndexView,then call function as_view, then name
-   re_path(r'^$', views.IndexView.as_view(), name='index'),
+    re_path(r'^$', views.IndexView.as_view(), name='index'),
 
 
     # L29 /music/<primary key>/ reference to class DetailView, then call function as_view, then name
     re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
 
-    # L30 /music/album/add reference to class AlbumCreate,then call function as_view, then name album_add
+    # L30 redirect path /music/album/add reference to class AlbumCreate,then call function as_view, then name album_add
     re_path(r'album/add/$', views.AlbumCreate.as_view(), name='album-add'),
 
+    # L32 redirect path- /music/album/ then the catcher (?P<pk>[0-9]+) for the<primary key>
+    # class (function) name as a view, then we name it album-update
+    re_path(r'album/(?P<pk>[0-9]+)/$', views.AlbumUpdate.as_view(), name='album-update'),
 
+    # L32 redirect path - /music/album/delete,  then the catcher (?P<pk>[0-9]+) for the<primary key>,
+    # then we delete it, class (function) name as a view, then we name it album-delete
+    re_path(r'album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
 
 ]
+
+
+
+
 
 
 

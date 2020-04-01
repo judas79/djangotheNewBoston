@@ -1,6 +1,9 @@
 from django.views import generic
 # L30 to make a form to create an object
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# L32
+# from django.core.urlresolvers import reverse_lazy (DEPRECIATED v2)
+from django.urls import reverse_lazy
 from .models import Album
 
 #  L29 class with with template for the homepage
@@ -18,10 +21,10 @@ class DetailView(generic.DetailView):
     model = Album
     template_name = 'music/detail.html'
 
-# class to add a new Album, we can inherit from CreateView
+# L30 class to add a new Album, we can inherit from CreateView
 class AlbumCreate(CreateView):
 
-# create the object; an Album:
+    # create the object; an Album:
     model = Album
 
 # We will make fields as a list:
@@ -29,3 +32,23 @@ class AlbumCreate(CreateView):
 
     # L31 comments area, to fix album_form.html template does not exist error
     template_name = 'music/album_form.html'
+
+# L32 class to edit(update) an Album, we can inherit from UpdateView
+class AlbumUpdate(UpdateView):
+
+    # create the object; an Album:
+    model = Album
+
+# We will make fields as a list:
+    fields = ['artist', 'album_title', 'genre', 'album_logo']
+
+# L32 class to delete an Album, we can inherit from DeleteView
+class AlbumDelete(DeleteView):
+
+    # create the object; an Album:
+    model = Album
+
+    # redirect user to home page after deleting an album
+    success_url = reverse_lazy("music:index")
+
+
