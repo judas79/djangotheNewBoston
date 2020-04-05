@@ -1,0 +1,165 @@
+In this lesson we will learn how to handle file uploads.  Instead of adding a logo, by connecting to a link of a picture,
+we will make a way for the user to be able to browse through a computer, and upload the image, and use as the album logo,
+on the website.  We will DELETE all the albums currently on the website, because we will be changing things.
+In the models.py file we will change the link to url CharField to FileField, to enable us to upload an image, as the logo
+for our album.
+
+album_logo = models.FileField()
+
+Now that we made changes to our structure of the data base, we will need to update this information.
+So, next we will open a cmd or Power Shell window from the django websites home folder, to make our migrations, for this
+new attribute field using these two commands:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+Now that we added the method to upload an image to the website we need to specify a couple of thing.  First is where to
+store the uploaded file.  To do this we will have to add two global variables to the settings.py file.  At the bottom of
+the settings file we add:
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT... above is the file path to the directory where we are going to store the image files in.  The MEDIA_ROOT, is
+joined to the 'BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))', which is also inside the
+settings.py folder.  We do this so MEDIA_ROOT will resemble the BASE_DIR which is the path to our homepage, that you can
+see at the left hand top directory, in our Pycharm editor.  We join these with another one named 'media'.
+
+The other global variable to the settings, is a lot like the 'STATIC_URL = '/static/''.  But we will make it a little bit
+different to suite our means:
+
+MEDIA_URL = '/media/'
+
+Now whenever the user uploads an image, it will create a new directory, and name it 'media'.  This means we will have 3
+main directories for our files; website, music and media, media having all the user files will go in the 'media'
+directory.
+
+The reason we have two paths in the settings, is because
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+Is for the path on the computer where the files will be stored, and is used by the server
+MEDIA_URL = '/media/'
+is a relative path, which the browser uses to access the file using HTTP, by the user in his browser.
+
+Next we need to change some thing in the websites main directory, the djangotheNewBoston/urls.py; not to be confused with
+the urls.py in the music directory.  First we have to import the settings, we made in settings.py file.
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+Then we will make an if statement, based on weather or not debug is on (set to true), in the settings.py file.  Debug is
+set to true, in (developmental mode), so we can see errors while creating the website, it will be set to false, when a
+site is up and running on a server, and not being worked on.  So what the imports and if block are saying, is if debug
+is set for true, use MEDIA_ROOT = os.path.join(BASE_DIR, 'media'), and MEDIA_URL = '/media/' for the paths, to store your
+album logo images.  When debug is set to false, it is in production mode, and most websites store there files on either
+a separate part of the server, or an altogether different server somewhere else on the web.  We can change the paths in
+our settings and theNewBoston/urls.py when we go to production mode.  We will upend the urlpatterns in the if statement,
+like this:
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+Next we need to update the index.html page where our album_logo resided.  Instead of pointing directly to the object,
+we will point at the objects url, of where it is at, by inserting url, at the end.  Before we changed the attribute
+fields, the attributes where text, in our models.py,
+  album_logo = models.CharField(max_length=1000)
+but since we changed the album_logo field into an object,
+  album_logo = models.FileField()
+we have to use a url, to access it in index.py.
+It was like this:
+
+<img src="{{ album.album_logo }}"....
+
+and we change it, by adding on url to it:
+
+<img src="{{ album.album_logo.url }}" style="padding-top:10px; size:"width="400" height="400"/><br/>
+
+We also need to do the same thing to the details.py page, because its set up similar to the index page, for the same
+use; displaying the album logo:
+
+<img src="{{album.album_logo.url}}" class="img-responsive">
+
+Note, we now have a new directory named media, inside our main directory, where the album_logos are stored.
+
+
+
+
+
+
+******************************** highlights from the comments area ******************************
+
+
+
+
+
+use this in your urls.py file instead:
+
+if settings.DEBUG:
+    urlpatterns += [ url(r'^media/(?P<path>.*)$', serve, { 'document_root': settings.MEDIA_ROOT, }), ]
+
+and instead of importing "from django.conf.urls.static import static", do "import serve", like this:
+
+from django.conf.urls.static import serve
+
+
+
+
+
+
+
+For those who can't see the image you should  follow the next steps:
+1) Erase all your previous Albums (From admin page or in the index.html)
+2) In website > urls.py, add:
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+3) I just edit the detail.html file and add just:
+<img src="{{ album.album_logo.url }}" class="img-responsive"/>
+4) Finally, restart your server and load a new Album data.
+
+
+
+
+
+
+Guys if even after you have the save code your page does not load, do this "To access the MEDIA_URL in template you must
+add django.template.context_processors.media to your context_processeors inside the TEMPLATES config."
+
+
+
+
+
+
+For those whose images are not loading, make sure that the changes made in urls.py are in website/urls.py not in
+music/urls.py
+
+
+
+
+
+Why is this image file going in media folder.......was it not supposed to go into  the database????
+
+the media file is in your database
+
+
+
+
+
+I was facing the problem of uploading the image so finally i solved the problem.
+i forgot to write below line at submit button form.
+enctype="multipart/form-data"
+
+
+
+
+
+For those having a problem with loading files or with request.FILES['whatevername'] add 'django.template.context_processors.media'
+to settings.py -> TEMPLATES -> 'context_processors:' [....]
+
+
+
+
+
+
+
+
