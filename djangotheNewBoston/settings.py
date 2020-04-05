@@ -119,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# L33 path to local directory to store files, used by the server
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# L33 remote path used by users for access to files, through a browser using HTTP
+MEDIA_URL = '/media/'
