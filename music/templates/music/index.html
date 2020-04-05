@@ -1,41 +1,56 @@
 {% extends 'music/base.html' %}
 {% block title %}Add a New Album{% endblock %}
 {% block albums_active %}active{% endblock %}
-{%block body%}
+{% block body %}
 
-{% if object_list %}
+    {% if object_list %}
 
-<div class="container-fluid ">
+        <div class="container-fluid ">
 
-  <div class="row">
-      {% for album in object_list %}
-      <div class="col-sm-3 col-md-3 text-center container-fluid" style="border:20px solid #dee0e0; ">
-          <div class="container-fluid">
-              <a href="{% url 'music:detail' album.id %}">
-                <img src="{{album.album_logo}}"style="padding-top:10px; size:"width="400" height="400"/><br/>
-              </a>
-              <div class="container-fluid" >
-                    <a href="{% url 'music:detail' album.id %}"><button type="button" class="btn btn-success btn-default" style="margin-top:5px;" >View Details</button></a>
-                    <a href="{% url 'music:album-update' album.id %}"><button type="button" class="btn btn-outline-secondary btn-btn btn-lg" style="margin-top:5px;" >
-                    <span class="fa fa-pencil" aria-hidden="true"></span>
-                    </button></a>
-                    <form method="post" action="{% url 'music:album-delete' album.id %}" style="display:inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-secondary btn-lg" style="margin-top:5px;" >
-                        <span class="fa fa-trash" aria-hidden="true"></span>
-                        </button>
-                    </form>
-              </div>
-          </div>
-          <h3>{{album.album_title}}</h3>
-          <p>{{album.artist}}</p>
-      </div>
-      {% endfor %}
-  </div><br/><br/><br/><br/>
-</div>
+            <div class="row">
+                {% for album in object_list %}
+                    <div class="col-sm-3 col-md-3 text-center container-fluid" style="border:20px solid #dee0e0; ">
+                        <div class="container-fluid">
+                            <a href="{% url 'music:detail' album.id %}">
+                                <!--L33 instead of reference to object album.album_logo we add url
+                                to reference its url file path where the image is stored
+                                {% comment %}
+                                <img src="{{album.album_logo.url}}"class="img-responsive">
+                                {% endcomment %}-->
+                                <img src="{{ album.album_logo.url }}" style="padding-top:10px; size:"width="400" height="400"/><br/>
+                            </a>
+                            <div class="container-fluid">
+                                <a href="{% url 'music:detail' album.id %}">
+                                    <button type="button" class="btn btn-success btn-default" style="margin-top:5px;">
+                                        View Details
+                                    </button>
+                                </a>
+                                <a href="{% url 'music:album-update' album.id %}">
+                                    <button type="button" class="btn btn-outline-secondary btn-btn btn-lg"
+                                            style="margin-top:5px;">
+                                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </a>
+                                <form method="post" action="{% url 'music:album-delete' album.id %}"
+                                      style="display:inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-secondary btn-lg"
+                                            style="margin-top:5px;">
+                                        <span class="fa fa-trash" aria-hidden="true"></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <h3>{{ album.album_title }}</h3>
+                        <p>{{ album.artist }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <br/><br/><br/><br/>
+        </div>
 
-{% else %}
-<h2>You do not have any albums to display</h2>
-{% endif %}
+    {% else %}
+        <h2>You do not have any albums to display</h2>
+    {% endif %}
 
 {% endblock %}

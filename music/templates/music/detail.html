@@ -6,7 +6,13 @@
 <!--L28 Link the following code, so it begins after the base.html navigation code and links, ends. -->
 {% block body %}
 
+    <!--L33 instead of reference to object album.album_logo we add url
+    to reference its url file path where the image is stored
+    {% comment %}
     <img src='{{album.album_logo}}' style="width: 250px;">
+    {% endcomment %}-->
+    <img src="{{album.album_logo.url}}" class="img-responsive">
+
     <!-- {% comment %}<img src={{album.album_logo}}> {% endcomment %}first we add the class 'Album' in lower case,
                                                                     then copy paste the objects name, -->
                                    <!-- the models.py logo attribute, in the django identifier, squiggly brackets.   -->

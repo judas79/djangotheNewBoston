@@ -17,10 +17,7 @@ class Album(models.Model):
     album_title = models.CharField(max_length=450)
     genre = models.CharField(max_length=150)
     # max length large to accommodate a url link
-
-    # L33 change from a link CharFile to a upload FileField
-    # album_logo = models.CharField(max_length=1000)
-    album_logo = models.FileField()
+    album_logo = models.CharField(max_length=1000)
 
     # L29 redirect to details page
     def get_absolute_url(self):
