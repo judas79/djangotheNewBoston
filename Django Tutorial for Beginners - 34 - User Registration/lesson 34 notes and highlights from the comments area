@@ -1,0 +1,70 @@
+In this lesson we will make a user interface, for registering, and create their account, and a place to login.  We
+already have a admin based user creator, and also a login area for the administrator, and django encrypts the password
+used to log on, with a hash and is stored like that; as opposed to plain text.  We will make a separate area for the
+user, with different priorities in mind, such as their emails and password are more important than their name and
+address.  So based on what the site is about determines, what is important, as far as logging on and information gathered
+from the user during registration.
+First thing we will make, is a new python in our music app folder named:
+
+forms.py.
+
+As we did, making the models in views.py
+and generated a new form using the fields, in models.py, we will do something similar, but also be able to not to have
+things we don't need, such as the users real name.  We will do this by inheriting from users and overwriting or add,
+fields, the way we want them to be.
+We will first add an import to our forms.py folder.  It will give us the base user class we can use:
+
+from django.contrib.auth.models import User
+
+We will also import a form class for out basic forms, so we can tweak our forms:
+
+from django import forms
+
+Next we will make out class for the users' form, and inherit from forms, forms.ModelForms.  We will use ModelForms here
+to make our blueprint that will be used while making the forms.  Within this class we will specify the password.  We
+will be adding the password field, in a sub class, within a field in the sub class.
+
+class UserForm(forms.ModelForms):
+    password = forms.CharField()
+
+If we left the password = forms.CharField() it would be in plain text for all to see.  So we pass in
+(widget=forms.PaswordInput) to mask the users password input, with a bunch of asterisks or dots.
+So next we will make another class within our UserForm class named Meta.  Metas' meaning is information about your class
+that its within.  The base model will be User; so when the new user creates (signs up for) a new account, the account
+will be created in the same table we use for the administrative created accounts.  Under that, we will make the fields we
+want to appear on our form.  In this project, we will want the user to have a Username, Password and an email address:
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+Now that we have our blueprint for the user registration form setup in forms.py, we will go to views.py and finish the
+form creation, code.  We will want the user to be able to log in and stay logged in, be redirected to a designated page
+after registering and log out.  First, in the views.py file, we will need to import some things, to accomplish this:
+
+# L34 redirect to a specified page,
+# authenticate check that the username password is in the data base,
+# login assigns session ID for authorization to all website pages, without logging in to each page
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+Next we will import local ( . ) class that we will need to use:
+
+from .forms import UserForm
+
+****** continued in next lesson, not enough code to render an image of changes in code, so far *******
+
+
+
+
+
+******************* highlights from the comments area ********************
+
+
+
+
+Does anyone have a system to remember these import codes. Or where to find a dictionary of these imports.
+
+
+Just don't. Don't try to memorize them, just try to understand what these lines of codes do, you can always let your
+IDE or the official documentation find the right syntax for you.
