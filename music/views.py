@@ -1,10 +1,21 @@
 from django.views import generic
 # L30 to make a form to create an object
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-# L32
-# from django.core.urlresolvers import reverse_lazy (DEPRECIATED v2)
+
+# L32  from django.core.urlresolvers import reverse_lazy (DEPRECIATED v2)
 from django.urls import reverse_lazy
 from .models import Album
+
+# L34 redirect to a specified page,
+# authenticate check that the username password is in the data base,
+# login assigns session ID for authorization to all website pages, without logging in to each
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.views.generic import View
+
+
+# L34 import local . class form.py class UserForm
+from .forms import UserForm
 
 #  L29 class with with template for the homepage
 class IndexView(generic.ListView):

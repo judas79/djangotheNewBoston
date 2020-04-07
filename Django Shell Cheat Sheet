@@ -27,6 +27,13 @@ clear #  clear all text;  L2
 
 ******************* Django shell API ********************
 
+******* make powershell auto run server *****************
+invoke-expression 'cmd /c start powershell -Command { cd C:\Users\Gina\PycharmProjects\djangotheNewBoston; python .\manage.py runserver}'
+
+cd C:\Users\Gina\PycharmProjects\djangotheNewBoston   #first change cmd to projects home directory
+
+python manage.py runserver # Run development server
+
 python manage.py shell  # start django API shell ; L9
 
 from music.models import Album, Song # import column tables created in models.py, Album and Song;  L9
