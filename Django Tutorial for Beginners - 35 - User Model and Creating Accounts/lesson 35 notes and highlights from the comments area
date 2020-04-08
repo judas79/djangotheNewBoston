@@ -1,0 +1,209 @@
+Resuming from where we left off in L34, we will start by making our class and inheriting from generic view within our
+views.py file.  Similar to the way we created objects, like our ListView, DetailsView, or UpdateView, we will inherit,
+from (View) but, make it customizable, and create this class:
+
+# L35 class to create registration form and redirect after submitting it
+class UserFormView(View):
+
+Then, in the first line of this class; what is the blueprint (form_class) to used to make this form?  The one we just
+created, which is in form.py, class name, UserForm.
+
+    # blueprints class name for this form
+    form_class = UserForm
+
+We will need to create the template name, which will exist the HTML file that is for the registration form.  We will
+make a file, later on, named registration_form.html in the music directory, later on, but we will add the name in our
+UserFormView as follows:
+
+    # template name, in corresponding registration form html file
+    template_name = 'music/registration_form.html'
+
+On our Add a New Album form we use a 'get' (get a new blank form) and then after clicking Submit, a 'post' to, then a
+redirect, in the same form 'using the same url' to accomplish both those actions.  We will do something similar, using
+an if statement with get or post in the function.  We can use, the if statement, to split the 'get' or 'post' requests
+and do it within one url, but there is a better way of doing this, with less clutter.  When you are using class based
+views, there are built in functions, to separate the post and get logic.  The functions to use, to use the get and post
+request, are as follows:
+
+    # built in function to use get request and another function for post
+    # display a blank form using form_class we created above, passed None by default
+    def get(self, request):
+        form = self.form_class(None)
+
+    def post(self, request):
+        pass
+
+In the get function, we return render, using the django.shortcuts import, and send the returned request, 'form ', to the
+'music/registration_form.html' file using the template_name, so it can be processed.  Then we include the form itself:
+'form': form
+
+    return render(request, self.template_name, {'form': form})
+
+For the post function we will want reference to the form, but this time will want to include the data entered into the
+form, by the user.  This will pass the, stored in POST information, into the form, and the form will validate the
+information.  The validation is handled automatically with built in functionality, and will always be validated as True
+as long as it follows common syntax (for example chinese writing would not be validated) or a field has been completely
+omitted:
+
+    # process form data by registering it, and passing to the data base
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+We will then write an if statement of what to do next when the POST information is determined to be valid.  We will do
+this by creating an object containing the information inside of POST.  The information, that the user entered into the
+registration that makes up the object 'user', will not be saved to the database.  It is stored locally:
+
+        # if Post data is valid, further do custom validation
+        if form.is_valid():
+
+            # create object 'user', do not save 'commit' it to the database
+            user = form.save(commit=False)
+
+What we want to get out of object user is cleaned or normalised data.  Cleaned data is data that is formatted correctly,
+in a standard way (month, day, year, for example).  The way we clean the entered username and password is:
+
+            # cleaned(normalised) data
+            # ERROR 'omission' IN LESSON AND FIXED IN THE COMMENTS AREA (commented out below) user.username is correct
+            #username = form.cleaned_data['username']
+            user.username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+This cleaned information is formatted and ready to be saved to the database.  Next we have to set up a way to save the
+users password.  We easily change the user name by setting it to user.username = 'whatever', but the password needs to
+be changed, we need to handle hash values instead of plain text.  We do this by calling a function called set_password()
+so we can pass in the password.  This procedure is also used when changing the users password:
+
+            # call special function to set password, to pass in the password
+            user.set_password(password)
+
+We wil now save the cleaned files to the database:
+
+            # save to database
+            user.save()
+
+The entire UserFormView should look like this:
+
+# L35 class to create registration form and redirect after submitting it
+class UserFormView(View):
+
+    # blueprints class name for this form
+    form_class = UserForm
+
+    # template name and path to corresponding registration form html file
+    template_name = 'music/registration_form.html'
+
+    # built in function to use get request and another function for post
+    # display a blank form using form_class we created above, passed None by default(not filled out, blank)
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    # process form data by registering it, and passing to the data base
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        # if Post data is valid, further do custom validation
+        if form.is_valid():
+
+            # create object 'user', do not save 'commit' it to the database
+            user = form.save(commit=False)
+
+            # cleaned(normalised) data,
+            # COMMENTS AREA FIXED BY USING user.username instead of just username(lesson35 error)
+            user.username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # call special function to set password, to pass in the password
+            user.set_password(password)
+
+            # save to database
+            user.save()
+
+
+
+
+
+
+***************** highlights from the comments area ********************
+
+
+
+
+
+
+I did not understand why we get     form.cleaned_data["username"]
+We have not use it anywhere.
+
+
+
+He just did a mistake or forgot about it. It should be like this:
+user.username = form.cleaned_data["username"]
+Unfortunately he didn't make a part about how he resolves the issue with already used username by another user. It would
+be interesting to see. I use function that generates a random string after the username for example.
+
+
+
+It was in the model-form he created in forms.py. The fields in the form were ['username','email','password'], so that's
+where username comes from.
+
+In django forms they have what is called "cleaned_data", which just means Django has automatically taken the data the
+user enters (into the form), and puts it through some checks to make sure it's valid data. The cleaned_data is in a dict,
+so to access it you do this for each field. . .username = forms.cleaned_data['username'].
+
+In other words the user has entered data in the username field, and whatever data was entered has been checked behind
+the scenes, and you're accessing that (cleaned) data and storing it in the username variable.
+
+
+
+No, he didn't forget about it. In the model form the fields he used were ['username', 'email', 'password'], so that's
+where "username" comes from.
+
+
+
+what is the difference between form is_valid() and form.cleaned_data ??? I mean if we are already checking the form data
+validity via form.is_valid() then why do we need to check the data validity again via form.cleaned_data ???
+Also he did user.set_password but did not do user.username ??? or is it directly accessible via model ???
+
+
+
+The is_valid method checks if the form data is valid. The cleaned_data is accessing the data (the cleaned data) so you
+can use it.
+
+The is_valid method just checks to see if the form is valid, and that's it. If you want to access the sanitized data,
+you take it from the cleaned_data to use somewhere in your view.
+
+Let me watch the video again before I can answer your last question. Then I'll comment again with the answer. . .
+
+
+
+Ok, to answer your last question about why he used "user.set_password" and NOT "user.username". . .
+
+When the form was saved "user-form.saved(commit-False)", it created a user object. Then you take the user object and
+call "user.set_password", to set the password. There's no reason to use "user.username".
+
+User.username is using the user object to access the username. There's no need to use the username to set a password. . .
+The password is a property of the user object, just like username is a property of the user object. . .So, to set
+properties on an object (like the user), you must use the object itself. . .
+
+I know I probably didn't explain it too well, but if you don't understand let me know and Il''try to explain to a
+different way. .
+
+PS: Although Bucky is using Class Based Views in these tutorials, I would learn the function based views FIRST. Class
+Based View (CBV's) are a little difficult for a beginner compared to the function based views. I would learn the function
+based views first, then if you want to learn the CBV's, do that afterwards.
+
+
+
+
+
+Can someone plz explain 1:45 ? How is that a GET request ?
+
+
+Think about a login page... there's usually a register or signup button for users who don't have an account. The get re
+quest is made when a user clicks that button. <in programming language> they're asking the database to return a page
+with a empty form...That's how its just a get request.
+
+
+
+
+
