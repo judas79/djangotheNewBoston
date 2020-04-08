@@ -13,7 +13,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 
-
 # L34 import local . class form.py class UserForm
 from .forms import UserForm
 
@@ -61,5 +60,42 @@ class AlbumDelete(DeleteView):
 
     # redirect user to home page after deleting an album
     success_url = reverse_lazy("music:index")
+
+# L35 class to create registration form and redirect after submitting it
+class UserFormView(View):
+
+    # blueprints class name for this form
+    form_class = UserForm
+
+    # template name and path to corresponding registration form html file
+    template_name = 'music/registration_form.html'
+
+    # built in function to use get request and another function for post
+    # display a blank form using form_class we created above, passed None by default(not filled out, blank)
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    # process form data by registering it, and passing to the data base
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        # if Post data is valid, further do custom validation
+        if form.is_valid():
+
+            # create object 'user', do not save 'commit' it to the database
+            user = form.save(commit=False)
+
+            # cleaned(normalised) data,
+            # COMMENTS AREA FIXED BY USING user.username instead of just username(lesson35 error)
+            user.username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # call special function to set password, to pass in the password
+            user.set_password(password)
+
+            # save to database
+            user.save()
+
 
 
