@@ -1,0 +1,295 @@
+Continuing from tutorial 35 we will learn how to authenticate and log in. In the views.py file we will add a way to
+check a users credentials, and inform them, of the credential check, outcome.  To do this make a variable user and pass
+in authenticate, from the 'from django.contrib.auth import authenticate, login' and check if the keywords used for the
+username and password fields, match any, that are in the data base.
+
+            # returns User objects if credentials are correct
+            # make variable, user, see if keywords are in data base
+            user = authenticate(username=user.username, password=password)
+
+If any of the keyword pairs, that make up the list in user, match the database, then go to the next step.  The next step
+is to see if the user has been temporarily disabled or banned by admin.  Django allows to check for this,  using
+
+            # if keywords are in the database
+            if user is not None:
+
+                # check to see if users account has been disabled or banned
+                if user.is_active:
+
+To actually do the work of logging the user in if both of the if statements attributes are found to be true:
+
+                    # log the user in by passing in request and user
+                    login(request, user)
+
+To get information about the user, we can now use request.user.username, request.user.password, or even request.user.
+request.user.profile_photo, to refer to the users.
+Now, that the user is logged in, we will direct him to the homepage.  Otherwise, after logging in the user would be back
+at an empty login form.  So we will return them to the main page.
+
+                    # return user to main page after logging in
+                    return redirect('music:index')
+
+
+If the confirmation of the supplied log in and password, are not found in the data base, or the user has been suspended,
+in any way, the user will be directed to the form, all over again.
+
+return render(request, self.template_name, {'form': form})
+
+Next in our music/urls.py we will make a re_path pattern to our registration form on its own page.  We will reference
+the UserFormView class, for the registration form and name our url pattern register
+
+    # L36 path to /register/ reference to class UserFormView,then call function as_view, then name register
+    re_path(r'register/$', views.UserFormView.as_view(), name='register'),
+
+Next we will create our template html form for 'music/registration_form.html'.  We will create registration.html in our
+templates/music directory.  We will copy/paste the contents of our album_form.html, and use them as the bases, for out
+registration_form.html file.  After pasting the info into our registration_form.html, we will delete the following line:
+{% block albums_active %}active{% endblock %}   and in, {% block title %}Add a New Album{% endblock %} we will edit out,
+'Add a New Album' and switch it to Register, as the title:
+
+{% block title %}Register{% endblock %}
+
+For a heading we will add:
+
+    <h3>Create a New Account</h3>
+
+The entire registration_form.html looks like:
+
+{% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Create a New Account</h3>
+
+                        <!--styles, left to right, no action already goes to the views page, post(not get),
+                        novalidate to avoid django default validation error instead of 'This field is required', in red
+                        encryption type for future ability to upload album cover artwork-->
+                        <form class='form-horizontal' action="" method="post" novalidate="novalidate" enctype="multipart/form-data">
+
+                            <!--cross request forgery token for common security practices.-->
+                            {% csrf_token %}
+
+                            <!--points to included generic form template-->
+                            {% include 'music/form-template.html' %}
+
+                            <!--boostrap: make a group, and make offset and small -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+
+                                    <!--submit button, default no color button-->
+                                    <button type='submit' class="btn btn-default">Submit</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+When you look at the registration page, you will notice some of the fields are filled in;  that is because the browser
+automatically does this, and it should be ignored.
+
+
+
+
+
+
+***************** highlights from the comments area *****************
+
+
+
+
+
+This doesnt work for me and I think I found the cause in a forum :
+ This is not the right use for a ModelForm. They are for creating and
+editing items in the database; the error message is because you have
+used this form as if you were creating a new user, and it's preventing
+you from doing that because the user with that username already exists.
+ Use a standard form instead. Or even better, use the LoginForm from
+django.contrib.auth.forms; the advantage of that is that it calls
+authenticate for you as part of the validation process, so that login
+errors will be included in the form errors (rather than completely
+ignored, as your code does).
+
+
+
+
+
+
+how is it that django uses sessions? aren't cookies more secure
+
+
+Sessions are hosted on the server, so clients cannot manipulate the session variables. Cookies are used to store the
+session on the client-side, but the client cannot typically manipulate the session from the cookies. Sessions are
+perfectly secure to use, and many if not most authentication-based website takes advantage of sessions.
+
+
+
+
+
+
+Yoh, got a problem mates, submit button only appears, no other field
+
+
+yeah me too, did you figure out why?
+
+
+Correct the {'form': form} parts :)
+
+
+
+
+
+
+
+Secure login details by using google authenticator with Django-mfa. Django-mfa is a simple package to add extra layer
+of security to your django web application. It gives web app a randomly changing password as an extra protection
+Get code from our github repositories: https://github.com/MicroPyramid/django-mfa
+
+
+
+
+
+
+AttributeError at /music/register/
+'UserForm' object has no attribute 'Cleaned_data'
+
+
+'c' is in lower case
+
+
+
+
+
+
+
+
+Hello, when I click on submit it says CSRF verification failed
+
+
+whenever you use a <form> tag you have to put "{% csrf_token %} after the tag,
+<form>
+{% csrf_token %}
+<!-- your code here -->
+</form>
+
+
+write this again {% csrf_token %}
+
+
+
+
+
+
+
+tried doing this to get a separate log in page:
+
+class LoginFormView(View):
+    form_class = LoginForm
+    template_name = 'accounts/login.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('post_list')
+                else:
+                    return HttpResponse('Ghanta User active')
+
+            else:
+                return HttpResponse('Ghanta user existence')
+        else:
+            return HttpResponse('Ghanta valid form')
+
+
+I get Ghanta valid form :(
+
+
+
+
+
+
+Can some one tell me, why he used class-views in this tutorial, but switched back to Functions in the github version?
+
+
+I believe the github page follows the style he was using during the early sections of the django lessons. He changed
+things up after using model forms.
+
+
+What was your conclusion? that's the reason i watched the videos( to learn class-based views) and realized he are using
+function-based views ( in his repository)
+
+
+same question here, but i personally find it more useful thus I can refer both
+
+
+
+
+
+
+everything works fine. but when I submit the form the page keeps loading and loading and nothing happens.. any
+suggestions???
+
+
+restart your server
+
+
+
+
+
+
+Great tutorial! I've been looking for a way of adding my own fields to a User. So let's say you have your default
+username, password, email fields, but then also want other fields to store phone number, date of birth, etc. How would
+you go about doing that? A tutorial on that would be great!
+
+
+you can use your own Model like UserProfile (or UserParameters, etc) that inherits the basic django User
+model like this:
+class UserProfile(User):
+    postcode = models.IntegerField(blank=True, null=True)
+    state = models.CharField(max_length=50, blank=True, null=True)
+    region = models.CharField(max_length=80, blank=True, null=True)
+    city = models.CharField(max_length=80, blank=True, null=True)
+    ......
+
+
+Actually, the docs recommend you extend User through a one-to-one relationship like this:
+https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-user
+But I think what Yuriy says is fine too.
+
+
+
+
+
+
+django.core.exceptions.ImproperlyConfigured: Creating a ModelForm without either the 'fields' attribute or the 'exclude'
+attribute is prohibited; form UserForm needs updating.
+if you get this error change your fields attribute of forms.py to
+fields = _all_
+
+
+
+
+
+
