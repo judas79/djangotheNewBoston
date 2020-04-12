@@ -1,0 +1,46 @@
+{% extends 'music/base.html' %}
+{% block title %}Add a New Album{% endblock %}
+
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Create a New Account</h3>
+
+                        <!--styles, left to right, no action already goes to the views page, post(not get),
+                        novalidate to avoid django default validation error instead of 'This field is required', in red
+                        encryption type for future ability to upload album cover artwork-->
+                        <form class='form-horizontal' action="" method="post" novalidate="novalidate" enctype="multipart/form-data">
+
+                            <!--cross request forgery token for common security practices.-->
+                            {% csrf_token %}
+
+                            <!--points to included generic form template-->
+                            {% include 'music/form-template.html' %}
+
+                            <!--boostrap: make a group, and make offset and small -->
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+
+                                    <!--submit button, default no color button-->
+                                    <button type='submit' class="btn btn-default">Submit</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% comment %}
+
+{% endcomment %}
