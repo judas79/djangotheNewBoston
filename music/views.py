@@ -97,5 +97,23 @@ class UserFormView(View):
             # save to database
             user.save()
 
+            # returns User objects if credentials are correct
+            # make variable, user, see if keywords are in data base
+            user = authenticate(username=user.username, password=password)
+
+            # if keywords are in the database
+            if user is not None:
+
+                # check to see if user has been disabled or banned
+                if user.is_active:
+
+                    # log the user in by passing in request and user
+                    login(request, user)
+
+                    # return user to main page after logging in
+                    return redirect('music:index')
+
+        # if the submission to log in fails, the process starts over with a blank form
+        return render(request, self.template_name, {'form': form})
 
 

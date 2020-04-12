@@ -24,6 +24,9 @@ urlpatterns = [
     # then we delete it, class (function) name as a view, then we name it album-delete
     re_path(r'album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
 
+    # L36 path to /register/ reference to class UserFormView,then call function as_view, then name register
+    re_path(r'register/$', views.UserFormView.as_view(), name='register'),
+
 ]
 
 
