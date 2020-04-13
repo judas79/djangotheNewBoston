@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # L37 handle the rest framework we installed
+    'rest_framework',
+    # handle the companies app/directory we created
+    'companies.apps.CompaniesConfig',
 ]
 
 MIDDLEWARE = [
