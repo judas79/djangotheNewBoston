@@ -291,5 +291,42 @@ fields = _all_
 
 
 
+**************** from lesson 37 highlights from the comments area relevant here *********************
+
+
+Your tutorial are amazing but I think something is missing.
+I would like to list things which are missing-
+1) How would user would logout
+2)How to valid the jpeg size, dimension
+3)How to upload songs and how to play them
+
+Please make tutorials for it to complete this website in working state.. :)
+
+
+The logout is pretty easy, all you have to do is create a view and when it is accessed through a url say
+yourwebsite.com/logout, just call this function: auth.logout(request) and don't forget to return redirect somewhere
+else on your website.
+
+
+
+
+
+
+
+so you are not gonna finish that search box? that was exactly what I needed :(
+
+
+https://github.com/buckyroberts/Viberr/blob/master/music/templates/music/index.html This may help you
+
+
+
+
+
+
+
+
+
+
+
 
 
