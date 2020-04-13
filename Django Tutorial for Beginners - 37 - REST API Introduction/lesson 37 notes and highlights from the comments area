@@ -1,0 +1,101 @@
+We will be learning how to make a REST API in this lesson.  A REST API is a way of making it possible for all sorts of
+different apps and platforms to access a website.  The alternative would be to write software to handle the sites API to
+speak to all the different nodes types, one at a time.  For instance there would be software to handle communication
+between Iphone and the site or android and the site and all the other different platforms that could need to communicate
+with the sites API.  The data format we will use with the REST API is named JSON and it is not affiliated with any
+particular device.  It is a format to communicate between devices and the API, and can be used to make apps for those
+devices.  It is one of the first things that should be implemented into a startup website.
+First we need to install REST using pip, from our home directory in Pycharm.
+
+pip install djangorestframework
+
+OUTPUT:
+
+Successfully installed asgiref-3.2.7 django-3.0.5 djangorestframework-3.11.0 pytz-201
+9.3 sqlparse-0.3.1
+
+We will create a website that stores stock information, and will tell you the updated stock prices, when you connect to
+it, and later on we can add the functionality of an iphone, and android apps.  We will start with entering the following
+into our cmd window.
+
+python manage.py startapp companies
+
+It doesn't seem to do anything, but also don't get any errors.
+
+Then we will switch over to our settings.py and configure some things.  In the 'INSTALLED_APPS - [ ' area we need to add
+at the bottom, what we installed with pip:
+
+'rest_framework',
+
+We also need to add the app name (directory) we created, with the startapp:
+
+'companies.apps.CompaniesConfig',
+
+Now django knows we are using the rest_framework and have created an app named companies.
+So next we will go to the models.py in the companies app directory and create a class named Stock, for out stock data.
+We will inherit from import, models, which was generated when the companies app was created.
+
+class Stock(models.Model):
+
+
+
+************************* highlights from the comments area *********************
+
+
+
+
+
+
+
+Why are you adding 'companies.apps.CompaniesConfig' to INSTALLED_APPS, wouldn't just 'companies' do the trick?
+
+
+If you look at the docs for Django Rest Framework, it tells you to do this. A Rest Framework is different than a
+"normal" django project. . . http://www.django-rest-framework.org/tutorial/1-serialization/
+
+
+I think this is new way of adding installed apps for django 1.9
+If you use django <1.9 you can just use app name
+
+
+
+
+
+
+I had an issue where I called my new app 'rest_api' and I put 'rest_api.apps.Rest_apiConfig' in to the installed apps
+list and it kept coming up with an error saying ' No module named 'rest_api.apps.rest_apiconfig'; 'rest_api.apps' is not
+a package'. no matter how I changed the casing on the name, it still didn't work.
+
+I just figured it out though, made a new app without the underscore and it works fine now, so no underscores in your app
+name.
+
+
+
+
+
+
+I have installed djangorestframework and upgraded to the latest version as well. I have tried this using both pip and
+pip3 and yet I keep getting the following error
+ "ImportError: No module named 'rest_framework'" when I run the make migrations command.
+Any idea how to resolve it?
+
+Thanks
+
+Add rest_framework in ur installed_apps of settings.py
+
+
+Check the Django version
+
+
+REST framework requires the following:
+
+Python (2.7, 3.2, 3.3, 3.4, 3.5, 3.6)
+Django (1.10, 1.11, 2.0 alpha)
+http://www.django-rest-framework.org/
+
+
+I think you did pip install rest_framework instead of pip install djangorestframework
+
+It's pip install djangorestframework,
+but you've gotta add 'rest_framework' to settings.py INSTALLED_APPS
+
