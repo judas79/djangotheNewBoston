@@ -1,0 +1,140 @@
+In the, Stock class that we created in the last video, we will populate with fields (model attributes) used for working
+with stocks, in the companies/models.py file.
+The first will be a 'ticker', which is an abbreviated user name for a company's name.  Ticker will have a limit of 10
+characters, which is the most any ticker name characters utilise, for it CharField, amount of characters
+NOT IN THE LESSON, BUT FOUND IN THE COMMENTS AREA- Add unique=True to stop the entry of a ticker name that is already in
+the database, by giving the user an error in red above the ticker entry box:
+Second is 'open';  which is the price of the stock, at the very beginning of the day.  "Open", will use a FloatField,
+because it will be dealing with numerical monetary amounts, therefore requiring a decimal point:
+NOT IN THE LESSON, BUT FOUND IN THE COMMENTS AREA- Turns out DecimalField is more accurate because float has trouble when
+rounding numbers.  But DecimalField must have the parameters for the decimal_places set.
+Third is 'close', which is the stock price amount at the end of the day, also requiring a decimal point.
+And last, is 'volume', the amount of times a specific stock has been traded, which requires a whole decimal value.
+
+class Stock(models.Model):
+
+    # L38 field attribute for company names, max. amount of characters
+    ticker = models.CharField(unique=True, max_length=10)
+    open = models.FloatField(max_length=20)
+    #close = models.FloatField(max_length=20)
+    close = models.DecimalField(max_digits=5, decimal_places=3)
+    volume = models.IntegerField()
+
+Next we will add a function, that will make a string representation of the ticker field.
+
+    # L38 string representation of the ticker field, above
+    def __str__(self):
+        return self.ticker
+
+Next we will go to the companies/admin.py, to enable the ability to add or delete stocks from the admin panel.  First we
+will import the models.py class we just created, into admin.py.
+
+from .models import Stock
+
+Next we will register Stock, which enables the ability to add or delete Stocks, from within the admin panel, on our site.
+This will add a link, within the admin page, to click on and execute adding or deleting Stock.
+
+admin.site.register(Stock)
+
+So, to be able to use the Stock management tool, we just created, we will need to create a super user to do it. We will
+do this using terminal or PowerShell:
+
+python manage.py createsuperuser
+
+If you run into errors while creating the super user, make your table migrations' 'change file' in terminal/P.Shell with:
+
+python manage.py makemigrations
+
+The terminal/PS, will add in the directory app for you, if you don't add 'companies' like this, when you create your
+change file:
+
+python manage.py makemigrations companies
+
+After that do the migrations from your change file, that you just made.
+
+python manage.py migrate
+
+Now go to your website, in your browser, to the admin page.  Click on the Stocks link under the 'Companies' heading.
+This should lead you to the page that has a heading of "Select stock to change".  Click the 'add stocks' link to add
+stocks, and add them to 'Ticker', then fill in the rest of the fields with real or made up information.  If you get a page
+doesn't exist, it is most likely that you didn't do your migrations, unless you did them when you created your super
+user, earlier.  If not:
+
+python manage.py createsuperuser
+
+If you run into errors while creating the super user, make your table migrations' 'change file' in terminal/P.Shell with:
+
+python manage.py makemigrations
+
+The terminal/PS, will add in the directory app for you, if you don't add 'companies' like this, when you create your
+change file:
+
+python manage.py makemigrations companies
+
+After that do the migrations from your change file, that you just made.
+
+python manage.py migrate
+
+After adding your first stock, you should get "The stock “[ticker name here]” was added successfully. You may add another
+stock below" at the top of the page, highlighted in green.  Proceed to add more stocks and hit 'save' when finished.
+
+
+
+
+
+******************* highlights from the comments area *********************
+
+
+
+
+
+
+hey, many thanks for all the stuff. could you show how to upload a django project on a production server incl. password
+changes?
+
+i am no Boston but my way is: push on github, pull from git hub (or scp will work, but try to diff and apply changes
+using unix tool), use sed and other unix tool to change data for production server, put all of the commands in one shell
+script. If anyone has a better way, please share so i can know !
+
+
+
+
+
+No module named companies.apps??
+looking forward for help
+
+same here i don understand either let me know if u have figured out thee solution
+
+
+write" companies.apps.CompaniesConfig"
+
+
+
+
+
+
+
+thenewboston Is it better to use FloatField or DecimalField ?
+
+
+To anyone who wants to know -- since it's been 7 months since this was asked; FloatField uses pythons float type and can
+have rounding issues whereas DecimalField uses Python's decimal type and is more precise and won't have rounding errors
+-- but you need to specify how many digits and decimal places the value will have when using DecimalField, if you try to
+add a value to the field with more decimal places or digits than specified, it will cause errors.
+
+DecimalField is probably more appropriate when dealing with currency.
+
+
+
+
+
+
+
+You have made API so simple that i wish you had a button to buy you coffee!! Please set ticker unique=True otherwise
+duplication will happen...
+
+
+
+
+
+
