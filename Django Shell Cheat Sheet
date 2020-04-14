@@ -12,13 +12,15 @@ print(django.get_version());
 
 python manage.py migrate;  migrate your changes in attributes tables to your database to update it;  L6
 
+python manage.py makemigrations                     # or to make specific table migrations in your database
 python manage.py makemigrations <the package name>  # 'music' in this project. reflect changes to blueprint
-                                                    # sql in database, creates a change file; L8
-
-python manage.py sqlmigrate music 0001 # see what this migration of the 'music' app accomplished using id number; L8
+                                                    # sql in database, CREATES a change file; L8
 
 python manage.py migrate    # migrate the new sql files change filewe just made, to the database,
                             # and syncs it with our code; L8
+
+python manage.py sqlmigrate music 0001 # see what this migration of the 'music' app accomplished using id number; L8
+
 
 'cmd' + c  # close Power Shell Window;  L2
 
