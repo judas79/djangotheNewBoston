@@ -1,0 +1,65 @@
+In this lesson we will make a serializer class.  A serializer class, is what converts a class in a model, (in models.py),
+to JSON data.  When a user requests data from a website, a html request is sent to and from a browser, using an http
+response.  In this case we don't want to send browser based html, we want to send JSON.  So that's why we need to
+convert our models code, to JSON.  This serialized data can be saved to a hard drive or transferred across a network,
+which the python objects, that make up the models, can not.  In short serialization converts objects into data that can
+be transferred.
+So first we will create a python file named serializers.py, in our companies app/ directory.
+NOT IN THE LESSON: from the comments area, it was pointed out, that we should not name files with the same name as
+something being passed in to another file.  So we will change the name serializers.py to serializer.py...
+In the serializer.py file we will first import serializers from the rest_framework and also Stock from our models.py.
+
+from rest_framework import serializers
+from .models import Stock
+
+Next we will make a class in our serialize.py made based on the class used in our models.py and Serializer.  We will
+inherit from the rest_framework, serializers.ModelSerializer.
+
+# L39 create name, using class from model + serializer, and pass in from rest_framework
+# blueprint, using serializers to convert Model to JSON
+
+class StockSerializer(serializers.ModelSerializer):
+
+So, when we send a JSON response, it includes, so it knows the ticker, open, close, and volume values, so we do not have
+to specify them.  Next we will include the class Meta, to further configure these passed in fields.  First we will have
+specify which model we are serializing; which is Stock:
+
+    # further ability to configure the fields passed in to StockSerializer
+    class Meta:
+
+        # specify which model we're serializing
+        model = Stock
+
+If we passed in more models, using imports, they would also be placed inside same file and would have to be specified.
+We can pick and choose which fields' attributes we send to the user, when the user request them, by using keyword
+'fields'.  We will send fields, 'ticker' and 'volume'.  To send all fields you can list all of them, one at a time, or
+use Dunder all Dunder, in quotes.
+
+        # send the following fields upon request to user
+        fields = ('ticker', 'volume')
+
+        # send all fields upon request from user
+        #fields = '__all__'
+
+Be aware, if you use the dunder all method and have primary keys or IDs in one of your models; that information will also
+be sent to the users when they do their request.
+
+
+
+
+********************** highlights from the comments area ***********************
+
+
+
+
+
+Quick tip:
+Don't name your files the same as modules you're important into that file - that can cause some hard to figure out
+problems :)
+In this case name your serializer file just serializer.py NOT serializers.py because you're importing serializers from
+rest_framework. Cheers !
+
+
+
+
+
