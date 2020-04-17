@@ -1,4 +1,4 @@
-# L39
+# L39 convert class model into JSON for saving to a HD or sending over a network
 from rest_framework import serializers
 from .models import Stock
 
@@ -13,10 +13,10 @@ class StockSerializer(serializers.ModelSerializer):
         model = Stock
 
         # send the following fields upon request to user
-        fields = ('ticker', 'volume')
+        # fields = ('ticker', 'volume')
 
         # send all fields upon request from user
-        #fields = '__all__'
+        fields = '__all__'
 
 
 
