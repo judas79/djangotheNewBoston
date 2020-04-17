@@ -1,6 +1,17 @@
-from django.conf.urls import url
-from . import views
+#from django.conf.urls import url         # depreciated
+# Use updated v3 way to handle urls
 from django.urls import re_path
+
+# imports from views.py in the main app using ( . )
+from . import views
+
+
+# L40 from django.contrib import admin
+from django.contrib import admin
+# for the API
+from rest_framework.urlpatterns import format_suffix_patterns
+# use views2 in the companies app for the stocks API
+from companies import views2
 
 # added lesson 21 to specify which app the detail keywords' url belongs to
 app_name = 'music'
@@ -27,7 +38,14 @@ urlpatterns = [
     # L36 path to /register/ reference to class UserFormView,then call function as_view, then name register
     re_path(r'register/$', views.UserFormView.as_view(), name='register'),
 
+    # L40 music/stocks using views2 imported from the companies apps, StockList for API
+    re_path(r'^stocks/', views2.StockList.as_view()),
+    re_path(r'^admin/', admin.site.urls),
 ]
+
+#L40 for API
+urlpatterns = format_suffix_patterns(urlpatterns)
+
 
 
 

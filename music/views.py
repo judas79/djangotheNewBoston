@@ -116,4 +116,3 @@ class UserFormView(View):
         # if the submission to log in fails, the process starts over with a blank form
         return render(request, self.template_name, {'form': form})
 
-
