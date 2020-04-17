@@ -1,0 +1,189 @@
+In this lesson we will work on our views and finish by making an API request, and getting a JSON return back.
+NOT IN LESSON:  Instead of doing the API lessons 37-40 as a separate entity, we will be integrating the API lessons into
+our main lesson, which we've been working on.
+First we will open up the companies/view.py file and enter a lot of imports.
+NOT IN LESSON:  Changed the name from view.py to views2.py so we can use music/views.py and companies/views2.py when we
+make our url patterns in urls.py.  If they had the same name, we can not distinguish one from the other, after importing
+them into urls.py
+
+# L40 return a 404 if the object doesn't exist
+from django.shortcuts import get_object_or_404
+
+# makes normal views return API data
+from rest_framework.views import APIView
+
+Response in conjunction with status, will return data, as a JSON, instead of responding with a regular '200 response'
+in HTML, when responding to a page request.
+
+# response works with status to return a response which will be; JSON
+from rest_framework.response import Response
+from rest_framework import status
+
+# import Stock from our Models.py for the fields data
+from .models import Stock
+
+# import StockSerializer from our serializer.py to convert data to JSON
+# StockSerializer was created from our Stock class in models.py, and StockSerializer resides in serializer.py
+from .serializer import StockSerializer
+
+We are going to set things up to support the different ways a user might use to request the data from the url.  the way
+a request is handles is dependant on what the user uses to make the request.  We will first make a class, StockList that
+will handle a request that is a 'get' or 'post' type request.  We will inherit from the APIView.  The get will get
+almost everything in the database and a post will be like submitting a form for adding a new stock:
+
+# stocks/
+class StockList(APIView):
+
+    def get(self):
+        pass
+
+    def post(self):
+        pass
+
+We use pass for now, as a placeholder, because the server is running, while we are creating the code.
+Later on we will create urls, within the website, to get the list data or create a new stock, by using post.
+To finish the get function, we have to pass in the 'request' and to get all the stock data we add
+
+stocks = Stock.objects.all()
+
+Then we need to serialize the lists data, convert to JSON, using StockSerializer and this takes two parameters.  The
+first is what objects are we trying to serialize, which is stocks and the second is how many of them, is it going to
+return; one or many?  After this, being that it is a view function and involves HTML, needs to return an HTTP response.
+So its a HTTP response, with JSON content, being that its over the internet.
+
+    def get(self):
+
+        # create variable, get everything to send in the list
+        stocks = Stock.objects.all()
+
+        # turn it into JSON using serializer, 1st parameter is what you are sending
+        # second parameter is it many or just one
+        serializer = StockSerializer(stocks, many=True)
+
+        # make HTTP able to send JSON data
+        return Response(serializer.data)
+
+To get the 'stocks' web page for our 'get', working, we will need to specify it in our urlpatterns in our websites
+music/urls.py file.  First we will add some imports to support our API:
+# for the admin
+from django.contrib import admin
+# support url's for the API
+from rest_framework.urlpatterns import format_suffix_patterns
+# views from local app companies
+from companies import views2
+
+Also leave the original views import to retain the music app websites functionality:
+
+from . import views
+
+Next, under the regular urlpatterns [], we will write a pattern, for the API pages, and for deleting, updating and
+other actions, we add more, perhaps, later:
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
+But we will start with the stocks page, and write this in the same urlpatterns that we have been using.
+NOT IN THE LESSON: notice the path to stocks is not the same as in the lesson.  This is because we merged the lessons
+into one.  Now the stocks page is at:  http://localhost:8000/music/stocks/
+
+    # L40 path to music/stocks/ reference to class StockList, then call as_view
+    re_path(r'^stocks/', views2.StockList.as_view()),
+
+We also add a pattern for the admin, even though it might be redundant;  not necessary, that is linked to the, admin
+import:
+
+re_path(r'^admin/', admin.site.urls),
+
+FROM THE COMMENTS AREA: To finish up the post function in views.py
+
+def post(self,request):
+        serializer=StockSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response (serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+******************** THE LESSONS TERMINATE AT THIS POINT IN 2016! ********************
+
+
+************************* highlights from the comments area ***********************
+
+
+
+
+
+Will you show how access json with android? Been interested in knowing how to use the same database for both websites
+and mobile devices
+
+
+literally typing "access json with android" on google gives you an answer in a first link...
+
+
+
+
+
+
+Don't use Rest framework with django 1.9. Rest is not supported for django 1.9.
+
+
+
+
+
+
+hi everyone, who didnt know  " post function" , you can use the following lines:
+
+def post(self, request):
+        serializer = StocksSerializer(data=request.data, many=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+while i runnng python manage.py.  it showing me the following error:
+
+django.core.exceptions.ImproperlyConfigured: WSGI application 'myproject.wsgi.application' could not be loaded.
+
+
+make sure your settings.py is  well set like this (WSGI_APPLICATION = 'TestAdmin.wsgi.application')
+
+(WSGI_APPLICATION = 'projectname.wsgi.application')
+
+
+
+
+
+
+
+Here are the dependencies in views.py so that you don't have to type it all :
+
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Stock
+from .serializers import StockSerializer
+
+
+
+
+
+
+Hi BUCKY, i gone through all of yours django videos, thanks for those videos. Can u upload the video for how to deploy
+django in production environment? thanks in advance..
+
+
+Heroku, or OS X server with Gunicorn.
+
+
+to newcomers: get a vps for few bucks with linux distro and do same thing you do on your pc, just turn off debug mode.
+
+
+You can now also deploy Django to IBM Bluemix. I'm pretty satisfied with them.
+
+
